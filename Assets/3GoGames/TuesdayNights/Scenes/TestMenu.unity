@@ -143,15 +143,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GameMode: 0
   m_Ball: 8
-  m_Stadium: 3
+  m_Stadium: 0
   m_MatchDuration: 4
   m_GoldenGoal: 1
   m_Referee: 0
   m_TeamA: 0
   m_TeamB: 1
   m_PlayersPerTeam: 3
-  m_AllHumans: 1
-  m_AllCPUs: 0
+  m_AllHumans: 0
+  m_AllCPUs: 1
 --- !u!4 &353139817
 Transform:
   m_ObjectHideFlags: 0

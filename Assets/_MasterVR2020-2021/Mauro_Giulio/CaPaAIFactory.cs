@@ -91,7 +91,7 @@ namespace Ca_Pa
 
         private static tnStandardAIInputFillerBase CreateInputFiller(AIRole i_Role, GameObject i_Character)
         {
-            return new tnStandardAIInputFiller(i_Character, i_Role);
+            return new CaPaInputFiller(i_Character, i_Role);
         }
 
         #endregion
