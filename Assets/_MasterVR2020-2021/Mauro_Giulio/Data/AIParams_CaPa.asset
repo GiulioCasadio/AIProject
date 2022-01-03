@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c821e8aa7b93b3b4d8386ca3cdc5d2a0, type: 3}
+  m_Name: New tnStandardAIInputFillerParams
+  m_EditorClassIdentifier: 
+  m_MinFleeDistanceFactor:
+    m_Min: 0
+    m_Max: 0
+  m_MaxFleeDistanceFactor:
+    m_Min: 0
+    m_Max: 0
+  m_SeparationThreshold:
+    m_Min: 0
+    m_Max: 0
+  m_MinDashEnergy:
+    m_Min: 0
+    m_Max: 0
+  m_MinKickEnergy:
+    m_Min: 0
+    m_Max: 0
+  m_MinTackleEnergy:
+    m_Min: 0
+    m_Max: 0
+  m_MinAttractEnergy:
+    m_Min: 0
+    m_Max: 0
+  m_DashCooldown:
+    m_Min: 0
+    m_Max: 0
+  m_KickCooldown:
+    m_Min: 0
+    m_Max: 0
+  m_TackleCooldown:
+    m_Min: 0
+    m_Max: 0
+  m_AttractCooldown:
+    m_Min: 0
+    m_Max: 0
+  m_DashDistance:
+    m_Min: 0
+    m_Max: 0
+  m_ForcedDashDistance:
+    m_Min: 0
+    m_Max: 0
+  m_KickPrecision:
+    m_Min: 0
+    m_Max: 0
+  m_TackleRadius:
+    m_Min: 0
+    m_Max: 0
+  m_BallDistanceThreshold:
+    m_Min: 0
+    m_Max: 0
+  m_AttractMinRadius:
+    m_Min: 0
+    m_Max: 0
+  m_AttractMaxRadius:
+    m_Min: 0
+    m_Max: 0
+  m_AttractTimeThreshold:
+    m_Min: 0
+    m_Max: 0
+  m_RecoverRadius:
+    m_Min: 0
+    m_Max: 0
+  m_RecoverTimeThreshold:
+    m_Min: 0
+    m_Max: 0
