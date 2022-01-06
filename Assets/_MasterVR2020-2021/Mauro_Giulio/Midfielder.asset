@@ -20,7 +20,7 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(700,323)"},"ID":0,"Name":"Entry","Instant":true}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -29,4 +29,4 @@ MonoBehaviour:
         unityObjects: []
         byteData: 
         byteDataArray: 
-      Version: 
+      Version: 1.6.7
