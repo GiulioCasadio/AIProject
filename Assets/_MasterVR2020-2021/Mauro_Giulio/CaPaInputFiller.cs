@@ -1,6 +1,5 @@
 ﻿using BehaviorDesigner.Runtime;
 using TuesdayNights;
-using UnityEditor;
 using UnityEngine;
 
 namespace Ca_Pa
@@ -20,20 +19,21 @@ namespace Ca_Pa
 
             m_Role = i_Role;
 
-            m_behavior_tree = i_Self.GetComponent<BehaviorTree>();
+            m_behavior_tree = i_Self.AddComponent<BehaviorTree>();
+            m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPA_Midfielder");
 
-            m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
-            m_behavior_tree.SetVariableValue("Self", self);
+            //m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
+          //  m_behavior_tree.SetVariableValue("Self", self);
 
-            tnStandardAIInputFillerParams aiParams = Resources.Load<tnStandardAIInputFillerParams>(s_Params);
+            //tnStandardAIInputFillerParams aiParams = Resources.Load<tnStandardAIInputFillerParams>(s_Params);
 
-            if (aiParams == null)
+            /*if (aiParams == null)
             {
                 Debug.LogWarning("AI Params is null");
                 return;
-            }
+            }*/
 
-            m_behavior_tree.EnableBehavior();
+            //m_behavior_tree.EnableBehavior();
         }
         
         public override void Fill(float i_FrameTime, tnInputData i_Data)
