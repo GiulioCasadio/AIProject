@@ -20,10 +20,11 @@ namespace Ca_Pa
             m_Role = i_Role;
 
             m_behavior_tree = i_Self.AddComponent<BehaviorTree>();
+            m_behavior_tree.StartWhenEnabled = false;
             m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPA_Midfielder");
 
             //m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
-          //  m_behavior_tree.SetVariableValue("Self", self);
+            //  m_behavior_tree.SetVariableValue("Self", self);
 
             //tnStandardAIInputFillerParams aiParams = Resources.Load<tnStandardAIInputFillerParams>(s_Params);
 
@@ -33,7 +34,7 @@ namespace Ca_Pa
                 return;
             }*/
 
-            //m_behavior_tree.EnableBehavior();
+            m_behavior_tree.EnableBehavior();
         }
         
         public override void Fill(float i_FrameTime, tnInputData i_Data)
