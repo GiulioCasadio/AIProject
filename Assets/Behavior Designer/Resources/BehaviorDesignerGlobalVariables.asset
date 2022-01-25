@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mVariableData:
     variableStartIndex: 
-    JSONSerialization: 
+    JSONSerialization: '{"Variables":[]}'
     fieldSerializationData:
       typeName: []
       fieldNameHash: 
@@ -23,4 +23,4 @@ MonoBehaviour:
       unityObjects: []
       byteData: 
       byteDataArray: 
-  mVersion: 
+  mVersion: 1.6.7

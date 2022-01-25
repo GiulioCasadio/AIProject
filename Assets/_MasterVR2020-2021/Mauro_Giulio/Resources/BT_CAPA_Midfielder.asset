@@ -20,7 +20,9 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(345,89)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(0,140)"},"ID":1,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}}'
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(305,119)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"TestAction","NodeData":{"Offset":"(-5,159)"},"ID":1,"Name":"Test
+        Action","Instant":true},"Variables":[{"Type":"Ca_Pa.CaPa_SharedVariables.SharedAIInputData","Name":"AI
+        Input Data","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
