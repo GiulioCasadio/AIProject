@@ -20,8 +20,8 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(305,119)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"TestAction","NodeData":{"Offset":"(-5,159)"},"ID":1,"Name":"Test
-        Action","Instant":true},"Variables":[{"Type":"Ca_Pa.CaPa_SharedVariables.SharedAIInputData","Name":"AI
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(285,189)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,120)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsBallInMyPossess","NodeData":{"Offset":"(-120,127)"},"ID":2,"Name":"Is
+        Ball In My Possess","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(138,126)"},"ID":3,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"dio"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[{"Type":"Ca_Pa.CaPa_SharedVariables.SharedAIInputData","Name":"AI
         Input Data","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
