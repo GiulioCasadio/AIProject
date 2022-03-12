@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using Ca_Pa.CaPa_SharedVariables;
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
 public class ChaseBall : Action
 {

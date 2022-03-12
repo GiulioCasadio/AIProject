@@ -2,9 +2,9 @@
 using UnityEngine;
 using TuesdayNights;
 
-namespace Ca_Pa
+namespace Ca_Pa_Ro
 {
-    public class CaPaAIFactory : tnBaseStandardMatchAIFactory
+    public class CaPaRoAIFactory : tnBaseStandardMatchAIFactory
     {
         #region Roles
 
@@ -91,12 +91,12 @@ namespace Ca_Pa
 
         private static tnStandardAIInputFillerBase CreateInputFiller(AIRole i_Role, GameObject i_Character)
         {
-            return new CaPaInputFiller(i_Character, i_Role);
+            return new CaPaRoInputFiller(i_Character, i_Role);
         }
 
         #endregion
 
-        public CaPaAIFactory()
+        public CaPaRoAIFactory()
             : base()
         {
             m_Roles = new List<AIRole>();

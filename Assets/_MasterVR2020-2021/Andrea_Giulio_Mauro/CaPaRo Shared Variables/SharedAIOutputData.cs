@@ -1,7 +1,7 @@
 ﻿using BehaviorDesigner.Runtime;
 using UnityEngine;
 
-namespace Ca_Pa.CaPa_SharedVariables
+namespace Ca_Pa_Ro.CaPaRo_SharedVariables
 {
     [System.Serializable]
     public class AIOutputData

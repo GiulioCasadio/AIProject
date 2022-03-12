@@ -2,9 +2,9 @@
 using TuesdayNights;
 using UnityEngine;
 
-namespace Ca_Pa
+namespace Ca_Pa_Ro
 {
-    public class CaPaInputFiller : tnStandardAIInputFillerBase
+    public class CaPaRoInputFiller : tnStandardAIInputFillerBase
     {
         private BehaviorTree m_behavior_tree = null;
 
@@ -14,14 +14,14 @@ namespace Ca_Pa
         private static string s_Params = "Data/AI/AIParams";
 
         // tnInputFiller's INTERFACE
-        public CaPaInputFiller(GameObject i_Self, AIRole i_Role) : base(i_Self)
+        public CaPaRoInputFiller(GameObject i_Self, AIRole i_Role) : base(i_Self)
         {
 
             m_Role = i_Role;
 
             m_behavior_tree = i_Self.AddComponent<BehaviorTree>();
             m_behavior_tree.StartWhenEnabled = false;
-            m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPA_Midfielder");
+            m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_Midfielder");
 
             //m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
             //  m_behavior_tree.SetVariableValue("Self", self);
