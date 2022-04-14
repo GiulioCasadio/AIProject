@@ -2,6 +2,8 @@
 using TuesdayNights;
 using UnityEngine;
 
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
+
 namespace Ca_Pa_Ro
 {
     public class CaPaRoInputFiller : tnStandardAIInputFillerBase
@@ -9,6 +11,8 @@ namespace Ca_Pa_Ro
         private BehaviorTree m_behavior_tree = null;
 
         private AIRole m_Role = AIRole.Null;
+
+        public AIInputData shared = new AIInputData();
 
         // STATIC VARIABLES
         private static string s_Params = "Data/AI/AIParams";
@@ -36,7 +40,40 @@ namespace Ca_Pa_Ro
 
             m_behavior_tree.EnableBehavior();
         }
-        
+
+        public override void Setup(tnBaseAIData i_Data)
+        {
+            base.Setup(i_Data);
+
+
+            //SETUP STATIC GLOBAL DATA
+            shared.ball = ball;
+            shared.ballRadius = ballRadius;
+            
+            shared.teamCharactersCount = teamCharactersCount;
+            shared.teammatesCount = teammatesCount;
+            shared.opponentsCount = opponentsCount;
+            shared.myGoal = myGoal;
+            shared.opponentGoal = opponentGoal;
+            
+            shared.fieldWidth = fieldWidth;
+            shared.fieldHeight = fieldHeight;
+            
+            shared.gkAreaMinHeight = gkAreaMinHeight;
+            shared.gkAreaMaxHeight = gkAreaMaxHeight;
+            shared.gkAreaWidth = gkAreaWidth;
+            shared.gkAreaHeight = gkAreaHeight;
+            
+            shared.goalWidth = goalWidth;
+            shared.goalMaxHeight = goalMaxHeight;
+            shared.goalMinHeight = goalMinHeight;
+            
+            shared.colliderRadius = colliderRadius;
+            
+            shared.m_Opponents = opponents;
+            shared.m_Teams = teams;
+        }
+
         public override void Fill(float i_FrameTime, tnInputData i_Data)
         {
             if (!initialized || self == null)
