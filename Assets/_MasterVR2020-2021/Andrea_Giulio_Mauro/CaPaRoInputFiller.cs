@@ -14,9 +14,6 @@ namespace Ca_Pa_Ro
 
         public AIInputData shared = new AIInputData();
 
-        // STATIC VARIABLES
-        private static string s_Params = "Data/AI/AIParams";
-
         // tnInputFiller's INTERFACE
         public CaPaRoInputFiller(GameObject i_Self, AIRole i_Role) : base(i_Self)
         {
@@ -72,6 +69,8 @@ namespace Ca_Pa_Ro
             
             shared.m_Opponents = opponents;
             shared.m_Teams = teams;
+
+            //m_behavior_tree.SetVariableValue("DIO",shared);
         }
 
         public override void Fill(float i_FrameTime, tnInputData i_Data)

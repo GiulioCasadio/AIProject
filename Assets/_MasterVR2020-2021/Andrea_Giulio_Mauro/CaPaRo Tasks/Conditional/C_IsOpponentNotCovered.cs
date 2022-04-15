@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
+using Ca_Pa_Ro;
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
 public class C_IsOpponentNotCovered : Conditional
@@ -11,7 +12,7 @@ public class C_IsOpponentNotCovered : Conditional
 
     public GameObject self;
 
-    public AIInputData shared;
+   // public AIInputData shared;
 
     protected Behavior m_owner => m_task.Owner;
 
@@ -27,11 +28,9 @@ public class C_IsOpponentNotCovered : Conditional
 
     public override TaskStatus OnUpdate()
 	{
-        shared = (AIInputData)m_owner.GetVariable("AIInputData").GetValue();
-
-        Transform opponent = GetOpponentNearestTo(shared.myPosition, shared.m_Opponents);
-
-        return TaskStatus.Success;
+        //SharedAIInputData input = (SharedAIInputData)m_owner.GetVariable("DIO");
+        // Transform opponent = GetOpponentNearestTo(input, m_owner.GetVariable("m_opponents"));
+        return TaskStatus.Failure;
 	}
 
     public Transform GetOpponentNearestTo(Vector3 position, List<Transform> opponents)
