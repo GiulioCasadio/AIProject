@@ -1,4 +1,5 @@
-﻿using BehaviorDesigner.Runtime;
+﻿using System;
+using BehaviorDesigner.Runtime;
 using TuesdayNights;
 using UnityEngine;
 
@@ -21,7 +22,25 @@ namespace Ca_Pa_Ro
 
             m_behavior_tree = i_Self.AddComponent<BehaviorTree>();
             m_behavior_tree.StartWhenEnabled = false;
-            m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_Midfielder");
+
+            switch (i_Role)
+            {
+                case AIRole.Null:
+                    break;
+                case AIRole.Defender:
+                    break;
+                case AIRole.Midfielder:
+                    m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_Midfielder");
+                    break;
+                case AIRole.Striker:
+                    m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("AndreaPlayerTest");
+                    break;
+                case AIRole.CoachPlayer:
+                    m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_CoachPlayer");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(i_Role), i_Role, null);
+            }
 
             //m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
             //  m_behavior_tree.SetVariableValue("Self", self);

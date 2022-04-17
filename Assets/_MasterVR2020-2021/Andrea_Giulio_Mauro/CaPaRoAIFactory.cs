@@ -21,7 +21,7 @@ namespace Ca_Pa_Ro
         
         private static AIRole[] s_Roles_3 = new AIRole[]
         {
-            AIRole.Midfielder,
+            AIRole.CoachPlayer,
             AIRole.Midfielder,
             AIRole.Midfielder
         };
