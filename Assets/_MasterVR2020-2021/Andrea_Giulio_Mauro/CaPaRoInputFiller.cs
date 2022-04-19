@@ -70,7 +70,7 @@ namespace Ca_Pa_Ro
             shared.m_Opponents = opponents;
             shared.m_Teams = teams;
 
-            //m_behavior_tree.SetVariableValue("DIO",shared);
+            m_behavior_tree.SetVariableValue("Shared", shared);
         }
 
         public override void Fill(float i_FrameTime, tnInputData i_Data)

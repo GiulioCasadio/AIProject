@@ -12,9 +12,9 @@ public class C_IsOpponentNotCovered : Conditional
 
     public GameObject self;
 
-   // public AIInputData shared;
-
     protected Behavior m_owner => m_task.Owner;
+
+    public SharedAIInputData shared;
 
     public override void OnAwake()
     {
@@ -23,13 +23,12 @@ public class C_IsOpponentNotCovered : Conditional
 
     public override void OnStart()
     {
-        self = m_owner.GetVariable("Self").GetValue() as GameObject;
+        self = m_owner.GetVariable("Shared").GetValue() as GameObject;
     }
 
     public override TaskStatus OnUpdate()
 	{
-        //SharedAIInputData input = (SharedAIInputData)m_owner.GetVariable("DIO");
-        // Transform opponent = GetOpponentNearestTo(input, m_owner.GetVariable("m_opponents"));
+        Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
         return TaskStatus.Failure;
 	}
 
