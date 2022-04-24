@@ -42,6 +42,8 @@ public abstract class tnBaseAIInputFiller : tnAIInputFiller
 
     // ACCESSORS
 
+    protected List<Transform> opponents => m_Opponents;
+
     protected int teamCharactersCount
     {
         get
@@ -54,6 +56,8 @@ public abstract class tnBaseAIInputFiller : tnAIInputFiller
     {
         get { return m_Teammates.Count; }
     }
+
+    protected List<Transform> teams => m_Team;
 
     protected int opponentsCount
     {
@@ -315,7 +319,7 @@ public abstract class tnBaseAIInputFiller : tnAIInputFiller
 
     // BUSINESS LOGIC
 
-    public void Setup(tnBaseAIData i_Data)
+    public virtual void Setup(tnBaseAIData i_Data)
     {
         if (i_Data == null)
             return;

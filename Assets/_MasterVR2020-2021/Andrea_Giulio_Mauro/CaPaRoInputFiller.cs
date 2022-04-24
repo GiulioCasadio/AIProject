@@ -3,6 +3,8 @@ using BehaviorDesigner.Runtime;
 using TuesdayNights;
 using UnityEngine;
 
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
+
 namespace Ca_Pa_Ro
 {
     public class CaPaRoInputFiller : tnStandardAIInputFillerBase
@@ -11,8 +13,8 @@ namespace Ca_Pa_Ro
 
         private AIRole m_Role = AIRole.Null;
 
-        // STATIC VARIABLES
-        private static string s_Params = "Data/AI/AIParams";
+        public AIInputData shared = new AIInputData();
+        public AIOutputData output = new AIOutputData();
 
         // tnInputFiller's INTERFACE
         public CaPaRoInputFiller(GameObject i_Self, AIRole i_Role) : base(i_Self)
@@ -50,20 +52,46 @@ namespace Ca_Pa_Ro
             }
             
 
-            //m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
-            //  m_behavior_tree.SetVariableValue("Self", self);
-
-            //tnStandardAIInputFillerParams aiParams = Resources.Load<tnStandardAIInputFillerParams>(s_Params);
-
-            /*if (aiParams == null)
-            {
-                Debug.LogWarning("AI Params is null");
-                return;
-            }*/
-
             m_behavior_tree.EnableBehavior();
         }
-        
+
+        public override void Setup(tnBaseAIData i_Data)
+        {
+            base.Setup(i_Data);
+
+
+            //SETUP STATIC GLOBAL DATA
+            shared.ball = ball;
+            shared.ballPosition = ballPosition;
+            shared.myPosition = myPosition;
+            shared.ballRadius = ballRadius;
+            
+            shared.teamCharactersCount = teamCharactersCount;
+            shared.teammatesCount = teammatesCount;
+            shared.opponentsCount = opponentsCount;
+            shared.myGoal = myGoal;
+            shared.opponentGoal = opponentGoal;
+            
+            shared.fieldWidth = fieldWidth;
+            shared.fieldHeight = fieldHeight;
+            
+            shared.gkAreaMinHeight = gkAreaMinHeight;
+            shared.gkAreaMaxHeight = gkAreaMaxHeight;
+            shared.gkAreaWidth = gkAreaWidth;
+            shared.gkAreaHeight = gkAreaHeight;
+            
+            shared.goalWidth = goalWidth;
+            shared.goalMaxHeight = goalMaxHeight;
+            shared.goalMinHeight = goalMinHeight;
+            
+            shared.colliderRadius = colliderRadius;
+            
+            shared.m_Opponents = opponents;
+            shared.m_Teams = teams;
+
+            m_behavior_tree.SetVariableValue("Shared", shared);
+        }
+
         public override void Fill(float i_FrameTime, tnInputData i_Data)
         {
             if (!initialized || self == null)
@@ -77,10 +105,50 @@ namespace Ca_Pa_Ro
                 ResetInputData(i_Data);
                 return;
             }
+
+            UpdateSharedInputData(i_FrameTime);
+
+            // Fill input data.
+            if (m_behavior_tree.GetVariable("Output").GetValue() is AIOutputData output)
+            {
+                var m_Axes = output.axes;
+
+                i_Data.SetAxis(InputActions.s_HorizontalAxis, m_Axes.x);
+                i_Data.SetAxis(InputActions.s_VerticalAxis, m_Axes.y);
+
+                i_Data.SetButton(InputActions.s_PassButton, output.requestKick);
+                i_Data.SetButton(InputActions.s_ShotButton, output.requestKick);
+
+                i_Data.SetButton(InputActions.s_AttractButton, output.isAttracting);
+            }
+            else
+            {
+                Debug.LogError("No output set!");
+            }
+
         }
 
         public override void Clear()
         {
+        }
+
+        private void UpdateSharedInputData(float i_FrameTime)
+        {
+            shared.myPosition = myPosition;
+           
+            
+            shared.ballDistance = ballDistance;
+            
+            shared.topLeft = topLeft;
+            shared.topRight = topRight;
+            shared.bottomLeft = bottomLeft;
+            shared.bottomRight = bottomRight;
+            
+            shared.ballPosition = ball != null ? ball.position : Vector3.zero;
+            
+            shared.midfield = midfield;
+
+            m_behavior_tree.SetVariableValue("Shared", shared);
         }
     }
 }

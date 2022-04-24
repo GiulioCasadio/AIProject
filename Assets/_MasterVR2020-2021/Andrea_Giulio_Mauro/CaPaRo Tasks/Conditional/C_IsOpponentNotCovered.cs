@@ -1,0 +1,24 @@
+using UnityEngine;
+using System.Collections.Generic;
+using BehaviorDesigner.Runtime;
+using BehaviorDesigner.Runtime.Tasks;
+
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
+
+public class C_IsOpponentNotCovered : C_Base
+{
+    public override TaskStatus OnUpdate()
+	{
+        Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
+
+        if (IsCharacterCovered(opponent))
+        {
+            return TaskStatus.Failure;
+        }
+        else
+        {
+            return TaskStatus.Success;
+        }
+    }
+}
+

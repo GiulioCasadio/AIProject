@@ -97,6 +97,9 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
         private float m_RecoverTimeThreshold = 1.0f;
 
         private float m_SmoothTime = 0.0f;
+
+        public List<Transform> m_Opponents;
+        public List<Transform> m_Teams;
     }
 
     [System.Serializable]
