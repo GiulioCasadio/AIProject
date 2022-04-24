@@ -7,10 +7,11 @@ using UnityEngine;
 [TaskCategory("StatusCheck")]
 public class HaveToKnocks : Conditional
 {
-    public PlayerFocus.SharedPlayerFocus focus;
+    [SerializeField]
+    private PlayerFocus.SharedPlayerFocus m_playerFocus;
     public override TaskStatus OnUpdate()
     {
-        if (focus.Value.m_state == PlayerFocus.PlayerStateFocus.KNOCKS)
+        if (m_playerFocus.Value.m_state == PlayerFocus.PlayerStateFocus.KNOCKS)
             return TaskStatus.Success;
         return TaskStatus.Failure;
     }

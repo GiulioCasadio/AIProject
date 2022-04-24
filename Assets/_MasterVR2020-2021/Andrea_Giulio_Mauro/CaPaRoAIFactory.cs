@@ -22,8 +22,8 @@ namespace Ca_Pa_Ro
         private static AIRole[] s_Roles_3 = new AIRole[]
         {
             AIRole.CoachPlayer,
-            AIRole.Midfielder,
-            AIRole.Midfielder
+            AIRole.Striker,
+            AIRole.Striker
         };
 
         private static AIRole[][] s_Roles = new AIRole[][]
@@ -35,7 +35,7 @@ namespace Ca_Pa_Ro
         
         #endregion
         
-        private static AIRole s_DefaultRole = AIRole.Midfielder;
+        private static AIRole s_DefaultRole = AIRole.Striker;
         private List<AIRole> m_Roles = null;
         protected int m_AICreated = 0;
 
@@ -48,7 +48,7 @@ namespace Ca_Pa_Ro
 
             var charactersCount = i_TeamDescription.charactersCount;
             
-            if (charactersCount <= 0 || charactersCount >= s_Roles.Length)
+            if (charactersCount <= 0 || charactersCount > s_Roles.Length)
                 return;
 
             var roles = s_Roles[charactersCount - 1];

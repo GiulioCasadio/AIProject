@@ -42,6 +42,14 @@ namespace Ca_Pa_Ro
                     throw new ArgumentOutOfRangeException(nameof(i_Role), i_Role, null);
             }
 
+            PlayerFocus.SharedPlayerFocus ss = (PlayerFocus.SharedPlayerFocus)m_behavior_tree.GetVariable("m_playerFocus");
+            
+            if (ss != null)
+            {
+                Debug.Log(ss.Value.m_state);
+            }
+            
+
             //m_behavior_tree.SetVariableValue("CharacterRole", m_Role);
             //  m_behavior_tree.SetVariableValue("Self", self);
 
