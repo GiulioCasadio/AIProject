@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
@@ -60,27 +61,32 @@ public class C_Base : Conditional
 
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
-        Vector2 direction = (ballPosition - i_Character.GetPositionXY()).normalized;
 
-        Vector2 targetPosition = FindNearestPointOnLine(ballPosition, direction, myPosition);
-
-        if ((myPosition - targetPosition).magnitude < 0.5f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return IsBetween(ballPosition, i_Character.position, myPosition);
     }
 
-    public Vector2 FindNearestPointOnLine(Vector2 origin, Vector2 direction, Vector2 point)
+    public bool IsBetween(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
     {
-        direction.Normalize();
-        Vector2 lhs = point - origin;
+        /*float crossproduct = (pointToCheck.y - pointA.y) * (pointB.x - pointA.x) - (pointToCheck.x - pointA.x) * (pointB.y - pointA.y);
 
-        float dotP = Vector2.Dot(lhs, direction);
-        return origin + direction * dotP;
+        // allignment
+        if (Math.Abs(crossproduct) > Math.E)
+            return false;
+
+        float dotproduct = (pointToCheck.x - pointA.x) * (pointB.x - pointA.x) + (pointToCheck.y - pointA.y) * (pointB.y - pointA.y);
+        if (dotproduct < 0)
+            return false;
+
+        float squaredlengthba = (pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y);
+        if (dotproduct > squaredlengthba)
+            return false;
+
+        return true;*/
+
+        Vector2 midPoint = new Vector2((pointA.x+pointB.x)/2, (pointA.y+pointB.y)/2);
+        if(pointToCheck==midPoint)
+            return true;
+        return false;
     }
     #endregion
 }

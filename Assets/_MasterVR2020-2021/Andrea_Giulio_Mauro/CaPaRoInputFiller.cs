@@ -103,6 +103,7 @@ namespace Ca_Pa_Ro
 
         public override void Clear()
         {
+            m_behavior_tree.SetVariableValue("Output", new AIOutputData());
         }
 
         private void UpdateSharedInputData(float i_FrameTime)
