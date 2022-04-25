@@ -9,6 +9,10 @@ public class C_IsOpponentNotCovered : C_Base
 
         if (IsCharacterCovered(opponent))
         {
+            //reset axes
+            output.Value.axes = new Vector2(0,0);
+
+            m_owner.SetVariableValue("Output", output);
             return TaskStatus.Failure;
         }
         else

@@ -6,6 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
+
 public class C_Base : Conditional
 {
     #region conditional task setup
@@ -13,6 +14,9 @@ public class C_Base : Conditional
     protected Behavior m_owner => m_task.Owner;
 
     public SharedAIInputData shared;
+    public SharedAIOutputData output;
+
+    float trashold = 1.5f;
 
     public override void OnAwake()
     {
@@ -22,6 +26,7 @@ public class C_Base : Conditional
     public override void OnStart()
     {
         shared = m_owner.GetVariable("Shared") as SharedAIInputData;
+        output = m_owner.GetVariable("Output") as SharedAIOutputData;
     }
     #endregion
 
@@ -67,24 +72,8 @@ public class C_Base : Conditional
 
     public bool IsBetween(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
     {
-        /*float crossproduct = (pointToCheck.y - pointA.y) * (pointB.x - pointA.x) - (pointToCheck.x - pointA.x) * (pointB.y - pointA.y);
-
-        // allignment
-        if (Math.Abs(crossproduct) > Math.E)
-            return false;
-
-        float dotproduct = (pointToCheck.x - pointA.x) * (pointB.x - pointA.x) + (pointToCheck.y - pointA.y) * (pointB.y - pointA.y);
-        if (dotproduct < 0)
-            return false;
-
-        float squaredlengthba = (pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y);
-        if (dotproduct > squaredlengthba)
-            return false;
-
-        return true;*/
-
         Vector2 midPoint = new Vector2((pointA.x+pointB.x)/2, (pointA.y+pointB.y)/2);
-        if(pointToCheck==midPoint)
+        if (Vector2.Distance(pointToCheck, midPoint) < trashold)
             return true;
         return false;
     }
