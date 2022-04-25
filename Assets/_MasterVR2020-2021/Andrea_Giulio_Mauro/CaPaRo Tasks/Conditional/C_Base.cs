@@ -28,6 +28,24 @@ public class C_Base : Conditional
         shared = m_owner.GetVariable("Shared") as SharedAIInputData;
         output = m_owner.GetVariable("Output") as SharedAIOutputData;
     }
+
+    public override TaskStatus OnUpdate()
+    {
+        ResetOutput(output);
+        return TaskStatus.Success;
+    }
+
+    protected void ResetOutput(SharedAIOutputData tempOutput)
+    {
+        if (tempOutput == null)
+            return;
+
+        tempOutput.Value.axes = new Vector2(0, 0);
+
+        tempOutput.Value.requestKick = false;
+
+        m_owner.SetVariableValue("Output", output);
+    }
     #endregion
 
     #region conditional task methods

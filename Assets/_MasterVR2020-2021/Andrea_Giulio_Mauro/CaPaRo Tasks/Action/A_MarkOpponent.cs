@@ -5,6 +5,8 @@ public class A_MarkOpponent : A_Base
 {
     public override TaskStatus OnUpdate()
     {
+        base.OnUpdate();
+
         Vector2 opponentPosition = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents).position;
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
