@@ -1,4 +1,5 @@
-﻿using BehaviorDesigner.Runtime;
+﻿using System;
+using BehaviorDesigner.Runtime;
 using TuesdayNights;
 using UnityEngine;
 
@@ -23,7 +24,33 @@ namespace Ca_Pa_Ro
 
             m_behavior_tree = i_Self.AddComponent<BehaviorTree>();
             m_behavior_tree.StartWhenEnabled = false;
-            m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_Midfielder");
+
+            switch (i_Role)
+            {
+                case AIRole.Null:
+                    break;
+                case AIRole.Defender:
+                    break;
+                case AIRole.Midfielder:
+                    m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_Midfielder");
+                    break;
+                case AIRole.Striker:
+                    m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("AndreaPlayerTest");
+                    break;
+                case AIRole.CoachPlayer:
+                    m_behavior_tree.ExternalBehavior = Resources.Load<BehaviorDesigner.Runtime.ExternalBehavior>("BT_CAPARO_CoachPlayer");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(i_Role), i_Role, null);
+            }
+
+            PlayerFocus.SharedPlayerFocus ss = (PlayerFocus.SharedPlayerFocus)m_behavior_tree.GetVariable("m_playerFocus");
+            
+            if (ss != null)
+            {
+                Debug.Log(ss.Value.m_state);
+            }
+            
 
             m_behavior_tree.EnableBehavior();
         }
@@ -104,6 +131,7 @@ namespace Ca_Pa_Ro
 
         public override void Clear()
         {
+            m_behavior_tree.SetVariableValue("Output", new AIOutputData());
         }
 
         private void UpdateSharedInputData(float i_FrameTime)
