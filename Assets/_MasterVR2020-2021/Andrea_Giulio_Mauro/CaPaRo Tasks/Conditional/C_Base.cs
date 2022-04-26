@@ -41,8 +41,9 @@ public class C_Base : Conditional
             return;
 
         tempOutput.Value.axes = new Vector2(0, 0);
-
         tempOutput.Value.requestKick = false;
+        tempOutput.Value.requestDash = false;
+        tempOutput.Value.requestTackle = false;
 
         m_owner.SetVariableValue("Output", output);
     }
