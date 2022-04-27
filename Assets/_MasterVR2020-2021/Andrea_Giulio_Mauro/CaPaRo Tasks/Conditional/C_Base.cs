@@ -89,6 +89,7 @@ public class C_Base : Conditional
         return IsBetween(ballPosition, i_Character.position, myPosition);
     }
 
+    // PointToCheck sta nel punto medio tra A e B?
     public bool IsBetween(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
     {
         Vector2 midPoint = new Vector2((pointA.x+pointB.x)/2, (pointA.y+pointB.y)/2);
@@ -96,5 +97,42 @@ public class C_Base : Conditional
             return true;
         return false;
     }
+
+    protected bool IsCoveringBall(Transform i_Character)
+    {
+        if (i_Character == null)
+        {
+            return false;
+        }
+
+        if (shared.Value.ball == null || shared.Value.myPosition == null)
+        {
+            return false;
+        }
+
+        Vector2 ballPosition = shared.Value.ballPosition;
+        Vector2 myPosition = shared.Value.myPosition;
+
+        return IsCoveringView(ballPosition, myPosition, i_Character.position);
+    }
+
+    // Tra A e B e' presente C?
+    public bool IsCoveringView(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
+    {
+        var line = (pointB - pointA);
+        var len = line.magnitude;
+        line.Normalize();
+
+        var v = pointToCheck - pointA;
+        var d = Vector2.Dot(v, line);
+        d = Mathf.Clamp(d, 0f, len);
+
+        if (Vector2.Distance(pointA + line * d, pointToCheck) < trashold)
+        {
+            return true;
+        }
+        return false;
+    }
+
     #endregion
 }
