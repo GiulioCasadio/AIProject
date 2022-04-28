@@ -10,6 +10,9 @@ public class PlayerFocus
     public enum PlayerStateFocus { KNOCKS,CHASEBALL,NONE}
 
     public PlayerStateFocus m_state = PlayerStateFocus.NONE;
+    public bool m_hurry = false;
+    public Vector2 m_targetPosition = new Vector2();
+    public float m_rangeTargetPosition = 0f;
     
     [System.Serializable]
     public class SharedPlayerFocus : SharedVariable<PlayerFocus>
@@ -23,5 +26,6 @@ public class PlayerFocus
         {
             return new SharedPlayerFocus { mValue = value };
         }
+        
     }
 }
