@@ -50,7 +50,6 @@ namespace Ca_Pa_Ro
         {
             base.Setup(i_Data);
 
-
             //SETUP STATIC GLOBAL DATA
             shared.ball = ball;
             shared.ballPosition = ballPosition;
@@ -80,6 +79,8 @@ namespace Ca_Pa_Ro
             shared.m_Opponents = opponents;
             shared.m_Teams = teams;
 
+            shared.m_tnBaseMatchController = i_Data.BaseMatchController;
+            
             m_behavior_tree.SetVariableValue("Shared", shared);
         }
 

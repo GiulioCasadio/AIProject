@@ -100,6 +100,9 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
 
         public List<Transform> m_Opponents;
         public List<Transform> m_Teams;
+
+        public tnBaseMatchController m_tnBaseMatchController;
+
     }
 
     [System.Serializable]
