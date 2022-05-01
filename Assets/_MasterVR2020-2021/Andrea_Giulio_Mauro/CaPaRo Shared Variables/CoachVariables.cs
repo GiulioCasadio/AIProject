@@ -5,24 +5,38 @@ using UnityEngine;
 
 namespace Coach
 {
+    [System.Serializable]
     public class CoachVariables
     {
+        public enum TeamBehavior { AGGRESSIVE,DEFENSIVE,NEUTRAL}
+
+        public TeamBehavior m_behavior = TeamBehavior.NEUTRAL;
+        
+        public int myTeamScore = 0;
+        public int otherTeamScore = 0;
+        
         public List<CoachPlayerCommunication> playersCommunications = new List<CoachPlayerCommunication>();
-        // Start is called before the first frame update
 
-        [System.Serializable]
-        public class SharedCoachVariables : SharedVariable<CoachVariables>
+        public Vector2 MyTeamCenterGravity = new Vector2();
+        public Vector2 OtherTeamCenterGravity = new Vector2();
+        
+        
+
+
+    }
+    
+    [System.Serializable]
+    public class SharedCoachVariables : SharedVariable<CoachVariables>
+    {
+        public override string ToString()
         {
-            public override string ToString()
-            {
-                return mValue == null ? "null" : mValue.ToString();
-            }
-
-            public static implicit operator CoachVariables.SharedCoachVariables(CoachVariables value)
-            {
-                return new CoachVariables.SharedCoachVariables { mValue = value };
-            }
-
+            return mValue == null ? "null" : mValue.ToString();
         }
+
+        public static implicit operator SharedCoachVariables(CoachVariables value)
+        {
+            return new SharedCoachVariables { mValue = value };
+        }
+
     }
 }

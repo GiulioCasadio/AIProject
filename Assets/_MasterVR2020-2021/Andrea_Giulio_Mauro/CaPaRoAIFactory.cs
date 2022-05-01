@@ -113,7 +113,7 @@ namespace Ca_Pa_Ro
 
         private void fillCoachData()
         {
-            CoachVariables.SharedCoachVariables sharedCoachVariables = (CoachVariables.SharedCoachVariables)m_coachInputFiller.m_behavior_tree.GetVariable("m_coachVariables");
+            SharedCoachVariables sharedCoachVariables = (SharedCoachVariables)m_coachInputFiller.m_behavior_tree.GetVariable("m_coachVariables");
             
             sharedCoachVariables.Value.playersCommunications.Add(new CoachPlayerCommunication(m_coachInputFiller.GetPlayerFocus()));
 
