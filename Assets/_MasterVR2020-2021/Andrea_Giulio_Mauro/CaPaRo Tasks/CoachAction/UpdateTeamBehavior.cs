@@ -4,7 +4,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using Coach;
 using UnityEngine;
 
-public class UpdateTeamBehavior : CoachBaseTask
+
+public class UpdateTeamBehavior : CoachBaseAction
 {
     public override TaskStatus OnUpdate()
     {

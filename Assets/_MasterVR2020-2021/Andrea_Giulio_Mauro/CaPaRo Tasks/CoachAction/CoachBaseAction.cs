@@ -7,7 +7,7 @@ using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
 namespace Coach
 {
-    public class CoachBaseTask : Action
+    public class CoachBaseAction : Action
     {
         public SharedAIInputData shared;
         public SharedCoachVariables m_sharedCoachVariables;
