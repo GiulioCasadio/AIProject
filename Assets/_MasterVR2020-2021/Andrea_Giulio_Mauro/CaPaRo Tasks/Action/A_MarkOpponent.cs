@@ -7,13 +7,15 @@ public class A_MarkOpponent : A_Base
     {
         base.OnUpdate();
 
-        Vector2 opponentPosition = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents).position;
+        Vector2 opponentPosition = m_sharedPlayerVariables.Value.m_targetPosition;
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
 
         Vector2 midPoint = new Vector2((ballPosition.x + opponentPosition.x) / 2, (ballPosition.y + opponentPosition.y) / 2);
         if (midPoint == myPosition)
+        {
             return TaskStatus.Failure;
+        }
 
         Vector2 targetDirection = ((myPosition - midPoint) * -1).normalized;
 

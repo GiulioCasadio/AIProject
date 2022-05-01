@@ -7,9 +7,9 @@ public class C_IsOpponentNotCovered : C_Base
     {
         base.OnUpdate();
 
-        Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
+        //Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
 
-        if (IsCharacterCovered(opponent))
+        if (IsCharacterCovered(m_sharedPlayerVariables.Value.m_targetPosition))
         {
             return TaskStatus.Failure;
         }
