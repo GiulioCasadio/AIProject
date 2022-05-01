@@ -9,7 +9,7 @@ namespace Ca_Pa_Ro
 {
     public class CaPaRoInputFiller : tnStandardAIInputFillerBase
     {
-        private BehaviorTree m_behavior_tree = null;
+        protected internal BehaviorTree m_behavior_tree = null;
 
         private AIRole m_Role = AIRole.Null;
 
@@ -43,22 +43,12 @@ namespace Ca_Pa_Ro
                 default:
                     throw new ArgumentOutOfRangeException(nameof(i_Role), i_Role, null);
             }
-
-            PlayerFocus.SharedPlayerFocus ss = (PlayerFocus.SharedPlayerFocus)m_behavior_tree.GetVariable("m_playerFocus");
-            
-            if (ss != null)
-            {
-                Debug.Log(ss.Value.m_state);
-            }
-            
-
             m_behavior_tree.EnableBehavior();
         }
 
         public override void Setup(tnBaseAIData i_Data)
         {
             base.Setup(i_Data);
-
 
             //SETUP STATIC GLOBAL DATA
             shared.ball = ball;
@@ -89,6 +79,8 @@ namespace Ca_Pa_Ro
             shared.m_Opponents = opponents;
             shared.m_Teams = teams;
 
+            shared.m_tnBaseMatchController = i_Data.BaseMatchController;
+            
             m_behavior_tree.SetVariableValue("Shared", shared);
         }
 
@@ -151,6 +143,18 @@ namespace Ca_Pa_Ro
             shared.midfield = midfield;
 
             m_behavior_tree.SetVariableValue("Shared", shared);
+        }
+
+        public PlayerFocus GetPlayerFocus()
+        {
+            PlayerFocus.SharedPlayerFocus sharedPlayerfocus = (PlayerFocus.SharedPlayerFocus)m_behavior_tree.GetVariable("m_playerFocus");
+
+            if (sharedPlayerfocus != null)
+            {
+                return sharedPlayerfocus.Value;
+            }
+
+            return null;
         }
     }
 }

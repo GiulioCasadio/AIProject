@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class tnBaseAIData
 {
+    
+    //Me ne prendo io la responsabilità : Andrea Rosati.
+
+    private tnBaseMatchController m_baseMatchController = null; //Ci sono info che mi servono.
+    
     // Characters
 
     private List<Transform> m_MyTeam = null;
@@ -141,6 +146,14 @@ public class tnBaseAIData
         }
     }
 
+    public tnBaseMatchController BaseMatchController
+    {
+        get
+        {
+            return m_baseMatchController;
+        }
+    }
+
     public Transform GetMyTeamCharacter(int i_Index)
     {
         if (i_Index < 0 || i_Index >= m_MyTeam.Count)
@@ -224,6 +237,11 @@ public class tnBaseAIData
     public void SetAreaBottom(Transform i_Anchor)
     {
         m_AreaBottom = i_Anchor;
+    }
+
+    public void SetBaseMatchController(tnBaseMatchController i_baseMatchController)
+    {
+        m_baseMatchController = i_baseMatchController;
     }
 
     // CTOR

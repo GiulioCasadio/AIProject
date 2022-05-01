@@ -5,6 +5,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
+using Ca_Pa_Ro.Player;
 
 
 public class C_Base : Conditional
@@ -15,6 +16,7 @@ public class C_Base : Conditional
 
     public SharedAIInputData shared;
     public SharedAIOutputData output;
+    public SharedPlayerFocus m_sharedPlayerVariables;
 
     float trashold = 1.5f;
 
@@ -27,6 +29,7 @@ public class C_Base : Conditional
     {
         shared = m_owner.GetVariable("Shared") as SharedAIInputData;
         output = m_owner.GetVariable("Output") as SharedAIOutputData;
+        m_sharedPlayerVariables = m_owner.GetVariable("m_playerFocus") as SharedPlayerFocus;
     }
 
     public override TaskStatus OnUpdate()
@@ -71,7 +74,7 @@ public class C_Base : Conditional
         return nearest;
     }
 
-    protected bool IsCharacterCovered(Transform i_Character)
+    protected bool IsCharacterCovered(Vector2 i_Character)
     {
         if (i_Character == null)
         {
@@ -86,7 +89,7 @@ public class C_Base : Conditional
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
 
-        return IsBetween(ballPosition, i_Character.position, myPosition);
+        return IsBetween(ballPosition, i_Character, myPosition);
     }
 
     // PointToCheck sta nel punto medio tra A e B?

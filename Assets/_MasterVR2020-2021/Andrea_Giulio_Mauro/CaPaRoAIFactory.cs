@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Coach;
 using UnityEngine;
 using TuesdayNights;
 
@@ -6,16 +7,21 @@ namespace Ca_Pa_Ro
 {
     public class CaPaRoAIFactory : tnBaseStandardMatchAIFactory
     {
+
+        private CaPaRoInputFiller m_coachInputFiller;
+        private List<CaPaRoInputFiller> m_otherPlayers = new List<CaPaRoInputFiller>(); 
+        
+        
         #region Roles
 
         private static AIRole[] s_Roles_1 = new AIRole[]
         {
-            AIRole.Midfielder
+            AIRole.CoachPlayer
         };
         
         private static AIRole[] s_Roles_2 = new AIRole[]
         {
-            AIRole.Midfielder,
+            AIRole.CoachPlayer,
             AIRole.Midfielder
         };
         
@@ -84,12 +90,43 @@ namespace Ca_Pa_Ro
             }
 
             var role = m_Roles[m_AICreated++];
-            return CreateInputFiller(role, i_Character);
+
+            CaPaRoInputFiller currentPlayer = CreateInputFiller(role, i_Character);
+            
+            if (role == AIRole.CoachPlayer)
+            {
+                m_coachInputFiller = currentPlayer;
+            }
+
+            else
+            {
+                m_otherPlayers.Add(currentPlayer);
+            }
+
+            if (m_AICreated == m_Roles.Count)
+            {
+                fillCoachData();
+            }
+            
+            return currentPlayer;
         }
-        
+
+        private void fillCoachData()
+        {
+            SharedCoachVariables sharedCoachVariables = (SharedCoachVariables)m_coachInputFiller.m_behavior_tree.GetVariable("m_coachVariables");
+            
+            sharedCoachVariables.Value.playersCommunications.Add(new CoachPlayerCommunication(m_coachInputFiller.GetPlayerFocus()));
+
+            foreach (CaPaRoInputFiller player in m_otherPlayers)
+            {
+                sharedCoachVariables.Value.playersCommunications.Add(
+                    new CoachPlayerCommunication(player.GetPlayerFocus()));
+            }
+        }
+
         // INTERNALS
 
-        private static tnStandardAIInputFillerBase CreateInputFiller(AIRole i_Role, GameObject i_Character)
+        private static CaPaRoInputFiller CreateInputFiller(AIRole i_Role, GameObject i_Character)
         {
             return new CaPaRoInputFiller(i_Character, i_Role);
         }
