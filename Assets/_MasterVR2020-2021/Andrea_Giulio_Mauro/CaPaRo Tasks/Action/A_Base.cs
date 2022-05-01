@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-
+using Ca_Pa_Ro;
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
 public class A_Base : Action
@@ -23,6 +23,25 @@ public class A_Base : Action
     {
         shared = m_owner.GetVariable("Shared") as SharedAIInputData;
         output = m_owner.GetVariable("Output") as SharedAIOutputData;
+    }
+
+    public override TaskStatus OnUpdate()
+    {
+        ResetOutput(output);
+        return TaskStatus.Success;
+    }
+    
+    protected void ResetOutput(SharedAIOutputData tempOutput)
+    {
+        if (tempOutput == null)
+            return;
+
+        tempOutput.Value.axes = new Vector2(0, 0);
+        tempOutput.Value.requestKick = false;
+        tempOutput.Value.requestDash = false;
+        tempOutput.Value.requestTackle = false;
+
+        m_owner.SetVariableValue("Output", output);
     }
     #endregion
 
@@ -46,15 +65,6 @@ public class A_Base : Action
         }
 
         return nearest;
-    }
-
-    public Vector2 FindNearestPointOnLine(Vector2 origin, Vector2 direction, Vector2 point)
-    {
-        direction.Normalize();
-        Vector2 lhs = point - origin;
-
-        float dotP = Vector2.Dot(lhs, direction);
-        return origin + direction * dotP;
     }
     #endregion
 }

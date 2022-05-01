@@ -1,24 +1,24 @@
 using UnityEngine;
-using System.Collections.Generic;
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-
-using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
 public class A_MarkOpponent : A_Base
 {
     public override TaskStatus OnUpdate()
     {
-        Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
+        base.OnUpdate();
 
+        Vector2 opponentPosition = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents).position;
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
-        Vector2 direction = (ballPosition - opponent.GetPositionXY()).normalized;
 
-       // Vector2 targetPosition = FindNearestPointOnLine(ballPosition, direction, myPosition);
+        Vector2 midPoint = new Vector2((ballPosition.x + opponentPosition.x) / 2, (ballPosition.y + opponentPosition.y) / 2);
+        if (midPoint == myPosition)
+            return TaskStatus.Failure;
+
+        Vector2 targetDirection = ((myPosition - midPoint) * -1).normalized;
 
         //go to that position
-        output.Value.axes = direction;
+        output.Value.axes = targetDirection;
 
         m_owner.SetVariableValue("Output", output);
         return TaskStatus.Success;

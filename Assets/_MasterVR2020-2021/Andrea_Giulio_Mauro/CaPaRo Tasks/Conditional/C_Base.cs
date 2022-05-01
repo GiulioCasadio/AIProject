@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
+
 
 public class C_Base : Conditional
 {
@@ -12,6 +14,9 @@ public class C_Base : Conditional
     protected Behavior m_owner => m_task.Owner;
 
     public SharedAIInputData shared;
+    public SharedAIOutputData output;
+
+    float trashold = 1.5f;
 
     public override void OnAwake()
     {
@@ -21,6 +26,26 @@ public class C_Base : Conditional
     public override void OnStart()
     {
         shared = m_owner.GetVariable("Shared") as SharedAIInputData;
+        output = m_owner.GetVariable("Output") as SharedAIOutputData;
+    }
+
+    public override TaskStatus OnUpdate()
+    {
+        ResetOutput(output);
+        return TaskStatus.Success;
+    }
+
+    protected void ResetOutput(SharedAIOutputData tempOutput)
+    {
+        if (tempOutput == null)
+            return;
+
+        tempOutput.Value.axes = new Vector2(0, 0);
+        tempOutput.Value.requestKick = false;
+        tempOutput.Value.requestDash = false;
+        tempOutput.Value.requestTackle = false;
+
+        m_owner.SetVariableValue("Output", output);
     }
     #endregion
 
@@ -60,27 +85,16 @@ public class C_Base : Conditional
 
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
-        Vector2 direction = (ballPosition - i_Character.GetPositionXY()).normalized;
 
-        Vector2 targetPosition = FindNearestPointOnLine(ballPosition, direction, myPosition);
-
-        if ((myPosition - targetPosition).magnitude < 0.5f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return IsBetween(ballPosition, i_Character.position, myPosition);
     }
 
-    public Vector2 FindNearestPointOnLine(Vector2 origin, Vector2 direction, Vector2 point)
+    public bool IsBetween(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
     {
-        direction.Normalize();
-        Vector2 lhs = point - origin;
-
-        float dotP = Vector2.Dot(lhs, direction);
-        return origin + direction * dotP;
+        Vector2 midPoint = new Vector2((pointA.x+pointB.x)/2, (pointA.y+pointB.y)/2);
+        if (Vector2.Distance(pointToCheck, midPoint) < trashold)
+            return true;
+        return false;
     }
     #endregion
 }

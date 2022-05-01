@@ -110,6 +110,7 @@ namespace Ca_Pa_Ro
 
                 i_Data.SetButton(InputActions.s_PassButton, output.requestKick);
                 i_Data.SetButton(InputActions.s_ShotButton, output.requestKick);
+                i_Data.SetButton(InputActions.s_AttractButton, output.requestTackle);
 
                 i_Data.SetButton(InputActions.s_AttractButton, output.isAttracting);
             }
@@ -122,6 +123,7 @@ namespace Ca_Pa_Ro
 
         public override void Clear()
         {
+            m_behavior_tree.SetVariableValue("Output", new AIOutputData());
         }
 
         private void UpdateSharedInputData(float i_FrameTime)
