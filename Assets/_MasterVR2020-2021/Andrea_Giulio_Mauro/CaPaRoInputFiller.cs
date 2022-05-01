@@ -4,6 +4,7 @@ using TuesdayNights;
 using UnityEngine;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
+using Ca_Pa_Ro.Player;
 
 namespace Ca_Pa_Ro
 {
@@ -147,7 +148,7 @@ namespace Ca_Pa_Ro
 
         public PlayerFocus GetPlayerFocus()
         {
-            PlayerFocus.SharedPlayerFocus sharedPlayerfocus = (PlayerFocus.SharedPlayerFocus)m_behavior_tree.GetVariable("m_playerFocus");
+            SharedPlayerFocus sharedPlayerfocus = (SharedPlayerFocus)m_behavior_tree.GetVariable("m_playerFocus");
 
             if (sharedPlayerfocus != null)
             {
