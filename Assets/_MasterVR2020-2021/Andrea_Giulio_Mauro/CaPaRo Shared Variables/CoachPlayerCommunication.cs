@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Ca_Pa_Ro.Player;
+
 namespace Coach
 {
     public class CoachPlayerCommunication

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using Ca_Pa_Ro;
+
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
+using Ca_Pa_Ro.Player;
+
 
 public class A_Base : Action
 {
@@ -13,6 +15,9 @@ public class A_Base : Action
 
     public SharedAIInputData shared;
     public SharedAIOutputData output;
+    public SharedPlayerFocus m_sharedPlayerVariables;
+
+    public float trashold = 1.5f;
 
     public override void OnAwake()
     {
@@ -23,6 +28,7 @@ public class A_Base : Action
     {
         shared = m_owner.GetVariable("Shared") as SharedAIInputData;
         output = m_owner.GetVariable("Output") as SharedAIOutputData;
+        m_sharedPlayerVariables = m_owner.GetVariable("m_playerFocus") as SharedPlayerFocus;
     }
 
     public override TaskStatus OnUpdate()
