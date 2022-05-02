@@ -10,7 +10,7 @@ public class UpdateTeamBehavior : CoachBaseAction
     public override TaskStatus OnUpdate()
     {
         int myTeamScore = m_sharedCoachVariables.Value.myTeamScore;
-        int otherTeamScore = m_sharedCoachVariables.Value.otherTeamScore;
+        int otherTeamScore = m_sharedCoachVariables.Value.opponentTeamScore;
 
         float remaningTime = shared.Value.m_tnBaseMatchController.remainingTime.AsFloat();
         
