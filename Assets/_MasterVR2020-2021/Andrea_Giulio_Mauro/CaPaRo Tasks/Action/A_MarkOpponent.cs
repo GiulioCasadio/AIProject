@@ -7,11 +7,7 @@ public class A_MarkOpponent : A_Base
     {
         base.OnUpdate();
 
-        Vector2 opponentPosition = m_sharedPlayerVariables.Value.m_targetPosition;
-        Vector2 ballPosition = shared.Value.ballPosition;
-        Vector2 myPosition = shared.Value.myPosition;
-
-        Vector2 midPoint = new Vector2((ballPosition.x + opponentPosition.x) / 2, (ballPosition.y + opponentPosition.y) / 2);
+        Vector2 midPoint = new Vector2((ballPosition.x + targetPosition.x) / 2, (ballPosition.y + targetPosition.y) / 2);
         if (midPoint == myPosition)
         {
             return TaskStatus.Failure;
@@ -21,6 +17,8 @@ public class A_MarkOpponent : A_Base
 
         //go to that position
         output.Value.axes = targetDirection;
+
+        CheckHurry(myPosition, midPoint);
 
         m_owner.SetVariableValue("Output", output);
         return TaskStatus.Success;

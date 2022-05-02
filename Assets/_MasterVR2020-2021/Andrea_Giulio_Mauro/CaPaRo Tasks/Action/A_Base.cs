@@ -17,7 +17,12 @@ public class A_Base : Action
     public SharedAIOutputData output;
     public SharedPlayerFocus m_sharedPlayerVariables;
 
-    public float trashold = 1.5f;
+    public Vector2 targetPosition;
+    public Vector2 ballPosition;
+    public Vector2 myPosition;
+
+    public float radiusTrashold = 1.5f;
+    public float distanceTrashold = 5f;
 
     public override void OnAwake()
     {
@@ -34,6 +39,11 @@ public class A_Base : Action
     public override TaskStatus OnUpdate()
     {
         ResetOutput(output);
+
+        targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
+        ballPosition = shared.Value.ballPosition;
+        myPosition = shared.Value.myPosition;
+
         return TaskStatus.Success;
     }
     
@@ -52,6 +62,14 @@ public class A_Base : Action
     #endregion
 
     #region action task methods
+    public void CheckHurry(Vector2 myPos, Vector2 targetPosition)
+    {
+        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > distanceTrashold)
+        {
+            output.Value.requestDash = true;
+        }
+    }
+
     public Transform GetOpponentNearestTo(Vector3 position, List<Transform> opponents)
     {
         Transform nearest = null;

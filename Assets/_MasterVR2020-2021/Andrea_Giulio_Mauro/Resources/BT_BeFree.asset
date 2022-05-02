@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
-  m_Name: NewExternalBehavior
+  m_Name: BT_BeFree
   m_EditorClassIdentifier: 
   mBehaviorSource:
     behaviorName: Behavior
@@ -20,7 +20,10 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(396.000031,281.25)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-4.7058773,129.411758)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,124.705879)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"HaveToMakeFree","NodeData":{"Offset":"(-166.527527,153.713013)"},"ID":3,"Name":"Have
+        To Make Free","Instant":true,"SharedPlayerFocusm_playerFocus":{"Type":"Ca_Pa_Ro.Player.SharedPlayerFocus","Name":null}},{"Type":"C_IsBallVisible","NodeData":{"Offset":"(-8.531239,150.863831)"},"ID":4,"Name":"C   Is
+        Ball Visible","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedAIOutputDataoutput":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIOutputData","Name":null},"SharedPlayerFocusm_sharedPlayerVariables":{"Type":"Ca_Pa_Ro.Player.SharedPlayerFocus","Name":null},"Singletrashold":1.5},{"Type":"A_KeepFree","NodeData":{"Offset":"(147.259155,146.17627)"},"ID":5,"Name":"A   Keep
+        Free","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedAIOutputDataoutput":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIOutputData","Name":null},"SharedPlayerFocusm_sharedPlayerVariables":{"Type":"Ca_Pa_Ro.Player.SharedPlayerFocus","Name":null},"Singletrashold":1.5}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -29,4 +32,4 @@ MonoBehaviour:
         unityObjects: []
         byteData: 
         byteDataArray: 
-      Version: 
+      Version: 1.6.7
