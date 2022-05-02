@@ -18,7 +18,7 @@ public class C_Base : Conditional
     public SharedAIOutputData output;
     public SharedPlayerFocus m_sharedPlayerVariables;
 
-    float trashold = 1.5f;
+    public float trashold = 1.5f;
 
     public override void OnAwake()
     {

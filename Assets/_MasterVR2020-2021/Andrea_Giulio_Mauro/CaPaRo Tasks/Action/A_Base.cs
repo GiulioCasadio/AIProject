@@ -17,6 +17,8 @@ public class A_Base : Action
     public SharedAIOutputData output;
     public SharedPlayerFocus m_sharedPlayerVariables;
 
+    public float trashold = 1.5f;
+
     public override void OnAwake()
     {
         m_task = this;
