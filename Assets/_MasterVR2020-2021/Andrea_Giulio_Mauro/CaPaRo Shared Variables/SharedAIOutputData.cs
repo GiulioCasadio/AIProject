@@ -9,7 +9,6 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
         public Vector2 axes;
         public bool requestKick;
         public bool requestDash;
-        public bool requestTackle;
         public bool isAttracting;
     }
 
@@ -52,12 +51,6 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
         {
             _data.requestDash = dash;
             return this;    
-        }
-
-        public AIOutputDataBuilder WithTackle(bool tackle)
-        {
-            _data.requestTackle = tackle;
-            return this;
         }
 
         public AIOutputDataBuilder WithAttract(bool attract)

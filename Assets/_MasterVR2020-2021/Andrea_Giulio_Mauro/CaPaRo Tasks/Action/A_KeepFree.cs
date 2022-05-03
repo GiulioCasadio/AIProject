@@ -16,10 +16,10 @@ public class A_KeepFree : A_Base
 
         //go to that position
         output.Value.axes = targetDirection;
-
-        m_owner.SetVariableValue("Output", output);
-
+        
         CheckHurry(myPosition, targetPosition);
+        
+        m_owner.SetVariableValue("Output", output);
 
         return TaskStatus.Success;
     }
