@@ -10,7 +10,7 @@ public class UpdateGravitiesCenters : CoachBaseAction
     {
 
         ref Vector2 MyTeamCenterGravity = ref m_sharedCoachVariables.Value.MyTeamCenterGravity;
-        ref Vector2 OtherTeamCenterGravity = ref m_sharedCoachVariables.Value.OtherTeamCenterGravity;
+        ref Vector2 OtherTeamCenterGravity = ref m_sharedCoachVariables.Value.OpponentTeamCenterGravity;
 
         SetCenterGravity(shared.Value.m_Teams, ref MyTeamCenterGravity);
         SetCenterGravity(shared.Value.m_Opponents, ref OtherTeamCenterGravity);

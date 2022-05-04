@@ -5,11 +5,11 @@ using Coach;
 using UnityEngine;
 
 
-public class UpdateOtherTeamScore : CoachBaseAction
+public class UpdateOpponentTeamScore : CoachBaseAction
 {
     public override TaskStatus OnUpdate()
     {
-        m_sharedCoachVariables.Value.otherTeamScore++;
+        m_sharedCoachVariables.Value.opponentTeamScore++;
         
         return TaskStatus.Success;
     }
