@@ -10,7 +10,7 @@ public class HaveToCoverPosition : Conditional
     private SharedPlayerFocus m_playerFocus;
     public override TaskStatus OnUpdate()
     {
-        if (m_playerFocus.Value.m_state == PlayerFocus.PlayerStateFocus.COVERAREA)
+        if (m_playerFocus.Value.m_state == PlayerFocus.PlayerStateFocus.COVERZONE)
             return TaskStatus.Success;
         return TaskStatus.Failure;
     }
