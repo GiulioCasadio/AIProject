@@ -7,11 +7,11 @@ public class A_TackleOpponent : A_Base
     {
         base.OnUpdate();
         
-        Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
-        Vector2 dir = ((shared.Value.myPosition - shared.Value.ballPosition) * -1).normalized;
+        //Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
+        Vector2 dir = ((myPosition - targetPosition) * -1).normalized;
 
         //rendilo conditional
-        if (Vector2.Distance(shared.Value.myPosition, shared.Value.ballPosition) < 0.7f)
+        if (Vector2.Distance(myPosition, targetPosition) < radiusTrashold)
         {
             //reset axes
             output.Value.axes = new Vector2(0,0);
@@ -21,7 +21,10 @@ public class A_TackleOpponent : A_Base
         {
             output.Value.axes = dir;
         }
-
+        
+        CheckHurry(myPosition, targetPosition);
+        
+        m_owner.SetVariableValue("Output", output);
         return TaskStatus.Success;
     }
 }

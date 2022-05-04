@@ -18,7 +18,7 @@ public class C_Base : Conditional
     public SharedAIOutputData output;
     public SharedPlayerFocus m_sharedPlayerVariables;
 
-    public float trashold = 1.5f;
+    public float radiusTrashold = 1.5f;
 
     public override void OnAwake()
     {
@@ -46,7 +46,6 @@ public class C_Base : Conditional
         tempOutput.Value.axes = new Vector2(0, 0);
         tempOutput.Value.requestKick = false;
         tempOutput.Value.requestDash = false;
-        tempOutput.Value.requestTackle = false;
 
         m_owner.SetVariableValue("Output", output);
     }
@@ -96,7 +95,7 @@ public class C_Base : Conditional
     public bool IsBetween(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
     {
         Vector2 midPoint = new Vector2((pointA.x+pointB.x)/2, (pointA.y+pointB.y)/2);
-        if (Vector2.Distance(pointToCheck, midPoint) < trashold)
+        if (Vector2.Distance(pointToCheck, midPoint) < radiusTrashold)
             return true;
         return false;
     }
@@ -130,7 +129,7 @@ public class C_Base : Conditional
         var d = Vector2.Dot(v, line);
         d = Mathf.Clamp(d, 0f, len);
 
-        if (Vector2.Distance(pointA + line * d, pointToCheck) < trashold)
+        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTrashold)
         {
             return true;
         }

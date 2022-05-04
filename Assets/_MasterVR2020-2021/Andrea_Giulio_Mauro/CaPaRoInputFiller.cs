@@ -111,7 +111,7 @@ namespace Ca_Pa_Ro
 
                 i_Data.SetButton(InputActions.s_PassButton, output.requestKick);
                 i_Data.SetButton(InputActions.s_ShotButton, output.requestKick);
-                i_Data.SetButton(InputActions.s_AttractButton, output.requestTackle);
+                i_Data.SetButton(InputActions.s_DashButton, output.requestDash);
 
                 i_Data.SetButton(InputActions.s_AttractButton, output.isAttracting);
             }
