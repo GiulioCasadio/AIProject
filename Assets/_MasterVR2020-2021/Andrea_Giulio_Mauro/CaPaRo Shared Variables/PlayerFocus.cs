@@ -8,7 +8,7 @@ namespace Ca_Pa_Ro.Player
     [System.Serializable]
     public class PlayerFocus
     {
-        public enum PlayerStateFocus { KNOCKS, CHASEBALL, MARK, MAKEFREE, NONE }
+        public enum PlayerStateFocus { KNOCKS, CHASEBALL, MARK, MAKEFREE, COVERAREA, NONE }
 
         public PlayerStateFocus m_state = PlayerStateFocus.NONE;
         public bool m_hurry = false;
