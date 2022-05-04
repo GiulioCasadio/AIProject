@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
 using Coach;
 using UnityEngine;
 using TuesdayNights;
@@ -114,13 +115,13 @@ namespace Ca_Pa_Ro
         private void fillCoachData()
         {
             SharedCoachVariables sharedCoachVariables = (SharedCoachVariables)m_coachInputFiller.m_behavior_tree.GetVariable("m_coachVariables");
-            
-            sharedCoachVariables.Value.playersCommunications.Add(new CoachPlayerCommunication(m_coachInputFiller.GetPlayerFocus()));
+
+            sharedCoachVariables.Value.playersCommunications.Add(new CoachPlayerCommunication(m_coachInputFiller.GetPlayerFocus(), m_coachInputFiller.shared));
 
             foreach (CaPaRoInputFiller player in m_otherPlayers)
             {
                 sharedCoachVariables.Value.playersCommunications.Add(
-                    new CoachPlayerCommunication(player.GetPlayerFocus()));
+                    new CoachPlayerCommunication(player.GetPlayerFocus(), player.shared));
             }
         }
 
