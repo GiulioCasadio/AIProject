@@ -9,16 +9,18 @@ namespace Coach
     public class CoachVariables
     {
         public enum TeamBehavior { AGGRESSIVE,DEFENSIVE,NEUTRAL}
+        public enum TeamFieldStatus {DEFENDING, NEUTRAL, ATTACKING}
 
         public TeamBehavior m_behavior = TeamBehavior.NEUTRAL;
+        public TeamFieldStatus m_fieldStatus = TeamFieldStatus.NEUTRAL;
         
         public int myTeamScore = 0;
-        public int otherTeamScore = 0;
+        public int opponentTeamScore = 0;
         
         public List<CoachPlayerCommunication> playersCommunications = new List<CoachPlayerCommunication>();
 
         public Vector2 MyTeamCenterGravity = new Vector2();
-        public Vector2 OtherTeamCenterGravity = new Vector2();
+        public Vector2 OpponentTeamCenterGravity = new Vector2();
         
         
 
