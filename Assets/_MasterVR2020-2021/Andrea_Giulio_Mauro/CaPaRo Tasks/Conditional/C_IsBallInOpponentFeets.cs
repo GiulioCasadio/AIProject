@@ -7,7 +7,7 @@ public class C_IsBallInOpponentFeets : C_Base
     {
         base.OnUpdate();
 
-        if (IsBallInOpponentFeets(m_sharedPlayerVariables.Value.m_targetPosition))
+        if (IsBallInFeets(m_sharedPlayerVariables.Value.m_targetPosition))
         {
             return TaskStatus.Success;
         }

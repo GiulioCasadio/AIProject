@@ -136,7 +136,7 @@ public class C_Base : Conditional
         return false;
     }
 
-    protected bool IsBallInOpponentFeets(Vector2 i_Character)
+    protected bool IsBallInFeets(Vector2 i_Character)
     {
         if (i_Character == null)
         {
@@ -159,6 +159,5 @@ public class C_Base : Conditional
             return false;
         }
     }
-
     #endregion
 }
