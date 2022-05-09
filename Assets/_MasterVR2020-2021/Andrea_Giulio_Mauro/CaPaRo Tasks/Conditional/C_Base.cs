@@ -18,6 +18,10 @@ public class C_Base : Conditional
     public SharedAIOutputData output;
     public SharedPlayerFocus m_sharedPlayerVariables;
 
+    public Vector2 targetPosition;
+    public Vector2 ballPosition;
+    public Vector2 myPosition;
+
     public float radiusTrashold = 1.5f;
 
     public override void OnAwake()
@@ -35,6 +39,11 @@ public class C_Base : Conditional
     public override TaskStatus OnUpdate()
     {
         ResetOutput(output);
+
+        targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
+        ballPosition = shared.Value.ballPosition;
+        myPosition = shared.Value.myPosition;
+
         return TaskStatus.Success;
     }
 
