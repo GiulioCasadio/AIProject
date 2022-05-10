@@ -7,16 +7,24 @@ public class A_ThrowBall : A_Base
     {
         base.OnUpdate();
 
-        // calcola direzione tiro e direzione attuale della palla
-        Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
-        Vector2 ballDirection = ((myPosition - ballPosition) * -1).normalized;
-
-
         // la destinazione e' raggiungibile?
-        // se si controlla se la direzione è corretta
-        // se si tira
-        // se no disponi la palla in modo tale da lanciarla nella giusta direzione
-        // se no spostati in quella direzione
+        if (IsReachable(myPosition, targetPosition))
+        {
+            // calcola direzione tiro e direzione attuale della palla
+            Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
+            Vector2 ballDirection = ((myPosition - ballPosition) * -1).normalized;
+
+            // controlla se la direzione è corretta
+
+            // se si tira
+            // se no disponi la palla in modo tale da lanciarla nella giusta direzione
+        }
+        else
+        {
+            // spostati in un'altra posizione
+        }
+
+
 
         //attract ball
         output.Value.isAttracting = true;

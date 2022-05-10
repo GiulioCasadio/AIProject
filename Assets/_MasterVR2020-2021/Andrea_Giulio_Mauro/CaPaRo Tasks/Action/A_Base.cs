@@ -90,5 +90,9 @@ public class A_Base : Action
         return nearest;
     }
 
+    public bool IsReachable(Vector2 pointA, Vector2 pointB)
+    {
+        return true;
+    }
     #endregion
 }
