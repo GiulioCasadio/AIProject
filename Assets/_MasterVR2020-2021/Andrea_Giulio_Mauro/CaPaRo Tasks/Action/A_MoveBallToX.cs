@@ -7,24 +7,20 @@ public class A_MoveBallToX : A_Base
     {
         base.OnUpdate();
 
-        // calcola direzione tiro
-        Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
-        Vector2 ballDirection = ((myPosition - ballPosition) * -1).normalized;
+        // calcola distanza posizione x con trashold
+        var toTarget = myPosition - targetPosition;
+        var distance = toTarget.magnitude;
 
+        // se non l'ho raggiunta mi sposto
+        if (distance > radiusTrashold)
+        {
+            Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
 
-        // la destinazione e' raggiungibile?
-        // se si disponi la palla i modo tale da lanciarla nella giusta direzione
-        // se no spostati in quella direzione
-
-        //attract ball
-        output.Value.isAttracting = true;
-
-        //go to that position
-        output.Value.axes = targetDirection;
-
-        CheckHurry(myPosition, targetPosition);
-
-        m_owner.SetVariableValue("Output", output);
+            //go to that position
+            output.Value.axes = targetDirection;
+            output.Value.isAttracting = true;
+            m_owner.SetVariableValue("Output", output);
+        }
 
         return TaskStatus.Success;
     }
