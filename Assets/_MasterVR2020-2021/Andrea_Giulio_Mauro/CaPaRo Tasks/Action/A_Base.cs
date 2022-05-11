@@ -24,6 +24,7 @@ public class A_Base : Action
     public float radiusTrashold = 1.5f;
     public float distanceTrashold = 5f;
     public float angleTreshold = 2f;
+    public float behindBallTreshold = 20f;
 
     public override void OnAwake()
     {
@@ -93,6 +94,8 @@ public class A_Base : Action
 
     public bool IsReachable(Vector2 pointA, Vector2 pointB)
     {
+        // TODO
+        // ciclo ogni giocatore (escluso chi ha la palla) 
         return true;
     }
     #endregion
