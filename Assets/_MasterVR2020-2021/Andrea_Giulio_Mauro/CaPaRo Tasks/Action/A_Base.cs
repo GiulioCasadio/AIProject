@@ -23,6 +23,7 @@ public class A_Base : Action
 
     public float radiusTrashold = 1.5f;
     public float distanceTrashold = 5f;
+    public float angleTreshold = 2f;
 
     public override void OnAwake()
     {

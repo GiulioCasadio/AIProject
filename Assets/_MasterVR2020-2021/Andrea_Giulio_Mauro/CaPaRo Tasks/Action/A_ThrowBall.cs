@@ -7,6 +7,8 @@ public class A_ThrowBall : A_Base
     {
         base.OnUpdate();
 
+
+
         // la destinazione e' raggiungibile?
         if (IsReachable(myPosition, targetPosition))
         {
@@ -14,25 +16,39 @@ public class A_ThrowBall : A_Base
             Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
             Vector2 ballDirection = ((myPosition - ballPosition) * -1).normalized;
 
-            // controlla se la direzione è corretta
+            float ballAngle = Vector2.Angle(targetDirection, ballDirection);
 
-            // se si tira
-            // se no disponi la palla in modo tale da lanciarla nella giusta direzione
+            // controlla se la direzione è corretta
+            if (ballAngle < angleTreshold)
+            {
+                // tira
+                output.Value.requestKick = true;
+            }
+            else
+            {
+                // disponi la palla in modo tale da lanciarla nella giusta direzione al successivo frame
+                // calcolo direzione giocatore-porta e vai in quella opposta così da allineare la palla
+
+                //go to that position
+                output.Value.axes = targetDirection;
+
+                //attract ball
+                output.Value.isAttracting = true;
+            }
         }
         else
         {
             // spostati in un'altra posizione
+
+            // muoviti perpendicolare rispetto alla direzione tra te e la porta. 
+            // la direzione perpendicolare va in basso o in alto in base alla posizione del giocatore nel campo
+
+            //go to that position
+            output.Value.axes = targetDirection;
+
+            //attract ball
+            output.Value.isAttracting = true;
         }
-
-
-
-        //attract ball
-        output.Value.isAttracting = true;
-
-        //go to that position
-        output.Value.axes = targetDirection;
-
-        CheckHurry(myPosition, targetPosition);
 
         m_owner.SetVariableValue("Output", output);
 
