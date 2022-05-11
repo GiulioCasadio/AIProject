@@ -69,7 +69,7 @@ public class A_Base : Action
         }
     }
 
-    public Transform GetOpponentNearestTo(Vector3 position, List<Transform> opponents)
+    public Transform GetOpponentNearestTo(Vector2 position, List<Transform> opponents)
     {
         Transform nearest = null;
         var minDistance = float.MaxValue;
@@ -79,7 +79,7 @@ public class A_Base : Action
             if (opponent == null) continue;
 
             Vector2 opponentPosition = opponent.position;
-            var toTarget = (Vector2)position - opponentPosition;
+            var toTarget = position - opponentPosition;
             var distance = toTarget.magnitude;
 
             if (!(distance <= minDistance)) continue;
@@ -89,5 +89,6 @@ public class A_Base : Action
 
         return nearest;
     }
+
     #endregion
 }
