@@ -6,7 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 
 [TaskCategory("Coach")]
-public class KeepCoverGoal : CoachBaseAction
+public class SendManOnBall : CoachBaseAction
 {
-    
+
 }
