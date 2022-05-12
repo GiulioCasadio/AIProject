@@ -81,7 +81,6 @@ public class C_Base : Conditional
 
         return nearest;
     }
-
     protected bool IsCharacterCovered(Vector2 i_Character)
     {
         if (i_Character == null)

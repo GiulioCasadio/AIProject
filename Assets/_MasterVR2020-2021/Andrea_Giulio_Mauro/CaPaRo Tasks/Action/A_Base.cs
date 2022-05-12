@@ -96,7 +96,38 @@ public class A_Base : Action
     {
         // TODO
         // ciclo ogni giocatore (escluso chi ha la palla) 
+        foreach(Transform obstacleTransform in shared.Value.m_Opponents)
+        {
+            if(IsBetweenPoint(pointA, pointB, obstacleTransform.GetPositionXY()))
+            {
+                return false;
+            }
+        }
+        foreach (Transform obstacleTransform in shared.Value.m_Teams)
+        {
+            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && IsBetweenPoint(pointA, pointB, obstacleTransform.GetPositionXY())) // TODO trova un check piu' sicuro sul giocatore
+            {
+                return false;
+            }
+        }
         return true;
+    }
+
+    public bool IsBetweenPoint(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck) // TODO verificarne il funzionamento
+    {
+        var line = (pointB - pointA);
+        var len = line.magnitude;
+        line.Normalize();
+
+        var v = pointToCheck - pointA;
+        var d = Vector2.Dot(v, line);
+        d = Mathf.Clamp(d, 0f, len);
+
+        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTrashold)
+        {
+            return true;
+        }
+        return false;
     }
     #endregion
 }
