@@ -21,8 +21,8 @@ public class A_Base : Action
     public Vector2 ballPosition;
     public Vector2 myPosition;
 
-    public float radiusTrashold = 1.5f;
-    public float distanceTrashold = 5f;
+    public float radiusTreshold = 1.5f;
+    public float distanceTreshold = 5f;
     public float angleTreshold = 2f;
     public float behindBallTreshold = 20f;
 
@@ -65,7 +65,7 @@ public class A_Base : Action
     #region action task methods
     public void CheckHurry(Vector2 myPos, Vector2 targetPosition)
     {
-        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > distanceTrashold)
+        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > distanceTreshold)
         {
             output.Value.requestDash = true;
         }
@@ -123,7 +123,7 @@ public class A_Base : Action
         var d = Vector2.Dot(v, line);
         d = Mathf.Clamp(d, 0f, len);
 
-        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTrashold)
+        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTreshold)
         {
             return true;
         }

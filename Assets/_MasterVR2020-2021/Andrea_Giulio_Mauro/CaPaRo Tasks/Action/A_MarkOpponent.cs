@@ -8,10 +8,12 @@ public class A_MarkOpponent : A_Base
         base.OnUpdate();
 
         Vector2 midPoint = new Vector2((ballPosition.x + targetPosition.x) / 2, (ballPosition.y + targetPosition.y) / 2);
-        if (midPoint == myPosition)
-        {
-            return TaskStatus.Failure;
-        }
+
+        // Questo dovrebbe essere nel conditional
+        /* if (midPoint == myPosition)
+                {
+                    return TaskStatus.Failure;
+                }*/
 
         Vector2 targetDirection = ((myPosition - midPoint) * -1).normalized;
 
@@ -21,6 +23,6 @@ public class A_MarkOpponent : A_Base
         CheckHurry(myPosition, midPoint);
 
         m_owner.SetVariableValue("Output", output);
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }

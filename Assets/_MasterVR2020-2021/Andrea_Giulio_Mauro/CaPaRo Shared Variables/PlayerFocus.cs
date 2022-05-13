@@ -12,7 +12,7 @@ namespace Ca_Pa_Ro.Player
 
         public PlayerStateFocus m_state = PlayerStateFocus.NONE;
         public bool m_hurry = false;
-        public Vector2 m_targetPosition = new Vector2();
+        public Vector2 m_targetPosition;
         public float m_rangeTargetPosition = 0f;
 
         
