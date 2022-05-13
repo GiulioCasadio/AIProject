@@ -6,7 +6,12 @@ using BehaviorDesigner.Runtime.Tasks;
 
 
 [TaskCategory("Coach")]
-public class KeepCoverGoal : CoachBaseAction
+public class CoverZone : CoachBaseAction
 {
-    
+    public override TaskStatus OnUpdate()
+    {
+        
+        
+        return TaskStatus.Success;
+    }
 }

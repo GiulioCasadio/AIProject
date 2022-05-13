@@ -16,5 +16,9 @@ MonoBehaviour:
   playmakerVersion: 
   showWelcomeScreen: 0
   showUpgradeGuide: 0
+<<<<<<< HEAD
+  lastAutoUpdateSignature: 2018.3.0f2__C:/Users/39333/Documents/repositories/AIProject/Assets__0.0.0.0
+=======
   lastAutoUpdateSignature: 2018.3.0f2__C:/Users/giuli/Documents/GitHub/AIProject/Assets__0.0.0.0
+>>>>>>> development
   useLegacyNetworking: 0

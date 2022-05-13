@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: BT_DefenseStrategy
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(214.4638,409.861267)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(1.24255371,124.06424)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-589.16864,87.04546)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"IsMyGoalCovered","NodeData":{"Offset":"(-517.64624,126.34623)"},"ID":3,"Name":"Is
+        My Goal Covered","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"KeepCoverGoal","NodeData":{"Offset":"(-319.824768,127.085663)"},"ID":4,"Name":"Keep
+        Cover Goal","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-91.53425,145.302368)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-830.610657,183.681213)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"ManOnBall","NodeData":{"Offset":"(-187.498749,154.273438)"},"ID":7,"Name":"Man
+        On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"KeepManOnBall","NodeData":{"Offset":"(-3.500599,154.207642)"},"ID":8,"Name":"Keep
+        Man On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoverZone","NodeData":{"Offset":"(170.660934,149.092529)"},"ID":9,"Name":"Cover
+        Zone","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(32.8570251,224.2857)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"SendManOnBall","NodeData":{"Offset":"(-106.406342,111.33017)"},"ID":11,"Name":"Send
+        Man On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoverZone","NodeData":{"Offset":"(105.713593,120.000046)"},"ID":12,"Name":"Cover
+        Zone","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-125.498665,134.110184)"},"ID":13,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CoverGoal","NodeData":{"Offset":"(-259.3412,161.656235)"},"ID":14,"Name":"Cover
+        Goal","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"ManOnBall","NodeData":{"Offset":"(-87.06407,155.527939)"},"ID":15,"Name":"Man
+        On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"KeepManOnBall","NodeData":{"Offset":"(95.08537,160.553467)"},"ID":16,"Name":"Keep
+        Man On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoverZone","NodeData":{"Offset":"(255.713608,161.428543)"},"ID":17,"Name":"Cover
+        Zone","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(451.1764,120.000008)"},"ID":18,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"SendManOnBall","NodeData":{"Offset":"(-94.6496,149.2545)"},"ID":19,"Name":"Send
+        Man On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoverZone","NodeData":{"Offset":"(123.571136,145.2383)"},"ID":20,"Name":"Cover
+        Zone","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]}]},"Variables":[{"Type":"Coach.SharedCoachVariables","Name":"m_coachVariables","IsShared":true,"CoachVariablesmValue":{"TeamBehaviorm_behavior":"NEUTRAL","TeamFieldStatusm_fieldStatus":"NEUTRAL","Int32myTeamScore":0,"Int32opponentTeamScore":0,"List`1playersCommunications":[],"Vector2MyTeamCenterGravity":"(0,0)","Vector2OpponentTeamCenterGravity":"(0,0)"}}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.6.7
