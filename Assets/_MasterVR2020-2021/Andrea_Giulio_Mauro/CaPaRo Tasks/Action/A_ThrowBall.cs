@@ -55,6 +55,6 @@ public class A_ThrowBall : A_Base
 
         m_owner.SetVariableValue("Output", output);
 
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }

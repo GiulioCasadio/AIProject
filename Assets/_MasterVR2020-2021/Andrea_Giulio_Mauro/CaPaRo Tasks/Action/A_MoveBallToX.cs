@@ -12,7 +12,7 @@ public class A_MoveBallToX : A_Base
         var distance = toTarget.magnitude;
 
         // se non l'ho raggiunta mi sposto
-        if (distance > radiusTrashold)
+        if (distance > radiusTreshold)
         {
             Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
 
@@ -22,6 +22,6 @@ public class A_MoveBallToX : A_Base
             m_owner.SetVariableValue("Output", output);
         }
 
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }

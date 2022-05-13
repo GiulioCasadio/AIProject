@@ -7,7 +7,12 @@ public class C_IsCoveringPosition : C_Base
     {
         base.OnUpdate();
 
-        return TaskStatus.Failure;
+        if (Vector2.Distance(targetPosition, myPosition) < radiusTrashold)
+        {
+            return TaskStatus.Failure;
+        }
+
+        return TaskStatus.Success;
 
     }
 }

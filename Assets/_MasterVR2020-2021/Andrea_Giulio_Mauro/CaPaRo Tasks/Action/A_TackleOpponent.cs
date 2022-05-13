@@ -11,7 +11,7 @@ public class A_TackleOpponent : A_Base
         Vector2 dir = ((myPosition - targetPosition) * -1).normalized;
 
         //rendilo conditional
-        if (Vector2.Distance(myPosition, targetPosition) < radiusTrashold)
+        if (Vector2.Distance(myPosition, targetPosition) < radiusTreshold)
         {
             //reset axes
             output.Value.axes = new Vector2(0,0);
