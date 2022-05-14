@@ -13,13 +13,11 @@ public class A_TackleOpponent : A_Base
         //rendilo conditional
         if (Vector2.Distance(myPosition, targetPosition) < radiusTreshold)
         {
-            //reset axes
-            output.Value.axes = new Vector2(0,0);
-            output.Value.requestKick = true;
+            requestKick = true;
         }
         else
         {
-            output.Value.axes = dir;
+            axes = dir;
         }
         
         CheckHurry(myPosition, targetPosition);
