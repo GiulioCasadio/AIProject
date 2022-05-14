@@ -38,26 +38,11 @@ public class C_Base : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        //ResetOutput(output);
-
         targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
         ballPosition = shared.Value.ballPosition;
         myPosition = shared.Value.myPosition;
 
         return TaskStatus.Success;
-    }
-
-    protected void ResetOutput(SharedAIOutputData tempOutput)
-    {
-        if (tempOutput == null)
-            return;
-
-        tempOutput.Value.axes = new Vector2(0, 0);
-        tempOutput.Value.requestKick = false;
-        tempOutput.Value.requestDash = false;
-        tempOutput.Value.requestAttracting = false;
-
-        m_owner.SetVariableValue("Output", output);
     }
     #endregion
 
