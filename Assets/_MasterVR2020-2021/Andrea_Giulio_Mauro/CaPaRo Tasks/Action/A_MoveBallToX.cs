@@ -18,9 +18,10 @@ public class A_MoveBallToX : A_Base
 
             //go to that position
             output.Value.axes = targetDirection;
-            output.Value.isAttracting = true;
             m_owner.SetVariableValue("Output", output);
         }
+
+        output.Value.requestAttracting = true;
 
         return TaskStatus.Running;
     }

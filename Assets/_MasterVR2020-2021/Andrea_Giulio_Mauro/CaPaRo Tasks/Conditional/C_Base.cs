@@ -38,7 +38,7 @@ public class C_Base : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        ResetOutput(output);
+        //ResetOutput(output);
 
         targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
         ballPosition = shared.Value.ballPosition;
@@ -55,6 +55,7 @@ public class C_Base : Conditional
         tempOutput.Value.axes = new Vector2(0, 0);
         tempOutput.Value.requestKick = false;
         tempOutput.Value.requestDash = false;
+        tempOutput.Value.requestAttracting = false;
 
         m_owner.SetVariableValue("Output", output);
     }
@@ -119,9 +120,6 @@ public class C_Base : Conditional
         {
             return false;
         }
-
-        Vector2 ballPosition = shared.Value.ballPosition;
-        Vector2 myPosition = shared.Value.myPosition;
 
         return IsCoveringView(ballPosition, myPosition, i_Character.position);
     }

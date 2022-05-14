@@ -20,7 +20,7 @@ public class A_ThrowBall : A_Base
             if (ballAngle < angleTreshold)
             {
                 // tira
-                output.Value.requestKick = true;
+                output.Value.requestDash = true;
             }
             else
             {
@@ -39,7 +39,7 @@ public class A_ThrowBall : A_Base
                 //go to that position
                 output.Value.axes = targetDirection;
                 //attract ball
-                output.Value.isAttracting = true;
+                output.Value.requestAttracting = true;
             }
         }
         else
@@ -50,7 +50,7 @@ public class A_ThrowBall : A_Base
             output.Value.axes = targetDirection;
 
             //attract ball
-            output.Value.isAttracting = true;
+            output.Value.requestAttracting = true;
         }
 
         m_owner.SetVariableValue("Output", output);
