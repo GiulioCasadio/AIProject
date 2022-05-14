@@ -3,6 +3,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class A_CoverPosition : A_Base
 {
+    public float timer = Time.deltaTime;
     public override TaskStatus OnUpdate()
     {
         base.OnUpdate();
@@ -16,6 +17,6 @@ public class A_CoverPosition : A_Base
 
         m_owner.SetVariableValue("Output", output);
 
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }

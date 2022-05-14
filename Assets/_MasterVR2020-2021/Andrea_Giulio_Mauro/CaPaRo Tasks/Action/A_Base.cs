@@ -24,8 +24,10 @@ public class A_Base : Action
 
     public bool requestKick;
 
-    public float radiusTrashold = 1.5f;
-    public float distanceTrashold = 5f;
+    public float radiusTreshold = 1.5f;
+    public float distanceTreshold = 1f;
+    public float angleTreshold = 2f;
+    public float behindBallTreshold = 1f;
 
     public override void OnAwake()
     {
@@ -41,8 +43,6 @@ public class A_Base : Action
 
     public override TaskStatus OnUpdate()
     {
-        ResetOutput(output);
-
         targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
         ballPosition = shared.Value.ballPosition;
         myPosition = shared.Value.myPosition;
@@ -53,30 +53,18 @@ public class A_Base : Action
 
         return TaskStatus.Success;
     }
-    
-    protected void ResetOutput(SharedAIOutputData tempOutput)
-    {
-        if (tempOutput == null)
-            return;
-
-        tempOutput.Value.axes = new Vector2(0, 0);
-        tempOutput.Value.requestKick = false;
-        tempOutput.Value.requestDash = false;
-
-        m_owner.SetVariableValue("Output", output);
-    }
     #endregion
 
     #region action task methods
     public void CheckHurry(Vector2 myPos, Vector2 targetPosition)
     {
-        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > distanceTrashold)
+        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > distanceTreshold)
         {
             output.Value.requestDash = true;
         }
     }
 
-    public Transform GetOpponentNearestTo(Vector3 position, List<Transform> opponents)
+    public Transform GetOpponentNearestTo(Vector2 position, List<Transform> opponents)
     {
         Transform nearest = null;
         var minDistance = float.MaxValue;
@@ -86,7 +74,7 @@ public class A_Base : Action
             if (opponent == null) continue;
 
             Vector2 opponentPosition = opponent.position;
-            var toTarget = (Vector2)position - opponentPosition;
+            var toTarget = position - opponentPosition;
             var distance = toTarget.magnitude;
 
             if (!(distance <= minDistance)) continue;
@@ -95,6 +83,44 @@ public class A_Base : Action
         }
 
         return nearest;
+    }
+
+    public bool IsReachable(Vector2 pointA, Vector2 pointB)
+    {
+        // TODO
+        // ciclo ogni giocatore (escluso chi ha la palla) 
+        foreach(Transform obstacleTransform in shared.Value.m_Opponents)
+        {
+            if(IsBetweenPoint(pointA, pointB, obstacleTransform.GetPositionXY()))
+            {
+                return false;
+            }
+        }
+        foreach (Transform obstacleTransform in shared.Value.m_Teams)
+        {
+            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && IsBetweenPoint(pointA, pointB, obstacleTransform.GetPositionXY())) // TODO trova un check piu' sicuro sul giocatore
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool IsBetweenPoint(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck) // TODO verificarne il funzionamento
+    {
+        var line = (pointB - pointA);
+        var len = line.magnitude;
+        line.Normalize();
+
+        var v = pointToCheck - pointA;
+        var d = Vector2.Dot(v, line);
+        d = Mathf.Clamp(d, 0f, len);
+
+        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTreshold)
+        {
+            return true;
+        }
+        return false;
     }
     #endregion
 }

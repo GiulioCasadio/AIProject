@@ -10,7 +10,8 @@ public class A_TackleOpponent : A_Base
         //Transform opponent = GetOpponentNearestTo(shared.Value.myPosition, shared.Value.m_Opponents);
         Vector2 dir = ((myPosition - targetPosition) * -1).normalized;
 
-        if (Vector2.Distance(myPosition, targetPosition) < radiusTrashold)
+        //rendilo conditional
+        if (Vector2.Distance(myPosition, targetPosition) < radiusTreshold)
         {
             requestKick = true;
         }

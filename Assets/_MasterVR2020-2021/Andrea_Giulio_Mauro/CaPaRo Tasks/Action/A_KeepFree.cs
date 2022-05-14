@@ -7,7 +7,7 @@ public class A_KeepFree : A_Base
     {
         base.OnUpdate();
         
-        if (Vector2.Distance(targetPosition, myPosition) < radiusTrashold)
+        if (Vector2.Distance(targetPosition, myPosition) < radiusTreshold)
         {
             return TaskStatus.Failure;
         }
@@ -21,6 +21,6 @@ public class A_KeepFree : A_Base
         
         m_owner.SetVariableValue("Output", output);
 
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }

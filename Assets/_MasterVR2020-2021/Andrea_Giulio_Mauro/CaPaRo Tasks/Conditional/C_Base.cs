@@ -18,6 +18,10 @@ public class C_Base : Conditional
     public SharedAIOutputData output;
     public SharedPlayerFocus m_sharedPlayerVariables;
 
+    public Vector2 targetPosition;
+    public Vector2 ballPosition;
+    public Vector2 myPosition;
+
     public float radiusTrashold = 1.5f;
 
     public override void OnAwake()
@@ -34,20 +38,11 @@ public class C_Base : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        ResetOutput(output);
+        targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
+        ballPosition = shared.Value.ballPosition;
+        myPosition = shared.Value.myPosition;
+
         return TaskStatus.Success;
-    }
-
-    protected void ResetOutput(SharedAIOutputData tempOutput)
-    {
-        if (tempOutput == null)
-            return;
-
-        tempOutput.Value.axes = new Vector2(0, 0);
-        tempOutput.Value.requestKick = false;
-        tempOutput.Value.requestDash = false;
-
-        m_owner.SetVariableValue("Output", output);
     }
     #endregion
 
@@ -72,7 +67,6 @@ public class C_Base : Conditional
 
         return nearest;
     }
-
     protected bool IsCharacterCovered(Vector2 i_Character)
     {
         if (i_Character == null)
@@ -111,9 +105,6 @@ public class C_Base : Conditional
         {
             return false;
         }
-
-        Vector2 ballPosition = shared.Value.ballPosition;
-        Vector2 myPosition = shared.Value.myPosition;
 
         return IsCoveringView(ballPosition, myPosition, i_Character.position);
     }
