@@ -1,11 +1,22 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
+using Ca_Pa_Ro.Player;
 
 public class A_ThrowBall : A_Base
 {
     public override TaskStatus OnUpdate()
     {
         base.OnUpdate();
+
+        // Controllo se è un passaggio o un tiro in porta
+        if(m_sharedPlayerVariables.Value.m_state != PlayerFocus.PlayerStateFocus.BRINGBALLINX)
+        {
+            targetPosition = m_sharedPlayerVariables.Value.m_targetOpponent.GetPositionXY();
+        }
+        else
+        {
+            targetPosition = shared.Value.opponentGoal.GetPositionXY();
+        }
 
         // calcola direzione tiro e direzione attuale della palla
         Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
