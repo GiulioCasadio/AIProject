@@ -1,8 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-public class A_MarkOpponent : A_Base
+public class A_CoverGoal : A_Base
 {
+    public float timer = Time.deltaTime;
     public override TaskStatus OnUpdate()
     {
         base.OnUpdate();
@@ -16,9 +17,11 @@ public class A_MarkOpponent : A_Base
         //go to that position
         output.Value.axes = targetDirection;
 
-        CheckHurry(myPosition, midPoint);
+        CheckHurry(myPosition, targetPosition);
 
         m_owner.SetVariableValue("Output", output);
+
         return TaskStatus.Running;
     }
 }
+

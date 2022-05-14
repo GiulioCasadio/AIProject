@@ -127,5 +127,28 @@ public class C_Base : Conditional
         return false;
     }
 
+    protected bool IsBallInFeets(Vector2 i_Character)
+    {
+        if (i_Character == null)
+        {
+            return false;
+        }
+
+        if (shared.Value.ball == null || shared.Value.myPosition == null)
+        {
+            return false;
+        }
+
+        Vector2 ballPosition = shared.Value.ballPosition;
+
+        if (Vector2.Distance(ballPosition, i_Character) < radiusTrashold)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     #endregion
 }
