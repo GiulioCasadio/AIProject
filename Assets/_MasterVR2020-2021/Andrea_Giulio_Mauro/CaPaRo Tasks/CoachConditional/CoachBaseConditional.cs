@@ -6,6 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
 using Coach;
 
+[TaskCategory("CoachConditional")]
 public class CoachBaseConditional : Conditional
 {
     #region conditional task setup
