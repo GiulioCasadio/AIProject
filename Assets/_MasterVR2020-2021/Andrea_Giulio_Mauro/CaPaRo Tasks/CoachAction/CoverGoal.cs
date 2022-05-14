@@ -13,7 +13,9 @@ public class CoverGoal : CoachBaseAction
     {
         CoachPlayerCommunication mostNearGoalPlayer = GetMostFreePlayerNearMyGoal();
         mostNearGoalPlayer.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERGOAL;
+        mostNearGoalPlayer.m_playerFocus.m_hurry = true;
         mostNearGoalPlayer.m_focusGiven = true;
+        
 
         if (m_sharedCoachVariables.Value.m_behavior == CoachVariables.TeamBehavior.DEFENSIVE)
         {
@@ -24,6 +26,7 @@ public class CoverGoal : CoachBaseAction
                 if(otherMostNearGoalPlayer != null)
                 {
                     otherMostNearGoalPlayer.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERGOAL;
+                    otherMostNearGoalPlayer.m_playerFocus.m_hurry = true;
                     otherMostNearGoalPlayer.m_focusGiven = true;
                 }
             }

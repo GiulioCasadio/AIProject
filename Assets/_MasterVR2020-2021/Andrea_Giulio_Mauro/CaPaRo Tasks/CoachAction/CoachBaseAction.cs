@@ -30,11 +30,17 @@ namespace Coach
 
         protected CoachPlayerCommunication GetMostFreePlayerNearMyGoal()
         {
-            List<CoachPlayerCommunication> players = m_sharedCoachVariables.Value.playersCommunications;
+            return GetMostFreePlayerNearTarget(shared.Value.myGoal.position);
+        }
 
-            Vector2 myGoalPosition = shared.Value.myGoal.position;
-            
-            
+        protected CoachPlayerCommunication GetMostFreePlayerNearBall()
+        {
+            return GetMostFreePlayerNearTarget(shared.Value.ballPosition);
+        }
+        
+        private CoachPlayerCommunication GetMostFreePlayerNearTarget(Vector2 i_targetPosition)
+        {
+            List<CoachPlayerCommunication> players = m_sharedCoachVariables.Value.playersCommunications;
             
             CoachPlayerCommunication nearest = null;
             float currentRecord = float.MaxValue;
@@ -46,7 +52,7 @@ namespace Coach
                 if (currentPlayer.m_focusGiven)
                     continue;
 
-                float distanceGoalCurrentPlayer = Vector2.Distance(myGoalPosition, currentPlayer.m_sharedInput.myPosition);
+                float distanceGoalCurrentPlayer = Vector2.Distance(i_targetPosition, currentPlayer.m_sharedInput.myPosition);
 
                 if (distanceGoalCurrentPlayer < currentRecord)
                 {
