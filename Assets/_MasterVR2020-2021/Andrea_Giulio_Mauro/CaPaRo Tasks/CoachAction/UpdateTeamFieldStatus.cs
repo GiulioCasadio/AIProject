@@ -47,7 +47,6 @@ public class UpdateTeamFieldStatus : CoachBaseAction
             {
                 opponentsNearBall++;
             }
-            
         }
 
         /*

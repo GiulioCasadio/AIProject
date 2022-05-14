@@ -28,20 +28,25 @@ namespace Coach
             m_sharedCoachVariables = m_owner.GetVariable("m_coachVariables") as SharedCoachVariables;
         }
 
-        protected CoachPlayerCommunication GetMostPlayerNearMyGoal()
+        protected CoachPlayerCommunication GetMostFreePlayerNearMyGoal()
         {
             List<CoachPlayerCommunication> players = m_sharedCoachVariables.Value.playersCommunications;
 
             Vector2 myGoalPosition = shared.Value.myGoal.position;
-            CoachPlayerCommunication nearest = players[0];
-            float currentRecord = Vector2.Distance(myGoalPosition, nearest.m_sharedInput.myPosition);
+            
+            
+            
+            CoachPlayerCommunication nearest = null;
+            float currentRecord = float.MaxValue;
             
             for(int i = 0; i < players.Count; ++i)
             {
                 CoachPlayerCommunication currentPlayer = players[i];
 
-                float distanceGoalCurrentPlayer =
-                    Vector2.Distance(myGoalPosition, currentPlayer.m_sharedInput.myPosition);
+                if (currentPlayer.m_focusGiven)
+                    continue;
+
+                float distanceGoalCurrentPlayer = Vector2.Distance(myGoalPosition, currentPlayer.m_sharedInput.myPosition);
 
                 if (distanceGoalCurrentPlayer < currentRecord)
                 {
