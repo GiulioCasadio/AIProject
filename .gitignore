@@ -60,3 +60,4 @@ crashlytics-build.properties
 *.meta
 
 Assets/PlayMaker/Editor/Resources/EditorStartupPrefs.asset
+Assets/PlayMaker/Editor/Resources/EditorStartupPrefs.asset.meta
