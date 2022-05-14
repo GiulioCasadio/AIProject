@@ -22,9 +22,9 @@ public class A_Base : Action
     public Vector2 myPosition;
 
     public float radiusTreshold = 1.5f;
-    public float distanceTreshold = 5f;
+    public float distanceTreshold = 2f;
     public float angleTreshold = 2f;
-    public float behindBallTreshold = 20f;
+    public float behindBallTreshold = 1f;
 
     public override void OnAwake()
     {
