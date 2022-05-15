@@ -30,6 +30,7 @@ public class KeepManOnBall : CoachBaseAction
         
         CoachPlayerCommunication nearestPlayerBall = GetMostFreePlayerNearBall();
 
+        nearestPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
         nearestPlayerBall.m_focusGiven = true;
         nearestPlayerBall.m_playerFocus.m_hurry = true;
 
@@ -42,6 +43,7 @@ public class KeepManOnBall : CoachBaseAction
                 
                 CoachPlayerCommunication nearestOtherPlayerBall = GetMostFreePlayerNearBall();
 
+                nearestOtherPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
                 nearestOtherPlayerBall.m_focusGiven = true;
                 nearestOtherPlayerBall.m_playerFocus.m_hurry = true;
             }

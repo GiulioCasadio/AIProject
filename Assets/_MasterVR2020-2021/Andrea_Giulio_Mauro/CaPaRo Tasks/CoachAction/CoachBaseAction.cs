@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
@@ -62,6 +63,58 @@ namespace Coach
             }
 
             return nearest;
+        }
+
+        protected int CountFreePlayers()
+        {
+            int freePlayers = 0;
+
+            foreach (CoachPlayerCommunication cpc in m_sharedCoachVariables.Value.playersCommunications)
+            {
+                if (!cpc.m_focusGiven)
+                    freePlayers++;
+            }
+
+            return freePlayers;
+        }
+
+
+        protected List<CoachPlayerCommunication> GetFreePlayers()
+        {
+            return m_sharedCoachVariables.Value.playersCommunications.Where(x => !x.m_focusGiven).ToList();
+        }
+
+        protected bool IsOpponentNearBall(float treshold)
+        {
+            foreach (Transform opponent in shared.Value.m_Opponents)
+            {
+                if (Vector2.Distance(opponent.GetPositionXY(), shared.Value.ballPosition) < treshold)
+                    return true;
+            }
+
+            return false;
+        }
+        
+        private Transform GetMostOpponentNearTarget(Vector2 target)
+        {
+            Transform output = null;
+            float record = float.MaxValue;
+            foreach (Transform opponent in shared.Value.m_Opponents)
+            {
+                if (Vector2.Distance(opponent.GetPositionXY(), shared.Value.ballPosition) < record)
+                    output = opponent;
+            }
+            return output;
+        }
+        
+        protected Transform GetMostOpponentNearBall()
+        {
+            return GetMostOpponentNearTarget(shared.Value.ballPosition);
+        }
+
+        protected Transform GetMostAdvancedOpponent()
+        {
+            return GetMostOpponentNearTarget(shared.Value.myGoal.GetPositionXY());
         }
     }
 }

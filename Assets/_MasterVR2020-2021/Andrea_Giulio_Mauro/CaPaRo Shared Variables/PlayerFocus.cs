@@ -14,8 +14,9 @@ namespace Ca_Pa_Ro.Player
         public bool m_hurry = false;
         public Vector2 m_targetPosition;
         public float m_rangeTargetPosition = 0f;
+        public Transform m_targetOpponent = null;
 
-        
+
     }
 
     [System.Serializable]

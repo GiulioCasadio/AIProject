@@ -1,13 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-public class A_MarkOpponent : A_Base
+public class A_CoverGoal : A_Base
 {
+    public float timer = Time.deltaTime;
     public override TaskStatus OnUpdate()
     {
         base.OnUpdate();
-
-        targetPosition = m_sharedPlayerVariables.Value.m_targetOpponent.GetPositionXY();
 
         Vector2 midPoint = new Vector2((ballPosition.x + targetPosition.x) / 2, (ballPosition.y + targetPosition.y) / 2);
 
@@ -18,9 +17,11 @@ public class A_MarkOpponent : A_Base
         //go to that position
         output.Value.axes = targetDirection;
 
-        CheckHurry(myPosition, midPoint);
+        CheckHurry(myPosition, targetPosition);
 
         m_owner.SetVariableValue("Output", output);
+
         return TaskStatus.Running;
     }
 }
+

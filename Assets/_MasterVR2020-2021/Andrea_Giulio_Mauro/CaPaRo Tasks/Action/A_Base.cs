@@ -20,6 +20,9 @@ public class A_Base : Action
     public Vector2 targetPosition;
     public Vector2 ballPosition;
     public Vector2 myPosition;
+    public Vector2 axes;
+
+    public bool requestKick;
 
     public float radiusTreshold = 1.5f;
     public float distanceTreshold = 1f;
@@ -40,26 +43,15 @@ public class A_Base : Action
 
     public override TaskStatus OnUpdate()
     {
-        //ResetOutput(output);
-
         targetPosition = m_sharedPlayerVariables.Value.m_targetPosition;
         ballPosition = shared.Value.ballPosition;
         myPosition = shared.Value.myPosition;
+        axes = output.Value.axes;
+
+        requestKick = output.Value.requestKick;
+
 
         return TaskStatus.Success;
-    }
-    
-    protected void ResetOutput(SharedAIOutputData tempOutput)
-    {
-        if (tempOutput == null)
-            return;
-
-        tempOutput.Value.axes = new Vector2(0, 0);
-        tempOutput.Value.requestKick = false;
-        tempOutput.Value.requestDash = false;
-        tempOutput.Value.requestAttracting = false;
-
-        m_owner.SetVariableValue("Output", output);
     }
     #endregion
 
