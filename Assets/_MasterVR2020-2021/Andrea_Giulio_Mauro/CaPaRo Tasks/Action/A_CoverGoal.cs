@@ -8,6 +8,8 @@ public class A_CoverGoal : A_Base
     {
         base.OnUpdate();
 
+        targetPosition = shared.Value.myGoal.GetPositionXY();
+
         Vector2 midPoint = new Vector2((ballPosition.x + targetPosition.x) / 2, (ballPosition.y + targetPosition.y) / 2);
 
         Vector2 midMidPoint = new Vector2((midPoint.x + targetPosition.x) / 2, (midPoint.y + targetPosition.y) / 2);

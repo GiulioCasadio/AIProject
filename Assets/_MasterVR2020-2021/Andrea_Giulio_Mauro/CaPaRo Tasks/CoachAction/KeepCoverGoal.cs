@@ -18,6 +18,7 @@ public class KeepCoverGoal : CoachBaseAction
             if (cpc.m_playerFocus.m_state == PlayerFocus.PlayerStateFocus.COVERGOAL)
             {
                 cpc.m_focusGiven = true;
+                cpc.m_playerFocus.m_hurry = false;
                 playerCoveringGoal++;
             }
         }
