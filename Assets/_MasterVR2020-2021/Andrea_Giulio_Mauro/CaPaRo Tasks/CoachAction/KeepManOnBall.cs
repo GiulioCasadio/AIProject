@@ -18,6 +18,7 @@ public class KeepManOnBall : CoachBaseAction
             if (cpc.m_playerFocus.m_state == PlayerFocus.PlayerStateFocus.CHASEBALL)
             {
                 cpc.m_focusGiven = true;
+                cpc.m_playerFocus.m_hurry = false;
                 playersOnBall++;
             }
         }
