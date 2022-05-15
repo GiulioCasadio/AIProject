@@ -37,7 +37,7 @@ public class CoverZoneOrFight : CoachBaseAction
 
                     else
                     {
-                        cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERZONE;
+                        cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MARK;
                         cpc.m_playerFocus.m_targetPosition = GetMostAdvancedOpponent().GetPositionXY(); //mettiti nella zona dell'avversario
                     }
                     
@@ -47,7 +47,7 @@ public class CoverZoneOrFight : CoachBaseAction
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERZONE;
+                    cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MAKEFREE;
                     cpc.m_playerFocus.m_hurry = false;
                     cpc.m_playerFocus.m_targetPosition = new Vector2(shared.Value.myGoal.position.x * -0.75f ,0); // 3/4 campo avversaria
                 }
