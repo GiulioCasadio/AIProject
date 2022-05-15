@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Coach;
 using BehaviorDesigner.Runtime.Tasks;
+using Ca_Pa_Ro.Player;
 
 public class SendManOnBall : CoachBaseAction
 {
@@ -10,6 +11,7 @@ public class SendManOnBall : CoachBaseAction
     {
         CoachPlayerCommunication nearestPlayerBall = GetMostFreePlayerNearBall();
 
+        nearestPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
         nearestPlayerBall.m_focusGiven = true;
         nearestPlayerBall.m_playerFocus.m_hurry = true;
 
@@ -22,6 +24,7 @@ public class SendManOnBall : CoachBaseAction
                 
                 CoachPlayerCommunication nearestOtherPlayerBall = GetMostFreePlayerNearBall();
 
+                nearestOtherPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
                 nearestOtherPlayerBall.m_focusGiven = true;
                 nearestOtherPlayerBall.m_playerFocus.m_hurry = true;
             }
