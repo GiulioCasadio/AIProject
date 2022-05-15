@@ -27,4 +27,33 @@ public class CoachBaseConditional : Conditional
         m_sharedCoachVariables = m_owner.GetVariable("m_coachVariables") as SharedCoachVariables;
     }
     #endregion
+
+
+    protected bool betweenRange(float value, float start, float end)
+    {
+        float internalStart = start;
+        float internalEnd = end;
+
+        if (start > end)
+        {
+            internalStart = end;
+            internalEnd = start;
+        }
+        
+        return value >= internalStart && value <= internalEnd;
+    }
+
+    protected bool checkPlayerBehindBall(CoachPlayerCommunication player)
+    {
+        float extremeBallPoint = shared.Value.ballPosition.x + shared.Value.ballRadius;
+        
+        
+        bool myGoalLeft = shared.Value.myGoal.position.x < 0;
+
+        if (myGoalLeft)
+            extremeBallPoint = shared.Value.ballPosition.x - shared.Value.ballRadius;
+
+        return betweenRange(player.m_sharedInput.myPosition.x, shared.Value.myGoal.position.x, extremeBallPoint);
+
+    }
 }
