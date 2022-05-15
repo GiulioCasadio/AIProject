@@ -25,7 +25,7 @@ public class A_Base : Action
     public bool requestKick;
 
     public float radiusTreshold = 1.5f;
-    public float distanceTreshold = 1f;
+    public float distanceTreshold = 4f;
     public float angleTreshold = 2f;
     public float behindBallTreshold = 1f;
 

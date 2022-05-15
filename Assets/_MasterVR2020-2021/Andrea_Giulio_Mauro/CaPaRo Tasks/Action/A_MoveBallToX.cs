@@ -11,7 +11,10 @@ public class A_MoveBallToX : A_Base
         var toTarget = myPosition - targetPosition;
         var distance = toTarget.magnitude;
 
-        // se non l'ho raggiunta mi sposto
+        // controlla se sono abbastanza vicino alla palla per controllarla
+
+
+        // altrimenti attiro e se non l'ho raggiunta mi sposto verso target
         if (distance > radiusTreshold)
         {
             Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;

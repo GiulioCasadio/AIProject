@@ -18,6 +18,7 @@ namespace Ca_Pa_Ro
         public AIOutputData output = new AIOutputData();
 
         private bool PrevDash = false;
+        private bool PrevKick = false;
 
         // tnInputFiller's INTERFACE
         public CaPaRoInputFiller(GameObject i_Self, AIRole i_Role) : base(i_Self)
@@ -111,8 +112,17 @@ namespace Ca_Pa_Ro
                 i_Data.SetAxis(InputActions.s_HorizontalAxis, m_Axes.x);
                 i_Data.SetAxis(InputActions.s_VerticalAxis, m_Axes.y);
 
-                i_Data.SetButton(InputActions.s_PassButton, output.requestKick);
-                //i_Data.SetButton(InputActions.s_ShotButton, output.requestKick);
+                if (PrevKick)
+                {
+                    i_Data.SetButton(InputActions.s_PassButton, false);
+                    PrevKick = false;
+                }
+                else
+                {
+                    i_Data.SetButton(InputActions.s_PassButton, output.requestKick);
+                    PrevKick = true;
+                }
+
                 if (PrevDash)
                 {
                     i_Data.SetButton(InputActions.s_ShotButton, false); // shot button eseguo uno scatto
