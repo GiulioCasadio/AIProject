@@ -9,7 +9,7 @@ public class A_ThrowBall : A_Base
         base.OnUpdate();
 
         // Controllo se è un passaggio o un tiro in porta
-        if(m_sharedPlayerVariables.Value.m_state != PlayerFocus.PlayerStateFocus.BRINGBALLINX)
+        if(m_sharedPlayerVariables.Value.m_targetOpponent!=null && m_sharedPlayerVariables.Value.m_state != PlayerFocus.PlayerStateFocus.BRINGBALLINX)
         {
             targetPosition = m_sharedPlayerVariables.Value.m_targetOpponent.GetPositionXY();
         }

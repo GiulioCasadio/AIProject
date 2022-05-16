@@ -22,7 +22,10 @@ public class C_Base : Conditional
     public Vector2 ballPosition;
     public Vector2 myPosition;
 
-    public float radiusTrashold = 1.5f;
+    protected float radiusTreshold = 1f;     // treshold usato per vicinanza dalla palla/player/destinazione
+    protected float distanceTreshold = 4f;     // distanza dash
+    protected float angleTreshold = 2f;        // angolo tiro
+    protected float behindBallTreshold = 1f;   // treshold intercettazione
 
     public override void OnAwake()
     {
@@ -82,48 +85,16 @@ public class C_Base : Conditional
         Vector2 ballPosition = shared.Value.ballPosition;
         Vector2 myPosition = shared.Value.myPosition;
 
-        return IsBetween(ballPosition, i_Character, myPosition);
+        return IsInTheMidMidPoint(i_Character, ballPosition, myPosition);
     }
 
-    // PointToCheck sta nel punto medio tra A e B?
-    public bool IsBetween(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
+    // PointToCheck sta nel punto medio del punto medio tra A e B? A e' sempre quello a cui deve essere piu' vicino
+    public bool IsInTheMidMidPoint(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
     {
-        Vector2 midPoint = new Vector2((pointA.x+pointB.x)/2, (pointA.y+pointB.y)/2);
-        if (Vector2.Distance(pointToCheck, midPoint) < radiusTrashold)
+        Vector2 midPoint = new Vector2((pointA.x + pointB.x) / 2, (pointA.y + pointB.y) / 2);
+        Vector2 midMidPoint = new Vector2((pointA.x + midPoint.x) / 2, (pointA.y + midPoint.y) / 2);
+        if (Vector2.Distance(pointToCheck, midMidPoint) < radiusTreshold)
             return true;
-        return false;
-    }
-
-    protected bool IsCoveringBall(Transform i_Character)
-    {
-        if (i_Character == null)
-        {
-            return false;
-        }
-
-        if (shared.Value.ball == null || shared.Value.myPosition == null)
-        {
-            return false;
-        }
-
-        return IsCoveringView(ballPosition, myPosition, i_Character.position);
-    }
-
-    // Tra A e B e' presente C?
-    public bool IsCoveringView(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck)
-    {
-        var line = (pointB - pointA);
-        var len = line.magnitude;
-        line.Normalize();
-
-        var v = pointToCheck - pointA;
-        var d = Vector2.Dot(v, line);
-        d = Mathf.Clamp(d, 0f, len);
-
-        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTrashold)
-        {
-            return true;
-        }
         return false;
     }
 
@@ -141,7 +112,7 @@ public class C_Base : Conditional
 
         Vector2 ballPosition = shared.Value.ballPosition;
 
-        if (Vector2.Distance(ballPosition, i_Character) < radiusTrashold)
+        if (Vector2.Distance(ballPosition, i_Character) < radiusTreshold)
         {
             return true;
         }
@@ -149,6 +120,35 @@ public class C_Base : Conditional
         {
             return false;
         }
+    }
+
+    public bool IsReachable(Vector2 pointA, Vector2 pointB)
+    {
+        // ciclo ogni giocatore (escluso chi ha la palla) 
+        foreach (Transform obstacleTransform in shared.Value.m_Opponents)
+        {
+            if (DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) < behindBallTreshold)
+            {
+                return false;
+            }
+        }
+        foreach (Transform obstacleTransform in shared.Value.m_Teams)
+        {
+            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) < behindBallTreshold) // TODO trova un check piu' sicuro sul giocatore
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    float DistancePtLine(Vector2 a, Vector2 b, Vector2 p)
+    {
+        Vector2 n = b - a;
+        Vector2 pa = a - p;
+        Vector2 c = n * (Vector2.Dot(pa, n) / Vector2.Dot(n, n));
+        Vector2 d = pa - c;
+        return Mathf.Sqrt(Vector2.Dot(d, d));
     }
     #endregion
 }

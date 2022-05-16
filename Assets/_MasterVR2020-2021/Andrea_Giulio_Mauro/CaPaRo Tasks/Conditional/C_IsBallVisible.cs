@@ -7,11 +7,9 @@ public class C_IsBallVisible : C_Base
     {
         base.OnUpdate();
 
-        foreach (Transform opponent in shared.Value.m_Opponents) {
-            if (IsCoveringBall(opponent))
-            {
-                return TaskStatus.Success;
-            }
+        if (!IsReachable(myPosition, ballPosition))
+        {
+            return TaskStatus.Success;
         }
         return TaskStatus.Failure;
         

@@ -7,12 +7,9 @@ public class A_KeepFree : A_Base
     {
         base.OnUpdate();
         
-        if (Vector2.Distance(targetPosition, myPosition) < radiusTreshold)
-        {
-            return TaskStatus.Failure;
-        }
+        Vector2 targetDirection = ((myPosition - ballPosition) * -1).normalized;
 
-        Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
+        targetDirection = Vector2.Perpendicular(targetDirection);
 
         //go to that position
         output.Value.axes = targetDirection;
