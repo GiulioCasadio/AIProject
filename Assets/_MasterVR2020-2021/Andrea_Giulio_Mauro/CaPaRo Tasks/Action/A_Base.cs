@@ -24,7 +24,7 @@ public class A_Base : Action
 
     public bool requestKick;
 
-    public float radiusTreshold = 1.5f;     // treshold usato per vicinanza dalla palla/player/destinazione
+    public float radiusTreshold = 0.5f;     // treshold usato per vicinanza dalla palla/player/destinazione
     public float distanceTreshold = 4f;     // distanza dash
     public float angleTreshold = 2f;        // angolo tiro
     public float behindBallTreshold = 1f;   // treshold intercettazione
@@ -49,7 +49,6 @@ public class A_Base : Action
         axes = output.Value.axes;
 
         requestKick = output.Value.requestKick;
-
 
         return TaskStatus.Success;
     }
