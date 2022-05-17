@@ -9,7 +9,6 @@ public class IsMyGoalCovered : CoachBaseConditional
     public override TaskStatus OnUpdate()
     {
         
-
         foreach (CoachPlayerCommunication cpc in m_sharedCoachVariables.Value.playersCommunications)
         {
             if (checkPlayerBehindBall(cpc))

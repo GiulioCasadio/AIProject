@@ -12,9 +12,7 @@ public class ManOnBall : CoachBaseConditional
         {
             if (checkPlayerBehindBall(cpc))
             {
-                float distanceBall = Vector2.Distance(cpc.m_sharedInput.myPosition, shared.Value.ballPosition);
-                
-                if(distanceBall <= shared.Value.ballRadius * 3)
+                if(checkManNearBall(cpc))
                     return TaskStatus.Success;
             }
         }

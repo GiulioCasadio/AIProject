@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-public class C_IsHurry : C_Base
+using Ca_Pa_Ro.Player;
+
+public class C_IsGoingToKick : C_Base
 {
     public override TaskStatus OnUpdate()
     {
         base.OnUpdate();
 
-        if (m_sharedPlayerVariables.Value.m_hurry)
+        if (m_sharedPlayerVariables.Value.m_state == PlayerFocus.PlayerStateFocus.KICKBALL)
         {
             return TaskStatus.Success;
         }
