@@ -7,9 +7,9 @@ public class A_TackleOpponent : A_Base
     {
         base.OnUpdate();
 
-        if (m_sharedPlayerVariables.Value.m_targetOpponent != null)
+        if (m_sharedPlayerVariables.Value.m_targetTransform != null)
         {
-            targetPosition = m_sharedPlayerVariables.Value.m_targetOpponent.GetPositionXY();
+            targetPosition = m_sharedPlayerVariables.Value.m_targetTransform.GetPositionXY();
         }
 
         Vector2 dir = ((myPosition - targetPosition) * -1).normalized;

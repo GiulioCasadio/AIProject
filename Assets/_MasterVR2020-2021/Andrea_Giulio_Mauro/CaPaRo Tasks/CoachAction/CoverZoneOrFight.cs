@@ -32,7 +32,7 @@ public class CoverZoneOrFight : CoachBaseAction
                     if (IsOpponentNearBall(shared.Value.ballRadius * 2))
                     {
                         cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.KNOCKS;
-                        cpc.m_playerFocus.m_targetOpponent = GetMostOpponentNearBall();
+                        cpc.m_playerFocus.m_targetTransform = GetMostOpponentNearBall();
                     }
 
                     else
