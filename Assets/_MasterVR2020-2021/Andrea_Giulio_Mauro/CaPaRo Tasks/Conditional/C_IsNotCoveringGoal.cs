@@ -6,7 +6,7 @@ public class C_IsNotCoveringGoal : C_Base
     public override TaskStatus OnUpdate()
     {
         base.OnUpdate();
-        if (!IsCoveringView(ballPosition, targetPosition, myPosition))
+        if (!IsInTheMidMidPoint(shared.Value.myGoal.GetPositionXY(), ballPosition, myPosition))
         {
             return TaskStatus.Success;
         }

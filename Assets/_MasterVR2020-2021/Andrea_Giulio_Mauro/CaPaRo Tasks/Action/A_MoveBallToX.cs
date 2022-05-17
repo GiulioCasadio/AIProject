@@ -11,17 +11,27 @@ public class A_MoveBallToX : A_Base
         var toTarget = myPosition - targetPosition;
         var distance = toTarget.magnitude;
 
-        // se non l'ho raggiunta mi sposto
-        if (distance > radiusTreshold)
+        // controlla se sono abbastanza vicino alla palla per controllarla
+        if ((myPosition-ballPosition).magnitude > radiusTreshold)
         {
-            Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
-
             //go to that position
+            Vector2 targetDirection = ((myPosition - ballPosition) * -1).normalized;
             output.Value.axes = targetDirection;
-            m_owner.SetVariableValue("Output", output);
+        }
+        else
+        {
+            // mi sposto verso target oppure attiro e sto fermo
+            if (distance > radiusTreshold)
+            {
+                //go to that position
+                Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;
+                output.Value.axes = targetDirection;
+            }
+            output.Value.requestAttracting = true;
         }
 
-        output.Value.requestAttracting = true;
+
+        m_owner.SetVariableValue("Output", output);
 
         return TaskStatus.Running;
     }

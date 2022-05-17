@@ -5,7 +5,7 @@ using Coach;
 using BehaviorDesigner.Runtime.Tasks;
 using Ca_Pa_Ro.Player;
 
-public class SendManOnBall : CoachBaseAction
+public class DefenseSendManOnBall : CoachBaseAction
 {
     public override TaskStatus OnUpdate()
     {

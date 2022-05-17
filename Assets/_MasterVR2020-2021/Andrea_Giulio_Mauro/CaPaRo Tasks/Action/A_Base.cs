@@ -24,10 +24,10 @@ public class A_Base : Action
 
     public bool requestKick;
 
-    public float radiusTreshold = 1.5f;
-    public float distanceTreshold = 1f;
-    public float angleTreshold = 2f;
-    public float behindBallTreshold = 1f;
+    protected float radiusTreshold = 1f;     // treshold usato per vicinanza dalla palla/player/destinazione
+    protected float distanceTreshold = 4f;     // distanza dash
+    protected float angleTreshold = 2f;        // angolo tiro
+    protected float behindBallTreshold = 1f;   // treshold intercettazione
 
     public override void OnAwake()
     {
@@ -49,7 +49,6 @@ public class A_Base : Action
         axes = output.Value.axes;
 
         requestKick = output.Value.requestKick;
-
 
         return TaskStatus.Success;
     }
@@ -87,18 +86,17 @@ public class A_Base : Action
 
     public bool IsReachable(Vector2 pointA, Vector2 pointB)
     {
-        // TODO
         // ciclo ogni giocatore (escluso chi ha la palla) 
         foreach(Transform obstacleTransform in shared.Value.m_Opponents)
         {
-            if(IsBetweenPoint(pointA, pointB, obstacleTransform.GetPositionXY()))
+            if(DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY())>behindBallTreshold)
             {
                 return false;
             }
         }
         foreach (Transform obstacleTransform in shared.Value.m_Teams)
         {
-            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && IsBetweenPoint(pointA, pointB, obstacleTransform.GetPositionXY())) // TODO trova un check piu' sicuro sul giocatore
+            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) > behindBallTreshold) // TODO trova un check piu' sicuro sul giocatore
             {
                 return false;
             }
@@ -106,21 +104,13 @@ public class A_Base : Action
         return true;
     }
 
-    public bool IsBetweenPoint(Vector2 pointA, Vector2 pointB, Vector2 pointToCheck) // TODO verificarne il funzionamento
+    float DistancePtLine(Vector2 a, Vector2 b, Vector2 p)
     {
-        var line = (pointB - pointA);
-        var len = line.magnitude;
-        line.Normalize();
-
-        var v = pointToCheck - pointA;
-        var d = Vector2.Dot(v, line);
-        d = Mathf.Clamp(d, 0f, len);
-
-        if (Vector2.Distance(pointA + line * d, pointToCheck) < radiusTreshold)
-        {
-            return true;
-        }
-        return false;
+        Vector2 n = b - a;
+        Vector2 pa = a - p;
+        Vector2 c = n * (Vector2.Dot(pa, n) / Vector2.Dot(n, n));
+        Vector2 d = pa - c;
+        return Mathf.Sqrt(Vector2.Dot(d, d));
     }
     #endregion
 }
