@@ -7,8 +7,9 @@ public class A_MarkOpponent : A_Base
     {
         base.OnUpdate();
 
-        targetPosition = m_sharedPlayerVariables.Value.m_targetOpponent.GetPositionXY();
-
+        if (m_sharedPlayerVariables.Value.m_targetOpponent != null) { 
+            targetPosition = m_sharedPlayerVariables.Value.m_targetOpponent.GetPositionXY();
+        }
         Vector2 midPoint = new Vector2((ballPosition.x + targetPosition.x) / 2, (ballPosition.y + targetPosition.y) / 2);
 
         Vector2 midMidPoint = new Vector2((midPoint.x + targetPosition.x) / 2, (midPoint.y + targetPosition.y) / 2);
