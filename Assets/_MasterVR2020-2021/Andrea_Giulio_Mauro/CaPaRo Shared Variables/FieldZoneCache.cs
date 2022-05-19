@@ -96,7 +96,7 @@ namespace Coach
             if (playerX >= cols)
                 return FieldZoneStatus.OUT;
             
-            int playerY = GetY(playerPosition.y);
+            int playerY = GetY(playerPosition.y) + offsetY;
 
             if (playerY >= rows)
                 return FieldZoneStatus.OUT;
