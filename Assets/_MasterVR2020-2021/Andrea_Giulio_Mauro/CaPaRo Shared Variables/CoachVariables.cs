@@ -21,8 +21,13 @@ namespace Coach
 
         public Vector2 MyTeamCenterGravity = new Vector2();
         public Vector2 OpponentTeamCenterGravity = new Vector2();
-        
-        
+
+        public FieldZoneCache FieldZoneCache;
+
+        public void initializeFieldZoneCache(float fieldWidth, float fieldHeight)
+        {
+            FieldZoneCache = new FieldZoneCache(fieldWidth, fieldHeight);
+        }
 
 
     }
