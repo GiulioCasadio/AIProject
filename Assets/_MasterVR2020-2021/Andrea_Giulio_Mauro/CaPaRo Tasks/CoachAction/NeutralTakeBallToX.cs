@@ -4,6 +4,6 @@ using Coach;
 using UnityEngine;
 
 public class NeutralTakeBallToX : CoachBaseAction
-{
-
+{  
+    
 }
