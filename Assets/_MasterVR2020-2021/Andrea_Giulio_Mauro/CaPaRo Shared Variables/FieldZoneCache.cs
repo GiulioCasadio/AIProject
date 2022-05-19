@@ -8,7 +8,7 @@ namespace Coach
     
     public class FieldZoneCache
     {
-        public enum FieldZoneStatus {FREE, FRIEND, OPPONENT, BOTH}
+        public enum FieldZoneStatus {FREE, FRIEND, OPPONENT, BOTH, OUT}
 
         private const int rows = 3;
         private const int cols = 6;
@@ -75,6 +75,33 @@ namespace Coach
         private int GetIndex(float position, float cellSize)
         {
             return (int)(position / cellSize);
+        }
+
+        public FieldZoneStatus GetPlayerFieldZoneStatus(Transform player)
+        {
+            Vector2 playerPosition = player.GetPositionXY();
+
+            int playerX = GetX(playerPosition.x);
+            int playerY = GetY(playerPosition.y);
+
+            return cache[playerY, playerX];
+        }
+        
+        public FieldZoneStatus GetPlayerFieldZoneStatusOffset(Transform player, int offsetX, int offsetY)
+        {
+            Vector2 playerPosition = player.GetPositionXY();
+
+            int playerX = GetX(playerPosition.x) + offsetX;
+
+            if (playerX >= cols)
+                return FieldZoneStatus.OUT;
+            
+            int playerY = GetY(playerPosition.y);
+
+            if (playerY >= rows)
+                return FieldZoneStatus.OUT;
+
+            return cache[playerY, playerX];
         }
         
     }
