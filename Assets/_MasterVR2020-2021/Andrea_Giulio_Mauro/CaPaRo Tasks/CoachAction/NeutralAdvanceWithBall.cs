@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Coach;
 using UnityEngine;
 
-public class NeutralTakeBallToX : CoachBaseAction
+public class NeutralAdvanceWithBall : CoachBaseAction
 {  
     
 }

@@ -7,7 +7,7 @@ public class IsBallInMyHalfSide : CoachBaseConditional
 {
     public override TaskStatus OnUpdate()
     {
-        if (shared.Value.ballPosition.x < 0)
+        if (shared.Value.ballPosition.x * shared.Value.myGoal.transform.position.x > 0)
         {
             return TaskStatus.Success;
         }
