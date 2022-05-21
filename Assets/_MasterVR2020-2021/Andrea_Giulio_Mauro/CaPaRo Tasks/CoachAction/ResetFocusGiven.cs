@@ -12,7 +12,7 @@ public class ResetFocusGiven : CoachBaseAction
     {
         foreach (CoachPlayerCommunication cpc  in m_sharedCoachVariables.Value.playersCommunications)
         {
-            cpc.m_focusGiven = false;
+            cpc.ResetFocusGiven();
         }
         return TaskStatus.Success;
     }

@@ -14,7 +14,6 @@ public class CoachKickBallToGoal : CoachBaseAction
 
         player.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.KICKBALL;
         player.m_playerFocus.m_hurry = true;
-        player.m_focusGiven = true;
 
         return TaskStatus.Success;
     }
