@@ -133,6 +133,24 @@ namespace Coach
         {
             return Vector2.Distance(player, shared.Value.ballPosition) < shared.Value.ballRadius * 3;
         }
+        
+        protected bool MoveForwardPlayer(CoachPlayerCommunication cpc)
+        {
+            return true;
+            FieldZoneCache cache = m_sharedCoachVariables.Value.FieldZoneCache;
+
+            if (!cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
+                return false;
+            
+            bool newPositionGiven = false;
+            while (!newPositionGiven)
+            {
+                
+            }
+
+            return true;
+
+        }
     }
 }
 
