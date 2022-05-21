@@ -18,7 +18,7 @@ public class CoverGoal : CoachBaseAction
 
         if (m_sharedCoachVariables.Value.m_behavior == CoachVariables.TeamBehavior.DEFENSIVE)
         {
-            float distanceMyGoalOpponentsCenterGravity =  Mathf.Abs(m_sharedCoachVariables.Value.OpponentTeamCenterGravity.x - shared.Value.myGoal.position.x); 
+            float distanceMyGoalOpponentsCenterGravity =  Mathf.Abs(m_sharedCoachVariables.Value.OpponentTeamCenterGravity.x - shared.Value.myGoal.position.x);
             if (distanceMyGoalOpponentsCenterGravity < shared.Value.halfFieldWidth)
             {
                 CoachPlayerCommunication otherMostNearGoalPlayer = GetMostFreePlayerNearMyGoal();
