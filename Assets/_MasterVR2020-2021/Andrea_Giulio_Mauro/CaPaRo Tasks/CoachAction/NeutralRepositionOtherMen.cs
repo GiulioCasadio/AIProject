@@ -23,7 +23,7 @@ public class NeutralRepositionOtherMen : CoachBaseAction
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
                     cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MAKEFREE;
-                    //setta posizione dopo il merge
+                    //setta posizione del make free dopo il merge
                     cpc.m_playerFocus.m_hurry = false;
                 }
                 break;
@@ -36,12 +36,16 @@ public class NeutralRepositionOtherMen : CoachBaseAction
                 {
                         cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.KNOCKS;
                         cpc.m_playerFocus.m_targetTransform = GetMostOpponentNearBall();
+                        cpc.m_playerFocus.m_hurry = false;
                 }
                 break;
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    //todo
+                    cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MAKEFREE;
+                    cpc.m_playerFocus.m_hurry = false;
+                    //manca posizione target del makefree
+                    //todo move forward del giocatore
                 }
                 break;
         }
