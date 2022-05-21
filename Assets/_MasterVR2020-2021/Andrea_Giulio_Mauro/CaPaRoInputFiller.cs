@@ -92,7 +92,8 @@ namespace Ca_Pa_Ro
 
             if (sharedCoachVariables != null)
             {
-                sharedCoachVariables.Value.initializeFieldZoneCache(fieldWidth, fieldHeight);
+                
+                sharedCoachVariables.Value.initializeFieldZoneCache(fieldWidth, fieldHeight, Mathf.Sign(myGoal.position.x));
             }
             
         }

@@ -23,8 +23,10 @@ namespace Coach
 
         private float halfWidth;
         private float halfHeight;
+
+        private int myGoalSign;
         
-        public FieldZoneCache(float fieldWidth, float fieldHeight)
+        public FieldZoneCache(float fieldWidth, float fieldHeight, float sign)
         {
             this.fieldWidth = fieldWidth;
             this.fieldHeight = fieldHeight;
@@ -34,6 +36,8 @@ namespace Coach
 
             halfWidth = this.fieldWidth / 2;
             halfHeight = this.fieldHeight / 2;
+
+            this.myGoalSign = (int)sign;
         }
 
         public void UpdateCache(List<Transform> friends, List<Transform> opponents)
@@ -102,6 +106,25 @@ namespace Coach
                 return FieldZoneStatus.OUT;
 
             return cache[playerY, playerX];
+        }
+
+        public bool CanPlayerGoForward(Transform player, bool friend)
+        {
+            return CanPlayerGoForward(player.GetPositionXY(), friend);
+        }
+        
+        public bool CanPlayerGoForward(Vector2 player, bool friend)
+        {
+            int internal_sign = friend ? myGoalSign : -myGoalSign;
+
+            int playerX = GetX(player.x);
+            
+            if (myGoalSign < 0)
+            {
+                return playerX != cols - 1;
+            }
+
+            return playerX != 0;
         }
         
     }
