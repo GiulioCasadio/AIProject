@@ -17,7 +17,6 @@ public class KeepManOnBall : CoachBaseAction
         {
             if (cpc.m_playerFocus.m_state == PlayerFocus.PlayerStateFocus.CHASEBALL)
             {
-                cpc.m_focusGiven = true;
                 cpc.m_playerFocus.m_hurry = false;
                 playersOnBall++;
             }
@@ -32,7 +31,6 @@ public class KeepManOnBall : CoachBaseAction
         CoachPlayerCommunication nearestPlayerBall = GetMostFreePlayerNearBall();
 
         nearestPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
-        nearestPlayerBall.m_focusGiven = true;
         nearestPlayerBall.m_playerFocus.m_hurry = true;
 
         if (m_sharedCoachVariables.Value.m_behavior == CoachVariables.TeamBehavior.DEFENSIVE)
@@ -45,7 +43,6 @@ public class KeepManOnBall : CoachBaseAction
                 CoachPlayerCommunication nearestOtherPlayerBall = GetMostFreePlayerNearBall();
 
                 nearestOtherPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
-                nearestOtherPlayerBall.m_focusGiven = true;
                 nearestOtherPlayerBall.m_playerFocus.m_hurry = true;
             }
         }

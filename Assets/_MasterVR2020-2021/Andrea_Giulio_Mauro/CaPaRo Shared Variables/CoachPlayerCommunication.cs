@@ -9,9 +9,29 @@ namespace Coach
 {
     public class CoachPlayerCommunication
     {
-        protected internal PlayerFocus m_playerFocus;
+        private PlayerFocus playerFocus;
+        protected internal PlayerFocus m_playerFocus
+        {
+            get { return playerFocus; }
+            set
+            {
+                m_focusGiven = true;
+                playerFocus = value;
+            }
+        }
         protected internal AIInputData m_sharedInput;
-        protected internal bool m_focusGiven;
+
+        private bool focusGiven;
+        
+        protected internal bool m_focusGiven
+        {
+            get { return focusGiven; }
+            private set { focusGiven = value; }
+        }
+        protected internal void ResetFocusGiven()
+        {
+            m_focusGiven = false;
+        }
 
         public CoachPlayerCommunication(PlayerFocus i_playerFocus, AIInputData i_sharedInput)
         {

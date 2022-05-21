@@ -17,7 +17,6 @@ public class KeepCoverGoal : CoachBaseAction
         {
             if (cpc.m_playerFocus.m_state == PlayerFocus.PlayerStateFocus.COVERGOAL)
             {
-                cpc.m_focusGiven = true;
                 cpc.m_playerFocus.m_hurry = false;
                 playerCoveringGoal++;
             }
@@ -31,7 +30,6 @@ public class KeepCoverGoal : CoachBaseAction
 
         CoachPlayerCommunication mostNearGoalPlayer = GetMostFreePlayerNearMyGoal();
         mostNearGoalPlayer.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERGOAL;
-        mostNearGoalPlayer.m_focusGiven = true;
         mostNearGoalPlayer.m_playerFocus.m_hurry = true;
 
         if (m_sharedCoachVariables.Value.m_behavior == CoachVariables.TeamBehavior.DEFENSIVE)
@@ -43,7 +41,6 @@ public class KeepCoverGoal : CoachBaseAction
                 if(otherMostNearGoalPlayer != null)
                 {
                     otherMostNearGoalPlayer.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERGOAL;
-                    otherMostNearGoalPlayer.m_focusGiven = true;
                     otherMostNearGoalPlayer.m_playerFocus.m_hurry = true;
                 }
             }
