@@ -21,6 +21,9 @@ namespace Coach
         private float cellWidthSize;
         private float cellHeightSize;
 
+        private float randomRangeWidth;
+        private float randomRangeHeight;
+
         private float halfWidth;
         private float halfHeight;
 
@@ -38,6 +41,9 @@ namespace Coach
             halfHeight = this.fieldHeight / 2;
 
             this.myGoalSign = (int)sign;
+
+            randomRangeWidth = cellWidthSize * 0.2f;
+            randomRangeHeight = cellHeightSize * 0.2f;
         }
 
         public void UpdateCache(List<Transform> friends, List<Transform> opponents)
@@ -125,6 +131,52 @@ namespace Coach
             }
 
             return playerX != 0;
+        }
+        
+        public Vector2 GetCenterCellWithRandom(Transform player)
+        {
+            return GetCenterCellWithRandom(player.GetPositionXY(), 0, 0);
+        }
+        
+        public Vector2 GetCenterCellWithRandom(Vector2 player)
+        {
+            return GetCenterCellWithRandom(player, 0, 0);
+        }
+        
+        public Vector2 GetCenterCellWithRandom(Transform player, int offsetX, int offsetY)
+        {
+            return GetCenterCellWithRandom(player.GetPositionXY(), offsetX, offsetY);
+        }
+        
+        public Vector2 GetCenterCellWithRandom(Vector2 player, int offsetX, int offsetY)
+        {
+            int playerX = GetX(player.x);
+            int playerY = GetY(player.y);
+            
+            return GetCenterCellWithRandom(playerX + offsetX, playerY + offsetY);
+        }
+        
+        public Vector2 GetCenterCell(Transform player)
+        {
+            Vector2 playerPosition = player.GetPositionXY();
+            int playerX = GetX(playerPosition.x);
+            int playerY = GetY(playerPosition.y);
+            return GetCenterCell(playerX, playerY);
+        }
+
+        private Vector2 GetCenterCellWithRandom(int x, int y)
+        {
+            Vector2 centerCell = GetCenterCell(x, y);
+            
+            centerCell.x = Random.Range(centerCell.x - randomRangeWidth, centerCell.x + randomRangeWidth);
+            centerCell.y = Random.Range(centerCell.y - randomRangeHeight, centerCell.y + randomRangeHeight);
+
+            return centerCell;
+        }
+        
+        private Vector2 GetCenterCell(int x, int y)
+        {
+            return new Vector2(cellWidthSize * x + cellWidthSize / 2, cellHeightSize * y + cellHeightSize / 2);
         }
         
     }
