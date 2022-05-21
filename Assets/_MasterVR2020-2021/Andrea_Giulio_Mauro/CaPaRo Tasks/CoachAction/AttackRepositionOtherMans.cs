@@ -60,19 +60,5 @@ public class AttackRepositionOtherMans : CoachBaseAction
         
         return TaskStatus.Success;
     }
-
-
-        private void MoveForwardPlayer(CoachPlayerCommunication cpc)
-        {
-            FieldZoneCache cache = m_sharedCoachVariables.Value.FieldZoneCache;
-
-            bool newPositionGiven = false;
-            if(cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
-            while (!newPositionGiven)
-            {
-                
-            }
-            
-            
-        }
+        
 }
