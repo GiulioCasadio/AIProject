@@ -24,6 +24,7 @@ public class AttackRepositionOtherMans : CoachBaseAction
                 
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
+                    
                     cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MAKEFREE;
                     cpc.m_playerFocus.m_targetPosition = GetMostAdvancedOpponent().GetPositionXY();
                     cpc.m_playerFocus.m_hurry = false;
@@ -59,4 +60,19 @@ public class AttackRepositionOtherMans : CoachBaseAction
         
         return TaskStatus.Success;
     }
+
+
+        private void MoveForwardPlayer(CoachPlayerCommunication cpc)
+        {
+            FieldZoneCache cache = m_sharedCoachVariables.Value.FieldZoneCache;
+
+            bool newPositionGiven = false;
+            if(cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
+            while (!newPositionGiven)
+            {
+                
+            }
+            
+            
+        }
 }

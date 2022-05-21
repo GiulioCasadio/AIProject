@@ -5,6 +5,7 @@ using UnityEngine;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
 using Ca_Pa_Ro.Player;
+using Coach;
 
 namespace Ca_Pa_Ro
 {
@@ -86,6 +87,15 @@ namespace Ca_Pa_Ro
             shared.m_tnBaseMatchController = i_Data.BaseMatchController;
             
             m_behavior_tree.SetVariableValue("Shared", shared);
+            
+            SharedCoachVariables sharedCoachVariables = (SharedCoachVariables)m_behavior_tree.GetVariable("m_coachVariables");
+
+            if (sharedCoachVariables != null)
+            {
+                
+                sharedCoachVariables.Value.initializeFieldZoneCache(fieldWidth, fieldHeight, Mathf.Sign(myGoal.position.x));
+            }
+            
         }
 
         public override void Fill(float i_FrameTime, tnInputData i_Data)
