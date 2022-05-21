@@ -24,9 +24,9 @@ namespace Coach
 
         public FieldZoneCache FieldZoneCache;
 
-        public void initializeFieldZoneCache(float fieldWidth, float fieldHeight)
+        public void initializeFieldZoneCache(float fieldWidth, float fieldHeight, float sign)
         {
-            FieldZoneCache = new FieldZoneCache(fieldWidth, fieldHeight);
+            FieldZoneCache = new FieldZoneCache(fieldWidth, fieldHeight, sign);
         }
 
 
