@@ -95,6 +95,14 @@ namespace Coach
             return false;
         }
         
+        protected bool IsOpponentNearBall(Vector2 opponent)
+        {
+            if (Vector2.Distance(opponent, shared.Value.ballPosition) < shared.Value.ballRadius * 2)
+                    return true;
+
+            return false;
+        }
+        
         private Transform GetMostOpponentNearTarget(Vector2 target)
         {
             Transform output = null;
@@ -115,6 +123,15 @@ namespace Coach
         protected Transform GetMostAdvancedOpponent()
         {
             return GetMostOpponentNearTarget(shared.Value.myGoal.GetPositionXY());
+        }
+        
+        protected bool checkManControlBall(CoachPlayerCommunication cpc)
+        {
+            return checkManControlBall(cpc.m_sharedInput.myPosition);
+        }
+        protected bool checkManControlBall(Vector2 player)
+        {
+            return Vector2.Distance(player, shared.Value.ballPosition) < shared.Value.ballRadius * 3;
         }
     }
 }
