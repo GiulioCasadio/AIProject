@@ -146,11 +146,13 @@ namespace Coach
             if (!cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
                 return false;
             
-            int xOffset = 1;
-            while (xOffset < 3)
+            int xCounter = 1;
+            while (xCounter < 3)
             {
-                for (int yOffset = 0; yOffset < 3; yOffset++)
+                for (int counterY = 1; counterY < 4; counterY++)
                 {
+                    int xOffset = xCounter * (int)Mathf.Sign(shared.Value.myGoal.position.x);
+                    int yOffset = (counterY % 3) - 1;
                     FieldZoneCache.FieldZoneStatus fieldZoneStatus = cache.GetPlayerFieldZoneStatusOffset(cpc.m_sharedInput.myPosition, xOffset, yOffset);
                     if (fieldZoneStatus == FieldZoneCache.FieldZoneStatus.FREE)
                     {
@@ -159,7 +161,7 @@ namespace Coach
                         return true;
                     }
                 }
-                xOffset++;
+                xCounter++;
             }
             return false;
         }
