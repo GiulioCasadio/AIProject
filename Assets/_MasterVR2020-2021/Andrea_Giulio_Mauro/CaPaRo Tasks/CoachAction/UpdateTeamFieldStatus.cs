@@ -7,13 +7,19 @@ using UnityEngine;
 
 public class UpdateTeamFieldStatus : CoachBaseAction
 {
+    private bool firstDebugToCall = true;
     public override TaskStatus OnUpdate()
     {
         if (m_sharedCoachVariables.Value.m_fieldStatus == CoachVariables.TeamFieldStatus.DEBUG)
         {
-            foreach (var player in m_sharedCoachVariables.Value.playersCommunications)
+            if(firstDebugToCall)
             {
-                player.SetState(PlayerFocus.PlayerStateFocus.NONE, false);
+                foreach (var player in m_sharedCoachVariables.Value.playersCommunications)
+                {
+                    player.SetState(PlayerFocus.PlayerStateFocus.NONE, false);
+                }
+
+                firstDebugToCall = false;
             }
             return TaskStatus.Success;
         }
