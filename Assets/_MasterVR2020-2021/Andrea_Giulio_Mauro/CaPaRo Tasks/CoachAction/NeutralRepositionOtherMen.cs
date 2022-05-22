@@ -23,9 +23,13 @@ public class NeutralRepositionOtherMen : CoachBaseAction
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
                     Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
-                    if (playerForwardPosition != Vector2.negativeInfinity)
+                    if (!playerForwardPosition.Equals(Vector2.negativeInfinity))
                     {
                         cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerForwardPosition);
+                    }
+                    else
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
                     }
                 }
                 break;
@@ -42,9 +46,13 @@ public class NeutralRepositionOtherMen : CoachBaseAction
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
                     Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
-                    if (playerForwardPosition != Vector2.negativeInfinity)
+                    if (!playerForwardPosition.Equals(Vector2.negativeInfinity))
                     {
                         cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerForwardPosition);
+                    }
+                    else
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
                     }
                 }
                 break;
