@@ -9,7 +9,7 @@ namespace Coach
     public class CoachVariables
     {
         public enum TeamBehavior { AGGRESSIVE,DEFENSIVE,NEUTRAL}
-        public enum TeamFieldStatus {DEFENDING, NEUTRAL, ATTACKING}
+        public enum TeamFieldStatus {DEFENDING, NEUTRAL, ATTACKING, DEBUG}
 
         public TeamBehavior m_behavior = TeamBehavior.NEUTRAL;
         public TeamFieldStatus m_fieldStatus = TeamFieldStatus.NEUTRAL;
