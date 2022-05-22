@@ -15,7 +15,7 @@ public class OtherTeamScore : CoachBaseConditional
 
         if (goalRight)
         {
-            goalXPosition -= shared.Value.goalWidth / 2;
+            goalXPosition -= shared.Value.goalMaxHeight;
             ballXPosition -= shared.Value.ballRadius;
             if (ballXPosition > goalXPosition)
             {
@@ -25,7 +25,7 @@ public class OtherTeamScore : CoachBaseConditional
         
         else 
         {
-            goalXPosition += shared.Value.goalWidth / 2;
+            goalXPosition += shared.Value.goalMaxHeight;
             ballXPosition += shared.Value.ballRadius;
             if (ballXPosition < goalXPosition)
             {

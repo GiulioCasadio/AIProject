@@ -20,9 +20,10 @@ public class NeutralRepositionOtherMen : CoachBaseAction
         {
             case CoachVariables.TeamBehavior.NEUTRAL:
                 CoachPlayerCommunication mostFreePlayerNearMyGoal = GetMostFreePlayerNearMyGoal();
-                Vector2 targetPos = shared.Value.myGoal.GetPositionXY() + Vector2.right;
-                mostFreePlayerNearMyGoal.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, targetPos);
+                mostFreePlayerNearMyGoal.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, new Vector2(shared.Value.myGoal.position.x * 0.75f, 0));
 
+                freePlayers.Remove(mostFreePlayerNearMyGoal);
+                
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
                     Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
@@ -39,7 +40,7 @@ public class NeutralRepositionOtherMen : CoachBaseAction
             case CoachVariables.TeamBehavior.DEFENSIVE:
                 CoachPlayerCommunication lastMan = GetMostFreePlayerNearMyGoal();
                 lastMan.SetState(PlayerFocus.PlayerStateFocus.COVERGOAL, false);
-
+                freePlayers.Remove(lastMan);
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
                     cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetMostOpponentNearBall());
