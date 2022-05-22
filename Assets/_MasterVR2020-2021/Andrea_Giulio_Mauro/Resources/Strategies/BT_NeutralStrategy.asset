@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: BT_NeutralStrategy
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(161.832275,488.808563)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(1.83227921,153.156433)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-248.028854,143.555023)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"GotTheBall","NodeData":{"Offset":"(-128.579727,158.7095)"},"ID":3,"Name":"Got
+        The Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-0.111188889,160.935516)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-287.523468,183.457428)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"IsBallInMyHalfSide","NodeData":{"Offset":"(-164.199341,137.8941)"},"ID":6,"Name":"Is
+        Ball In My Half Side","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(3.717081,135.401062)"},"ID":7,"Name":"Selector","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-140.678833,174.749146)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CanPassBall","NodeData":{"Offset":"(-316.290466,135.18335)"},"ID":9,"Name":"Can
+        Pass Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoachPassBall","NodeData":{"Offset":"(-176.502838,135.183411)"},"ID":10,"Name":"Coach
+        Pass Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(-1.60556984,135.336426)"},"ID":11,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(55.65222,180)"},"ID":12,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"NeutralAdvanceWithBall","NodeData":{"Offset":"(31.8604679,129.130432)"},"ID":13,"Name":"Neutral
+        Advance With Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(249.55835,131.150269)"},"ID":14,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(175.819,192.3969)"},"ID":15,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CanKickToGoal","NodeData":{"Offset":"(-215.91951,131.155151)"},"ID":16,"Name":"Can
+        Kick To Goal","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoachKickBallToGoal","NodeData":{"Offset":"(-48.7460327,125.720642)"},"ID":17,"Name":"Coach
+        Kick Ball To Goal","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(154.883789,134.418213)"},"ID":18,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(518.6232,192.19281)"},"ID":19,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CanPassBall","NodeData":{"Offset":"(21.6650524,125.808594)"},"ID":20,"Name":"Can
+        Pass Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"CoachPassBall","NodeData":{"Offset":"(161.665024,125.808594)"},"ID":21,"Name":"Coach
+        Pass Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(357.9069,126.2793)"},"ID":22,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1200,200)"},"ID":23,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"NeutralAdvanceWithBall","NodeData":{"Offset":"(-70,130)"},"ID":24,"Name":"Neutral
+        Advance With Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(170,130)"},"ID":25,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(244.673935,131.862488)"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"NeutralSendManOnBall","NodeData":{"Offset":"(-283.957153,147.755981)"},"ID":27,"Name":"Neutral
+        Send Man On Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"EnemyGotTheBall","NodeData":{"Offset":"(-35.0094,145.124939)"},"ID":28,"Name":"Enemy
+        Got The Ball","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(270.909729,154.848511)"},"ID":29,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},{"Type":"NeutralRepositionOtherMen","NodeData":{"Offset":"(810,280)"},"ID":30,"Name":"Neutral
+        Reposition Other Men","Instant":true,"SharedAIInputDatashared":{"Type":"Ca_Pa_Ro.CaPaRo_SharedVariables.SharedAIInputData","Name":null},"SharedCoachVariablesm_sharedCoachVariables":{"Type":"Coach.SharedCoachVariables","Name":null}}]},"Variables":[{"Type":"Coach.SharedCoachVariables","Name":"m_coachVariables","IsShared":true,"CoachVariablesmValue":{"TeamBehaviorm_behavior":"NEUTRAL","TeamFieldStatusm_fieldStatus":"NEUTRAL","Int32myTeamScore":0,"Int32opponentTeamScore":0,"List`1playersCommunications":[],"Vector2MyTeamCenterGravity":"(0,0)","Vector2OpponentTeamCenterGravity":"(0,0)"}}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.6.7

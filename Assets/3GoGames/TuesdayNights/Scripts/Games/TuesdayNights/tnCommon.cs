@@ -8,6 +8,7 @@ namespace TuesdayNights
         Defender = 1,
         Midfielder = 2,
         Striker = 3,
+        CoachPlayer = 4
     }
 
     public enum AIRole
@@ -16,6 +17,7 @@ namespace TuesdayNights
         Defender = 1,
         Midfielder = 2,
         Striker = 3,
+        CoachPlayer = 4
     }
 
     public static class tnTeamStatsId

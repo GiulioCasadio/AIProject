@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
+using Coach;
 using UnityEngine;
 using TuesdayNights;
 
@@ -6,22 +8,27 @@ namespace Ca_Pa_Ro
 {
     public class CaPaRoAIFactory : tnBaseStandardMatchAIFactory
     {
+
+        private CaPaRoInputFiller m_coachInputFiller;
+        private List<CaPaRoInputFiller> m_otherPlayers = new List<CaPaRoInputFiller>(); 
+        
+        
         #region Roles
 
         private static AIRole[] s_Roles_1 = new AIRole[]
         {
-            AIRole.Midfielder
+            AIRole.CoachPlayer
         };
         
         private static AIRole[] s_Roles_2 = new AIRole[]
         {
-            AIRole.Midfielder,
+            AIRole.CoachPlayer,
             AIRole.Midfielder
         };
         
         private static AIRole[] s_Roles_3 = new AIRole[]
         {
-            AIRole.Midfielder,
+            AIRole.CoachPlayer,
             AIRole.Midfielder,
             AIRole.Midfielder
         };
@@ -35,7 +42,7 @@ namespace Ca_Pa_Ro
         
         #endregion
         
-        private static AIRole s_DefaultRole = AIRole.Midfielder;
+        private static AIRole s_DefaultRole = AIRole.Striker;
         private List<AIRole> m_Roles = null;
         protected int m_AICreated = 0;
 
@@ -48,7 +55,7 @@ namespace Ca_Pa_Ro
 
             var charactersCount = i_TeamDescription.charactersCount;
             
-            if (charactersCount <= 0 || charactersCount >= s_Roles.Length)
+            if (charactersCount <= 0 || charactersCount > s_Roles.Length)
                 return;
 
             var roles = s_Roles[charactersCount - 1];
@@ -84,12 +91,43 @@ namespace Ca_Pa_Ro
             }
 
             var role = m_Roles[m_AICreated++];
-            return CreateInputFiller(role, i_Character);
+
+            CaPaRoInputFiller currentPlayer = CreateInputFiller(role, i_Character);
+            
+            if (role == AIRole.CoachPlayer)
+            {
+                m_coachInputFiller = currentPlayer;
+            }
+
+            else
+            {
+                m_otherPlayers.Add(currentPlayer);
+            }
+
+            if (m_AICreated == m_Roles.Count)
+            {
+                fillCoachData();
+            }
+            
+            return currentPlayer;
         }
-        
+
+        private void fillCoachData()
+        {
+            SharedCoachVariables sharedCoachVariables = (SharedCoachVariables)m_coachInputFiller.m_behavior_tree.GetVariable("m_coachVariables");
+
+            sharedCoachVariables.Value.playersCommunications.Add(new CoachPlayerCommunication(m_coachInputFiller.GetPlayerFocus(), m_coachInputFiller.shared));
+
+            foreach (CaPaRoInputFiller player in m_otherPlayers)
+            {
+                sharedCoachVariables.Value.playersCommunications.Add(
+                    new CoachPlayerCommunication(player.GetPlayerFocus(), player.shared));
+            }
+        }
+
         // INTERNALS
 
-        private static tnStandardAIInputFillerBase CreateInputFiller(AIRole i_Role, GameObject i_Character)
+        private static CaPaRoInputFiller CreateInputFiller(AIRole i_Role, GameObject i_Character)
         {
             return new CaPaRoInputFiller(i_Character, i_Role);
         }

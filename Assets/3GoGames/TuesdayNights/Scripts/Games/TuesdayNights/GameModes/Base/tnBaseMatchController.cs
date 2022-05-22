@@ -705,6 +705,7 @@ public class tnBaseMatchController : tnMatchController
                         }
                     }
 
+                    aiData.SetBaseMatchController(this);
                     aiInputFiller.Setup(aiData);
                 }
             }
