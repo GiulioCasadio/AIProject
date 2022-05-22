@@ -24,10 +24,8 @@ public class A_Base : Action
 
     public bool requestKick;
 
-    protected float radiusTreshold = 0.95f;     // treshold usato per vicinanza dalla palla/player/destinazione
-    protected float distanceTreshold = 4f;     // distanza dash
-    protected float angleTreshold = 2f;        // angolo tiro
-    protected float behindBallTreshold = 1f;   // treshold intercettazione
+    protected const float angleTreshold = 2f;        // angolo tiro
+    protected const float behindBallTreshold = 1f;   // treshold intercettazione
 
     public override void OnAwake()
     {
@@ -57,7 +55,7 @@ public class A_Base : Action
     #region action task methods
     public void CheckHurry(Vector2 myPos, Vector2 targetPosition)
     {
-        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > distanceTreshold)
+        if (m_sharedPlayerVariables.Value.m_hurry && (myPos - targetPosition).magnitude > AIInputData.m_DashDistance)
         {
             output.Value.requestDash = true;
         }
