@@ -156,7 +156,7 @@ namespace Coach
                     FieldZoneCache.FieldZoneStatus fieldZoneStatus = cache.GetPlayerFieldZoneStatusOffset(cpc.m_sharedInput.myPosition, xOffset, yOffset);
                     if (fieldZoneStatus == FieldZoneCache.FieldZoneStatus.FREE)
                     {
-                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false,
+                        cpc.SetState(cpc.GetState(), false,
                             cache.GetCenterCellWithRandom(cpc.m_sharedInput.myPosition, xOffset, yOffset));
                         return true;
                     }
