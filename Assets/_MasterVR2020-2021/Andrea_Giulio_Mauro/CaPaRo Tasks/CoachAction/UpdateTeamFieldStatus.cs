@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime.Tasks;
+using Ca_Pa_Ro.Player;
 using Coach;
 using UnityEngine;
 
@@ -8,6 +9,14 @@ public class UpdateTeamFieldStatus : CoachBaseAction
 {
     public override TaskStatus OnUpdate()
     {
+        if (m_sharedCoachVariables.Value.m_fieldStatus == CoachVariables.TeamFieldStatus.DEBUG)
+        {
+            foreach (var player in m_sharedCoachVariables.Value.playersCommunications)
+            {
+                player.SetState(PlayerFocus.PlayerStateFocus.NONE, false);
+            }
+            return TaskStatus.Success;
+        }
         Vector2 myTeamGravityCenter = m_sharedCoachVariables.Value.MyTeamCenterGravity;
         Vector2 opponentGravityCenter = m_sharedCoachVariables.Value.OpponentTeamCenterGravity;
 
