@@ -25,7 +25,7 @@ public class A_Base : Action
     public bool requestKick;
 
     protected const float angleTreshold = 20f;        // angolo tiro
-    protected const float behindBallTreshold = 0.2f;   // treshold intercettazione
+    protected const float behindBallTreshold = 0.1f;   // treshold intercettazione
 
     public override void OnAwake()
     {

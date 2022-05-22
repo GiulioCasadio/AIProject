@@ -19,11 +19,21 @@ public class NeutralRepositionOtherMen : CoachBaseAction
         switch (m_sharedCoachVariables.Value.m_behavior)
         {
             case CoachVariables.TeamBehavior.NEUTRAL:
+                CoachPlayerCommunication mostFreePlayerNearMyGoal = GetMostFreePlayerNearMyGoal();
+                Vector2 targetPos = shared.Value.myGoal.GetPositionXY() + Vector2.right;
+                mostFreePlayerNearMyGoal.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, targetPos);
 
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false);
-                    //setta posizione del make free dopo il merge
+                    Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
+                    if (!playerForwardPosition.Equals(Vector2.negativeInfinity))
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerForwardPosition);
+                    }
+                    else
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
+                    }
                 }
                 break;
             case CoachVariables.TeamBehavior.DEFENSIVE:
@@ -38,9 +48,15 @@ public class NeutralRepositionOtherMen : CoachBaseAction
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false);
-                    //manca posizione target del makefree
-                    //todo move forward del giocatore
+                    Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
+                    if (!playerForwardPosition.Equals(Vector2.negativeInfinity))
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerForwardPosition);
+                    }
+                    else
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
+                    }
                 }
                 break;
         }
