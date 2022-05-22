@@ -9,7 +9,10 @@ public class A_KeepFree : A_Base
         
         Vector2 targetDirection = ((myPosition - ballPosition) * -1).normalized;
 
-        targetDirection = Vector2.Perpendicular(targetDirection);
+        if (myPosition.y < 0)
+            targetDirection = Vector2.Perpendicular(targetDirection);
+        else
+            targetDirection = Vector2.Perpendicular(targetDirection) * -1;
 
         //go to that position
         output.Value.axes = targetDirection;
