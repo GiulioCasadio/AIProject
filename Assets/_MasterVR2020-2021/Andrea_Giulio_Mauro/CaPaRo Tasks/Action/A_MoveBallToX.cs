@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
 
 public class A_MoveBallToX : A_Base
 {
@@ -12,7 +13,7 @@ public class A_MoveBallToX : A_Base
         var distance = toTarget.magnitude;
 
         // controlla se non sono abbastanza vicino alla palla per controllarla e nel caso la raggiungo
-        if ((myPosition-ballPosition).magnitude > radiusTreshold)
+        if ((myPosition-ballPosition).magnitude > AIInputData.m_AttractMaxRadius)
         {
             //go to that position
             Vector2 targetDirection = ((myPosition - ballPosition) * -1).normalized;
@@ -23,7 +24,7 @@ public class A_MoveBallToX : A_Base
         else
         {
             // mi sposto verso target oppure attiro e sto fermo
-            if (distance > radiusTreshold)
+            if (distance > AIInputData.m_AttractMaxRadius)
             {
                 //go to that position
                 Vector2 targetDirection = ((myPosition - targetPosition) * -1).normalized;

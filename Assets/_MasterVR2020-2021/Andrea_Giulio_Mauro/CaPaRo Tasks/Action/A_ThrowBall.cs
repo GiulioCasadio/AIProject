@@ -2,6 +2,8 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Ca_Pa_Ro.Player;
 
+using Ca_Pa_Ro.CaPaRo_SharedVariables;
+
 public class A_ThrowBall : A_Base
 {
     public override TaskStatus OnUpdate()
@@ -23,7 +25,7 @@ public class A_ThrowBall : A_Base
         Vector2 ballDirection = ((myPosition - ballPosition) * -1).normalized;
 
         // sono attaccato alla palla?
-        if ((myPosition - ballPosition).magnitude < radiusTreshold) {
+        if ((myPosition - ballPosition).magnitude < AIInputData.m_AttractMaxRadius) {
             // la destinazione e' raggiungibile?
             if (IsReachable(myPosition, targetPosition))
             {
