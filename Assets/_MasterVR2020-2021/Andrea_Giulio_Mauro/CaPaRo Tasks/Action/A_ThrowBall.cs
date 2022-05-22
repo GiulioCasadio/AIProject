@@ -51,7 +51,7 @@ public class A_ThrowBall : A_Base
                     else
                     {
                         // calcolo direzione giocatore-porta e vai in quella opposta così da allineare la palla
-                        targetDirection *= -1;
+                        targetDirection = (ballPosition - targetPosition).normalized;
                     }
 
                     //go to that position
