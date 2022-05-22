@@ -24,7 +24,7 @@ public class A_Base : Action
 
     public bool requestKick;
 
-    protected float radiusTreshold = 1f;     // treshold usato per vicinanza dalla palla/player/destinazione
+    protected float radiusTreshold = 0.95f;     // treshold usato per vicinanza dalla palla/player/destinazione
     protected float distanceTreshold = 4f;     // distanza dash
     protected float angleTreshold = 2f;        // angolo tiro
     protected float behindBallTreshold = 1f;   // treshold intercettazione
@@ -89,14 +89,14 @@ public class A_Base : Action
         // ciclo ogni giocatore (escluso chi ha la palla) 
         foreach(Transform obstacleTransform in shared.Value.m_Opponents)
         {
-            if(DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY())>behindBallTreshold)
+            if(DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY())<behindBallTreshold)
             {
                 return false;
             }
         }
         foreach (Transform obstacleTransform in shared.Value.m_Teams)
         {
-            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) > behindBallTreshold) // TODO trova un check piu' sicuro sul giocatore
+            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) < behindBallTreshold) // TODO trova un check piu' sicuro sul giocatore
             {
                 return false;
             }
