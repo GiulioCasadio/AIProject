@@ -27,7 +27,7 @@ public class CoverZoneOrFight : CoachBaseAction
             case CoachVariables.TeamBehavior.DEFENSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    if (IsOpponentNearBall(shared.Value.ballRadius * 2))
+                    if (IsOpponentNearBall())
                     {
                         cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetMostOpponentNearBall());
                     }

@@ -7,6 +7,7 @@ public class CanPassBall : CoachBaseConditional
 {
     public override TaskStatus OnUpdate()
     {
+        
         return TaskStatus.Success;
     }
 }

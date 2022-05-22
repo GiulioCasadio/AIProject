@@ -52,9 +52,23 @@ public class CoachBaseConditional : Conditional
         bool myGoalLeft = shared.Value.myGoal.position.x < 0;
 
         if (myGoalLeft)
-            extremeBallPoint = shared.Value.ballPosition.x - shared.Value.ballRadius;
+            extremeBallPoint = shared.Value.ballPosition.x - shared.Value.ballRadius; //correggo
 
         return betweenRange(player.m_sharedInput.myPosition.x, shared.Value.myGoal.position.x, extremeBallPoint);
+
+    }
+    
+    protected bool checkOpponentAdvanceBall(Transform opponent)
+    {
+        float extremeBallPoint = shared.Value.ballPosition.x + shared.Value.ballRadius;
+        
+        
+        bool myGoalLeft = shared.Value.myGoal.position.x < 0;
+
+        if (myGoalLeft)
+            extremeBallPoint = shared.Value.ballPosition.x - shared.Value.ballRadius; //correggo
+
+        return betweenRange(opponent.position.x, shared.Value.opponentGoal.position.x, extremeBallPoint);
 
     }
 
@@ -82,16 +96,16 @@ public class CoachBaseConditional : Conditional
     protected bool BallCanReachTarget()
     {
         float ballGoalDistance = Vector2.Distance(shared.Value.ballPosition, shared.Value.opponentGoal.GetPositionXY());
-
+        
         if (ballGoalDistance > 4f)
             return false;
         
-        bool IsReachable = this.IsReachable(shared.Value.ballPosition, shared.Value.opponentGoal.GetPositionXY());
-
-        if (!IsReachable)
-            return false;
-
-        return true;
+        return IsReachable(shared.Value.ballPosition, shared.Value.opponentGoal.GetPositionXY());
+    }
+    
+    protected bool BallCanReachFriend(Transform friend)
+    {
+        return IsReachable(shared.Value.ballPosition, friend.GetPositionXY());
     }
     
     private bool IsReachable(Vector2 pointA, Vector2 pointB)

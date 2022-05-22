@@ -19,6 +19,8 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
         public float ballRadius;
         public Vector2 ballPosition;
 
+        public float ballRadiusNearTreshold;
+
         public int teamCharactersCount;
         public int teammatesCount;
         public int opponentsCount;

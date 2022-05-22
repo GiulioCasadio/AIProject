@@ -60,6 +60,8 @@ namespace Ca_Pa_Ro
             shared.ballPosition = ballPosition;
             shared.myPosition = myPosition;
             shared.ballRadius = ballRadius;
+
+            shared.ballRadiusNearTreshold = ballRadius * 3;
             
             shared.teamCharactersCount = teamCharactersCount;
             shared.teammatesCount = teammatesCount;

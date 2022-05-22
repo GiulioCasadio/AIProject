@@ -11,6 +11,8 @@ public class CoachPassBall : CoachBaseAction
     {
         CoachPlayerCommunication nearestPlayerToBall = GetMostFreePlayerNearBall();
         nearestPlayerToBall.SetState(PlayerFocus.PlayerStateFocus.PASSBALL, false);
+
+        
         
         return TaskStatus.Success;
     }

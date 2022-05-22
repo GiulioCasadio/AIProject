@@ -7,43 +7,43 @@ using UnityEngine;
 
 public class AttackRepositionOtherMans : CoachBaseAction
 {
-        public override TaskStatus OnUpdate()
+    public override TaskStatus OnUpdate()
     {
         List<CoachPlayerCommunication> freePlayers = GetFreePlayers();
 
         if (freePlayers.Count == 0) 
             return TaskStatus.Success;
-
+        
+        CoachPlayerCommunication lastMan = null;
         switch (m_sharedCoachVariables.Value.m_behavior)
         {
             case CoachVariables.TeamBehavior.NEUTRAL:
-                CoachPlayerCommunication lastMan = GetMostFreePlayerNearMyGoal();
-                lastMan.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, new Vector2(0,0));
-
+                lastMan = GetMostFreePlayerNearMyGoal();
+                lastMan.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, new Vector2(0,0)); //Copri la metà campo
+                freePlayers.Remove(lastMan);
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, GetMostAdvancedOpponent().GetPositionXY());
+                    if (!MoveForwardPlayer(cpc))
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLeastAdvancedOpponent());
+                    }
                 }
                 break;
             case CoachVariables.TeamBehavior.DEFENSIVE:
+                lastMan = GetMostFreePlayerNearMyGoal();
+                lastMan.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, new Vector2(shared.Value.myGoal.position.x * 0.75f,0)); //Copri la 1/4 campo
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    if (IsOpponentNearBall(shared.Value.ballRadius * 2))
-                    {
-                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetMostOpponentNearBall());
-                    }
-
-                    else
-                    {
-                        cpc.SetState(PlayerFocus.PlayerStateFocus.MARK, false,
-                            GetMostAdvancedOpponent().GetPositionXY()); //mettiti nella zona dell'avversario
-                    }
+                    cpc.SetState(PlayerFocus.PlayerStateFocus.MARK, false, GetMostAdvancedOpponent());
                 }
                 break;
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, new Vector2(shared.Value.myGoal.position.x * -0.75f ,0)); // 3/4 campo avversaria
+                    if (!MoveForwardPlayer(cpc))
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLeastAdvancedOpponent());
+                    }
                 }
                 break;
         }
