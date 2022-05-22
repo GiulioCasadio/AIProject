@@ -102,7 +102,7 @@ public class CoachBaseConditional : Conditional
     {
         float ballGoalDistance = Vector2.Distance(shared.Value.ballPosition, shared.Value.opponentGoal.GetPositionXY());
         
-        if (ballGoalDistance > 4f)
+        if (ballGoalDistance > 8f)
             return false;
         
         return IsReachable(shared.Value.ballPosition, shared.Value.opponentGoal.GetPositionXY());

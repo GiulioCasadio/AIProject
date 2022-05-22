@@ -23,9 +23,14 @@ public class AttackRepositionOtherMans : CoachBaseAction
                 freePlayers.Remove(lastMan);
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    if (!MoveForwardPlayer(cpc))
+                    Vector2 forwardPosition = GetPlayerForwardPosition(cpc);
+                    if (forwardPosition.Equals(Vector2.negativeInfinity))
                     {
                         cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
+                    }
+                    else
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, forwardPosition);
                     }
                 }
                 break;
@@ -40,9 +45,14 @@ public class AttackRepositionOtherMans : CoachBaseAction
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    if (!MoveForwardPlayer(cpc))
+                    Vector2 forwardPosition = GetPlayerForwardPosition(cpc);
+                    if (forwardPosition.Equals(Vector2.negativeInfinity))
                     {
                         cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
+                    }
+                    else
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, forwardPosition);
                     }
                 }
                 break;

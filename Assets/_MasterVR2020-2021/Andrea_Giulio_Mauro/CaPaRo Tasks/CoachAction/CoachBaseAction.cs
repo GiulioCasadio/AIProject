@@ -139,12 +139,12 @@ namespace Coach
             return Vector2.Distance(player, shared.Value.ballPosition) < shared.Value.ballRadiusNearTreshold;
         }
         
-        protected bool MoveForwardPlayer(CoachPlayerCommunication cpc)
+        protected Vector2 GetPlayerForwardPosition(CoachPlayerCommunication cpc)
         {
             FieldZoneCache cache = m_sharedCoachVariables.Value.FieldZoneCache;
 
             if (!cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
-                return false;
+                return Vector2.negativeInfinity;
             
             int xCounter = 1;
             while (xCounter < 3)
@@ -156,14 +156,12 @@ namespace Coach
                     FieldZoneCache.FieldZoneStatus fieldZoneStatus = cache.GetPlayerFieldZoneStatusOffset(cpc.m_sharedInput.myPosition, xOffset, yOffset);
                     if (fieldZoneStatus == FieldZoneCache.FieldZoneStatus.FREE)
                     {
-                        cpc.SetState(cpc.GetState(), false,
-                            cache.GetCenterCellWithRandom(cpc.m_sharedInput.myPosition, xOffset, yOffset));
-                        return true;
+                        return cache.GetCenterCellWithRandom(cpc.m_sharedInput.myPosition, xOffset, yOffset);
                     }
                 }
                 xCounter++;
             }
-            return false;
+            return Vector2.negativeInfinity;
         }
     }
 }
