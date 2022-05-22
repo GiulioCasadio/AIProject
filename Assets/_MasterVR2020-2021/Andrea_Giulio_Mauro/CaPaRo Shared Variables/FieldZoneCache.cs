@@ -156,7 +156,7 @@ namespace Coach
             int playerX = GetX(player.x);
             int playerY = GetY(player.y);
             
-            return GetCenterCellWithRandom(playerX + offsetX, playerY + offsetY);
+            return GetCenterCellWithRandom(playerY + offsetY, playerX + offsetX);
         }
         
         public Vector2 GetCenterCell(Transform player)
@@ -164,12 +164,12 @@ namespace Coach
             Vector2 playerPosition = player.GetPositionXY();
             int playerX = GetX(playerPosition.x);
             int playerY = GetY(playerPosition.y);
-            return GetCenterCell(playerX, playerY);
+            return GetCenterCell(playerY, playerX);
         }
 
-        private Vector2 GetCenterCellWithRandom(int x, int y)
+        private Vector2 GetCenterCellWithRandom(int row, int col)
         {
-            Vector2 centerCell = GetCenterCell(x, y);
+            Vector2 centerCell = GetCenterCell(row, col);
             
             centerCell.x = Random.Range(centerCell.x - randomRangeWidth, centerCell.x + randomRangeWidth);
             centerCell.y = Random.Range(centerCell.y - randomRangeHeight, centerCell.y + randomRangeHeight);
@@ -177,9 +177,9 @@ namespace Coach
             return centerCell;
         }
         
-        private Vector2 GetCenterCell(int x, int y)
+        private Vector2 GetCenterCell(int row, int col)
         {
-            return new Vector2((cellWidthSize * x + cellWidthSize / 2) - halfWidth, (cellHeightSize * y + cellHeightSize / 2) - halfHeight);
+            return new Vector2((cellWidthSize * col + cellWidthSize / 2) - halfWidth, (cellHeightSize * row + cellHeightSize / 2) - halfHeight);
         }
         
     }
