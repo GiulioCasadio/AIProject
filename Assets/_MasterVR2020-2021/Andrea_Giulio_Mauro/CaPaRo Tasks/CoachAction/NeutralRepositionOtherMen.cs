@@ -22,8 +22,11 @@ public class NeutralRepositionOtherMen : CoachBaseAction
 
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false);
-                    //setta posizione del make free dopo il merge
+                    Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
+                    if (playerForwardPosition != Vector2.negativeInfinity)
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerForwardPosition);
+                    }
                 }
                 break;
             case CoachVariables.TeamBehavior.DEFENSIVE:
@@ -38,9 +41,11 @@ public class NeutralRepositionOtherMen : CoachBaseAction
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false);
-                    //manca posizione target del makefree
-                    //todo move forward del giocatore
+                    Vector2 playerForwardPosition = GetPlayerForwardPosition(cpc);
+                    if (playerForwardPosition != Vector2.negativeInfinity)
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerForwardPosition);
+                    }
                 }
                 break;
         }
