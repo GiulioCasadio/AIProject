@@ -51,54 +51,55 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
         
         // Seek-and-flee behaviour.
 
-        private float m_MinFleeDistanceFactor = 0.25f;
-        private float m_MaxFleeDistanceFactor = 0.50f;
+        public const float m_MinFleeDistanceFactor = 0.25f;
+        public const float m_MaxFleeDistanceFactor = 0.50f;
 
         // Separation.
 
-        private float m_SeparationThreshold = 3f;
+        public const float m_SeparationThreshold = 3f;
 
         // Energy thresholds.
 
-        private float m_MinDashEnergy = 0.40f;
-        private float m_MinKickEnergy = 0.05f;
-        private float m_MinTackleEnergy = 0.50f;
-        private float m_MinAttractEnergy = 0.10f;
+        public const float m_MinDashEnergy = 0.40f;
+        public const float m_MinKickEnergy = 0.05f;
+        public const float m_MinTackleEnergy = 0.50f;
+        public const float m_MinAttractEnergy = 0.10f;
+        public const float m_RecoveryRate = 0.0825f;
 
         // Cooldown timers.
 
-        private float m_DashCooldown = 0.50f;
-        private float m_KickCooldown = 0.25f;
-        private float m_TackleCooldown = 2.0f;
-        private float m_AttractCooldown = 0.5f;
+        public const float m_DashCooldown = 0.50f;
+        public const float m_KickCooldown = 0.25f;
+        public const float m_TackleCooldown = 2.0f;
+        public const float m_AttractCooldown = 0.5f;
 
         // Dash behaviour.
 
-        private float m_DashDistance = 3.5f;
-        private float m_ForcedDashDistance = 2f;
+        public const float m_DashDistance = 3.5f;
+        public const float m_ForcedDashDistance = 2f;
 
         // Kick behaviour.
 
-        private float m_KickPrecision = 0.1f;
+        public const float m_KickPrecision = 0.1f;
 
         // Tackle behaviour.
 
-        private float m_TackleRadius = 0.8f;
-        private float m_BallDistanceThreshold = 2f;
+        public const float m_TackleRadius = 0.8f;
+        public const float m_BallDistanceThreshold = 2f;
 
         // Attract behaviour.
 
-        private float m_AttractMinRadius = 0.70f;
-        private float m_AttractMaxRadius = 0.95f;
+        public const float m_AttractMinRadius = 0.70f;
+        public const float m_AttractMaxRadius = 0.95f;
 
-        private float m_AttractTimeThreshold = 2f;
+        public const float m_AttractTimeThreshold = 2f;
 
         // Extra parameters.
 
-        private float m_RecoverRadius = 1.0f;
-        private float m_RecoverTimeThreshold = 1.0f;
+        public const float m_RecoverRadius = 1.0f;
+        public const float m_RecoverTimeThreshold = 1.0f;
 
-        private float m_SmoothTime = 0.0f;
+        public const float m_SmoothTime = 0.0f;
 
         public List<Transform> m_Opponents;
         public List<Transform> m_Teams;
