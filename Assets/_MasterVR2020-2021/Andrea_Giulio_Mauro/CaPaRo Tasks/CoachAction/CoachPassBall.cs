@@ -9,9 +9,14 @@ public class CoachPassBall : CoachBaseAction
 {
     public override TaskStatus OnUpdate()
     {
-        CoachPlayerCommunication nearestPlayerToBall = GetMostFreePlayerNearBall();
-        nearestPlayerToBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.PASSBALL;
+        CoachPlayerCommunication ballCarrier = GetMostFreePlayerNearBall();
 
+        CoachPlayerCommunication playerToPass = m_sharedCoachVariables.Value.playerToPassBall;
+        
+        ballCarrier.SetState(PlayerFocus.PlayerStateFocus.PASSBALL, false, playerToPass.m_sharedInput.myTransform);
+
+        m_sharedCoachVariables.Value.playerToPassBall.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false, playerToPass.m_sharedInput.myPosition);
+        
         return TaskStatus.Success;
     }
 }

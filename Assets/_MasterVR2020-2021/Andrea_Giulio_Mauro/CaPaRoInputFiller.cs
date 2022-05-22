@@ -60,6 +60,8 @@ namespace Ca_Pa_Ro
             shared.ballPosition = ballPosition;
             shared.myPosition = myPosition;
             shared.ballRadius = ballRadius;
+
+            shared.ballRadiusNearTreshold = ballRadius * 3;
             
             shared.teamCharactersCount = teamCharactersCount;
             shared.teammatesCount = teammatesCount;
@@ -83,6 +85,15 @@ namespace Ca_Pa_Ro
             
             shared.m_Opponents = opponents;
             shared.m_Teams = teams;
+
+            foreach (var friend in teams)
+            {
+                if (friend.position.Equals(myPosition))
+                {
+                    shared.myTransform = friend;
+                    break;
+                }
+            }
 
             shared.m_tnBaseMatchController = i_Data.BaseMatchController;
             

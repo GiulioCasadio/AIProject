@@ -5,6 +5,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
+using Ca_Pa_Ro.Player;
 
 namespace Coach
 {
@@ -39,6 +40,11 @@ namespace Coach
             return GetMostFreePlayerNearTarget(shared.Value.ballPosition);
         }
         
+        protected CoachPlayerCommunication GetMostFreePlayerNearOpponent(Transform opponent)
+        {
+            return GetMostFreePlayerNearTarget(opponent.GetPositionXY());
+        }
+        
         private CoachPlayerCommunication GetMostFreePlayerNearTarget(Vector2 i_targetPosition)
         {
             List<CoachPlayerCommunication> players = m_sharedCoachVariables.Value.playersCommunications;
@@ -61,7 +67,6 @@ namespace Coach
                     nearest = currentPlayer;
                 }
             }
-
             return nearest;
         }
 
@@ -74,7 +79,6 @@ namespace Coach
                 if (!cpc.m_focusGiven)
                     freePlayers++;
             }
-
             return freePlayers;
         }
 
@@ -84,23 +88,19 @@ namespace Coach
             return m_sharedCoachVariables.Value.playersCommunications.Where(x => !x.m_focusGiven).ToList();
         }
 
-        protected bool IsOpponentNearBall(float treshold)
+        protected bool IsOpponentNearBall()
         {
             foreach (Transform opponent in shared.Value.m_Opponents)
             {
-                if (Vector2.Distance(opponent.GetPositionXY(), shared.Value.ballPosition) < treshold)
+                if (Vector2.Distance(opponent.GetPositionXY(), shared.Value.ballPosition) < shared.Value.ballRadiusNearTreshold)
                     return true;
             }
-
             return false;
         }
         
         protected bool IsOpponentNearBall(Vector2 opponent)
         {
-            if (Vector2.Distance(opponent, shared.Value.ballPosition) < shared.Value.ballRadius * 2)
-                    return true;
-
-            return false;
+            return Vector2.Distance(opponent, shared.Value.ballPosition) < shared.Value.ballRadiusNearTreshold;
         }
         
         private Transform GetMostOpponentNearTarget(Vector2 target)
@@ -125,31 +125,43 @@ namespace Coach
             return GetMostOpponentNearTarget(shared.Value.myGoal.GetPositionXY());
         }
         
+        protected Transform GetLastOpponent()
+        {
+            return GetMostOpponentNearTarget(shared.Value.opponentGoal.GetPositionXY());
+        }
+        
         protected bool checkManControlBall(CoachPlayerCommunication cpc)
         {
             return checkManControlBall(cpc.m_sharedInput.myPosition);
         }
         protected bool checkManControlBall(Vector2 player)
         {
-            return Vector2.Distance(player, shared.Value.ballPosition) < shared.Value.ballRadius * 3;
+            return Vector2.Distance(player, shared.Value.ballPosition) < shared.Value.ballRadiusNearTreshold;
         }
         
         protected bool MoveForwardPlayer(CoachPlayerCommunication cpc)
         {
-            return true;
             FieldZoneCache cache = m_sharedCoachVariables.Value.FieldZoneCache;
 
             if (!cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
                 return false;
             
-            bool newPositionGiven = false;
-            while (!newPositionGiven)
+            int xOffset = 1;
+            while (xOffset < 3)
             {
-                
+                for (int yOffset = 0; yOffset < 3; yOffset++)
+                {
+                    FieldZoneCache.FieldZoneStatus fieldZoneStatus = cache.GetPlayerFieldZoneStatusOffset(cpc.m_sharedInput.myPosition, xOffset, yOffset);
+                    if (fieldZoneStatus == FieldZoneCache.FieldZoneStatus.FREE)
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false,
+                            cache.GetCenterCellWithRandom(cpc.m_sharedInput.myPosition, xOffset, yOffset));
+                        return true;
+                    }
+                }
+                xOffset++;
             }
-
-            return true;
-
+            return false;
         }
     }
 }

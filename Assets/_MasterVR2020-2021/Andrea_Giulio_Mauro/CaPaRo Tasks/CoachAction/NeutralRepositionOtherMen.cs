@@ -22,28 +22,23 @@ public class NeutralRepositionOtherMen : CoachBaseAction
 
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MAKEFREE;
+                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false);
                     //setta posizione del make free dopo il merge
-                    cpc.m_playerFocus.m_hurry = false;
                 }
                 break;
             case CoachVariables.TeamBehavior.DEFENSIVE:
                 CoachPlayerCommunication lastMan = GetMostFreePlayerNearMyGoal();
-                lastMan.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.COVERGOAL;
-                lastMan.m_playerFocus.m_hurry = false;
+                lastMan.SetState(PlayerFocus.PlayerStateFocus.COVERGOAL, false);
 
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                        cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.KNOCKS;
-                        cpc.m_playerFocus.m_targetTransform = GetMostOpponentNearBall();
-                        cpc.m_playerFocus.m_hurry = false;
+                    cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetMostOpponentNearBall());
                 }
                 break;
             case CoachVariables.TeamBehavior.AGGRESSIVE:
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
-                    cpc.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.MAKEFREE;
-                    cpc.m_playerFocus.m_hurry = false;
+                    cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false);
                     //manca posizione target del makefree
                     //todo move forward del giocatore
                 }

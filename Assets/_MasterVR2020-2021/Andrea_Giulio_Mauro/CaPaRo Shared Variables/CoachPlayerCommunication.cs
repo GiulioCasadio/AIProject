@@ -9,16 +9,8 @@ namespace Coach
 {
     public class CoachPlayerCommunication
     {
-        private PlayerFocus playerFocus;
-        protected internal PlayerFocus m_playerFocus
-        {
-            get { return playerFocus; }
-            set
-            {
-                m_focusGiven = true;
-                playerFocus = value;
-            }
-        }
+        private PlayerFocus m_playerFocus;
+        
         protected internal AIInputData m_sharedInput;
 
         private bool focusGiven;
@@ -33,6 +25,29 @@ namespace Coach
             m_focusGiven = false;
         }
 
+        protected internal void SetState(PlayerFocus.PlayerStateFocus playerFocus, bool isHurry, Transform targetTransform)
+        {
+            m_playerFocus.m_targetTransform = targetTransform;
+            SetState(playerFocus, isHurry);
+        }
+        protected internal void SetState(PlayerFocus.PlayerStateFocus playerFocus, bool isHurry, Vector2 targetPosition)
+        {
+            m_playerFocus.m_targetPosition = targetPosition;
+            SetState(playerFocus, isHurry);
+        }
+        
+        protected internal void SetState(PlayerFocus.PlayerStateFocus playerFocus, bool isHurry)
+        {
+            m_playerFocus.m_state = playerFocus;
+            m_playerFocus.m_hurry = isHurry;
+            m_focusGiven = true;
+        }
+
+        protected internal PlayerFocus.PlayerStateFocus GetState()
+        {
+            return m_playerFocus.m_state;
+        }
+        
         public CoachPlayerCommunication(PlayerFocus i_playerFocus, AIInputData i_sharedInput)
         {
             this.m_playerFocus = i_playerFocus;

@@ -11,8 +11,7 @@ public class DefenseSendManOnBall : CoachBaseAction
     {
         CoachPlayerCommunication nearestPlayerBall = GetMostFreePlayerNearBall();
 
-        nearestPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
-        nearestPlayerBall.m_playerFocus.m_hurry = true;
+        nearestPlayerBall.SetState(PlayerFocus.PlayerStateFocus.CHASEBALL, true);
 
         if (m_sharedCoachVariables.Value.m_behavior == CoachVariables.TeamBehavior.DEFENSIVE)
         {
@@ -23,8 +22,7 @@ public class DefenseSendManOnBall : CoachBaseAction
                 
                 CoachPlayerCommunication nearestOtherPlayerBall = GetMostFreePlayerNearBall();
 
-                nearestOtherPlayerBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
-                nearestOtherPlayerBall.m_playerFocus.m_hurry = true;
+                nearestOtherPlayerBall.SetState(PlayerFocus.PlayerStateFocus.CHASEBALL, true);
             }
         }
         

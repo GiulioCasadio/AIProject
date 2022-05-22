@@ -26,7 +26,7 @@ public class UpdateTeamFieldStatus : CoachBaseAction
         
         float ballRadius = shared.Value.ballRadius;
 
-        float ballDistanceNearTreshold = ballRadius * 10;
+        float ballDistanceNearTreshold = ballRadius * 7;
         
         int myPlayersNearBall = 0;
 
