@@ -16,7 +16,7 @@ public class CoachBaseConditional : Conditional
     public SharedAIInputData shared;
     public SharedCoachVariables m_sharedCoachVariables;
     
-    protected float behindBallTreshold = 1f;   // treshold intercettazione
+    protected float behindBallTreshold = 0.1f;   // treshold intercettazione
 
     public override void OnAwake()
     {
@@ -121,16 +121,16 @@ public class CoachBaseConditional : Conditional
     private bool IsReachable(Vector2 pointA, Vector2 pointB)
     {
         // ciclo ogni giocatore (escluso chi ha la palla) 
-        foreach(Transform obstacleTransform in shared.Value.m_Opponents)
+        foreach (Transform obstacleTransform in shared.Value.m_Opponents)
         {
-            if(DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY())>behindBallTreshold)
+            if (Mathf.Abs(DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY())) < behindBallTreshold)
             {
                 return false;
             }
         }
         foreach (Transform obstacleTransform in shared.Value.m_Teams)
         {
-            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) > behindBallTreshold) // TODO trova un check piu' sicuro sul giocatore
+            if (pointA != obstacleTransform.GetPositionXY() && pointB != obstacleTransform.GetPositionXY() && DistancePtLine(pointA, pointB, obstacleTransform.GetPositionXY()) < behindBallTreshold) // TODO trova un check piu' sicuro sul giocatore
             {
                 return false;
             }
