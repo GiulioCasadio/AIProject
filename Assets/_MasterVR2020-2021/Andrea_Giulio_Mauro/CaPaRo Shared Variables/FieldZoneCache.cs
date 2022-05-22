@@ -179,7 +179,7 @@ namespace Coach
         
         private Vector2 GetCenterCell(int x, int y)
         {
-            return new Vector2(cellWidthSize * x + cellWidthSize / 2, cellHeightSize * y + cellHeightSize / 2);
+            return new Vector2((cellWidthSize * x + cellWidthSize / 2) - halfWidth, (cellHeightSize * y + cellHeightSize / 2) - halfHeight);
         }
         
     }

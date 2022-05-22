@@ -151,7 +151,7 @@ namespace Coach
             {
                 for (int counterY = 1; counterY < 4; counterY++)
                 {
-                    int xOffset = xCounter * (int)Mathf.Sign(shared.Value.myGoal.position.x);
+                    int xOffset = xCounter * (int)Mathf.Sign(shared.Value.opponentGoal.position.x); // verso porta avversaria
                     int yOffset = (counterY % 3) - 1;
                     FieldZoneCache.FieldZoneStatus fieldZoneStatus = cache.GetPlayerFieldZoneStatusOffset(cpc.m_sharedInput.myPosition, xOffset, yOffset);
                     if (fieldZoneStatus == FieldZoneCache.FieldZoneStatus.FREE)
