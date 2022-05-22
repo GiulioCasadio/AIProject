@@ -10,8 +10,7 @@ public class NeutralSendManOnBall : CoachBaseAction
     public override TaskStatus OnUpdate()
     {
         CoachPlayerCommunication nearestPlayerToEnemyWithBall = GetMostFreePlayerNearBall();
-        nearestPlayerToEnemyWithBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.CHASEBALL;
-        nearestPlayerToEnemyWithBall.m_playerFocus.m_hurry = true;
+        nearestPlayerToEnemyWithBall.SetState(PlayerFocus.PlayerStateFocus.CHASEBALL, true);
 
         return TaskStatus.Success;
     }

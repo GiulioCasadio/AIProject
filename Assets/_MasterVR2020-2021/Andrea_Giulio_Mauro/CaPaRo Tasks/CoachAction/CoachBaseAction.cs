@@ -5,6 +5,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 using Ca_Pa_Ro.CaPaRo_SharedVariables;
+using Ca_Pa_Ro.Player;
 
 namespace Coach
 {
@@ -136,19 +137,30 @@ namespace Coach
         
         protected bool MoveForwardPlayer(CoachPlayerCommunication cpc)
         {
-            return true;
             FieldZoneCache cache = m_sharedCoachVariables.Value.FieldZoneCache;
 
             if (!cache.CanPlayerGoForward(cpc.m_sharedInput.myPosition, true))
                 return false;
             
-            bool newPositionGiven = false;
-            while (!newPositionGiven)
+            int xOffset = 1;
+            while (xOffset < 3)
             {
-                
+                for (int yOffset = 0; yOffset < 3; yOffset++)
+                {
+                    FieldZoneCache.FieldZoneStatus fieldZoneStatus = cache.GetPlayerFieldZoneStatusOffset(cpc.m_sharedInput.myPosition, xOffset, yOffset);
+                    if (fieldZoneStatus == FieldZoneCache.FieldZoneStatus.FREE)
+                    {
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.MAKEFREE, false,
+                            cache.GetCenterCellWithRandom(cpc.m_sharedInput.myPosition, xOffset, yOffset));
+                        return true;
+                    }
+                }
+                xOffset++;
             }
 
-            return true;
+            
+            
+            return false;
 
         }
     }

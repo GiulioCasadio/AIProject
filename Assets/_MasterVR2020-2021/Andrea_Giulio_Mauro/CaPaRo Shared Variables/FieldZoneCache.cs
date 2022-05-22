@@ -99,8 +99,11 @@ namespace Coach
         
         public FieldZoneStatus GetPlayerFieldZoneStatusOffset(Transform player, int offsetX, int offsetY)
         {
-            Vector2 playerPosition = player.GetPositionXY();
-
+            return GetPlayerFieldZoneStatusOffset(player.GetPositionXY(), offsetX, offsetY);
+        }
+        
+        public FieldZoneStatus GetPlayerFieldZoneStatusOffset(Vector2 playerPosition, int offsetX, int offsetY)
+        {
             int playerX = GetX(playerPosition.x) + offsetX;
 
             if (playerX >= cols)

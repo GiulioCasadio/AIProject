@@ -10,8 +10,8 @@ public class CoachPassBall : CoachBaseAction
     public override TaskStatus OnUpdate()
     {
         CoachPlayerCommunication nearestPlayerToBall = GetMostFreePlayerNearBall();
-        nearestPlayerToBall.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.PASSBALL;
-
+        nearestPlayerToBall.SetState(PlayerFocus.PlayerStateFocus.PASSBALL, false);
+        
         return TaskStatus.Success;
     }
 }

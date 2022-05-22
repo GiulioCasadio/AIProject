@@ -12,9 +12,7 @@ public class CoachKickBallToGoal : CoachBaseAction
     {
         CoachPlayerCommunication player = GetMostFreePlayerNearBall();
 
-        player.m_playerFocus.m_state = PlayerFocus.PlayerStateFocus.KICKBALL;
-        player.m_playerFocus.m_hurry = true;
-
+        player.SetState(PlayerFocus.PlayerStateFocus.KICKBALL, true);
         return TaskStatus.Success;
     }
 }
