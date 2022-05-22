@@ -106,12 +106,12 @@ namespace Coach
         {
             int playerX = GetX(playerPosition.x) + offsetX;
 
-            if (playerX >= cols)
+            if (playerX >= cols || playerX < 0)
                 return FieldZoneStatus.OUT;
             
             int playerY = GetY(playerPosition.y) + offsetY;
 
-            if (playerY >= rows)
+            if (playerY >= rows|| playerY < 0)
                 return FieldZoneStatus.OUT;
 
             return cache[playerY, playerX];
