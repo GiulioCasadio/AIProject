@@ -12,6 +12,12 @@ public class NeutralSendManOnBall : CoachBaseAction
         CoachPlayerCommunication nearestPlayerToEnemyWithBall = GetMostFreePlayerNearBall();
         nearestPlayerToEnemyWithBall.SetState(PlayerFocus.PlayerStateFocus.CHASEBALL, true);
 
+        if (m_sharedCoachVariables.Value.m_behavior == CoachVariables.TeamBehavior.AGGRESSIVE)
+        {
+            CoachPlayerCommunication secondNearestPlayerToEnemyWithBall = GetMostFreePlayerNearBall();
+            secondNearestPlayerToEnemyWithBall.SetState(PlayerFocus.PlayerStateFocus.CHASEBALL, false);
+        }
+        
         return TaskStatus.Success;
     }
 }
