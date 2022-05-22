@@ -11,7 +11,12 @@ public class NeutralAdvanceWithBall : CoachBaseAction
     {
         CoachPlayerCommunication nearestPlayerToBall = GetMostFreePlayerNearBall();
 
-        MoveForwardPlayer(nearestPlayerToBall);
+        Vector2 forwardPosition = GetPlayerForwardPosition(nearestPlayerToBall);
+
+        if (!forwardPosition.Equals(Vector2.negativeInfinity))
+        {
+            nearestPlayerToBall.SetState(PlayerFocus.PlayerStateFocus.BRINGBALLINX, false, forwardPosition);
+        }
         
         return TaskStatus.Success;
     }

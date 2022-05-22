@@ -74,12 +74,12 @@ namespace Coach
 
         private int GetX(float xPosition)
         {
-            return GetIndex(xPosition + halfWidth, cellWidthSize);
+            return Mathf.Clamp(GetIndex(xPosition + halfWidth, cellWidthSize), 0, cols - 1);
         }
         
         private int GetY(float yPosition)
         {
-            return GetIndex(yPosition + halfHeight, cellHeightSize);
+            return Mathf.Clamp(GetIndex(yPosition + halfHeight, cellHeightSize), 0, rows - 1);
         }
 
         private int GetIndex(float position, float cellSize)
