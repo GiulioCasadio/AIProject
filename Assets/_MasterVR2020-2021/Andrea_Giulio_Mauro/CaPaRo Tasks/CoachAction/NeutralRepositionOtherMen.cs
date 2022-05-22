@@ -19,6 +19,9 @@ public class NeutralRepositionOtherMen : CoachBaseAction
         switch (m_sharedCoachVariables.Value.m_behavior)
         {
             case CoachVariables.TeamBehavior.NEUTRAL:
+                CoachPlayerCommunication mostFreePlayerNearMyGoal = GetMostFreePlayerNearMyGoal();
+                Vector2 targetPos = shared.Value.myGoal.GetPositionXY() + Vector2.right;
+                mostFreePlayerNearMyGoal.SetState(PlayerFocus.PlayerStateFocus.COVERZONE, false, targetPos);
 
                 foreach (CoachPlayerCommunication cpc in freePlayers)
                 {
