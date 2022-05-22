@@ -58,6 +58,11 @@ public class CoachBaseConditional : Conditional
 
     }
     
+    protected bool checkPlayerBeyondBall(CoachPlayerCommunication player)
+    {
+        return !checkPlayerBehindBall(player);
+    }
+    
     protected bool checkOpponentAdvanceBall(Transform opponent)
     {
         float extremeBallPoint = shared.Value.ballPosition.x + shared.Value.ballRadius;
@@ -103,6 +108,11 @@ public class CoachBaseConditional : Conditional
         return IsReachable(shared.Value.ballPosition, shared.Value.opponentGoal.GetPositionXY());
     }
     
+    protected bool BallCanReachFriend(CoachPlayerCommunication friend)
+    {
+        return IsReachable(shared.Value.ballPosition, friend.m_sharedInput.myPosition);
+    }
+    
     protected bool BallCanReachFriend(Transform friend)
     {
         return IsReachable(shared.Value.ballPosition, friend.GetPositionXY());
@@ -135,5 +145,45 @@ public class CoachBaseConditional : Conditional
         Vector2 c = n * (Vector2.Dot(pa, n) / Vector2.Dot(n, n));
         Vector2 d = pa - c;
         return Mathf.Sqrt(Vector2.Dot(d, d));
+    }
+
+    public CoachPlayerCommunication GetMostFriendNearBall()
+    {
+        return GetMostFriendNearTarget(shared.Value.ballPosition);
+    }
+    
+    private CoachPlayerCommunication GetMostFriendNearTarget(Vector2 i_targetPosition)
+    {
+        List<CoachPlayerCommunication> players = m_sharedCoachVariables.Value.playersCommunications;
+            
+        CoachPlayerCommunication nearest = null;
+        float currentRecord = float.MaxValue;
+            
+        for(int i = 0; i < players.Count; ++i)
+        {
+            CoachPlayerCommunication currentPlayer = players[i];
+
+            float distanceGoalCurrentPlayer = Vector2.Distance(i_targetPosition, currentPlayer.m_sharedInput.myPosition);
+
+            if (distanceGoalCurrentPlayer < currentRecord)
+            {
+                currentRecord = distanceGoalCurrentPlayer;
+                nearest = currentPlayer;
+            }
+        }
+        return nearest;
+    }
+
+    public bool playerIsFarFromOpponents(CoachPlayerCommunication cpc)
+    {
+        foreach (Transform opponent in shared.Value.m_Opponents)
+        {
+            float distance = Vector2.Distance(opponent.position, cpc.m_sharedInput.myPosition);
+
+            if (distance < AIInputData.m_DashDistance)
+                return false;
+        }
+
+        return true;
     }
 }

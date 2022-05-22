@@ -25,7 +25,7 @@ public class AttackRepositionOtherMans : CoachBaseAction
                 {
                     if (!MoveForwardPlayer(cpc))
                     {
-                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLeastAdvancedOpponent());
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
                     }
                 }
                 break;
@@ -42,7 +42,7 @@ public class AttackRepositionOtherMans : CoachBaseAction
                 {
                     if (!MoveForwardPlayer(cpc))
                     {
-                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLeastAdvancedOpponent());
+                        cpc.SetState(PlayerFocus.PlayerStateFocus.KNOCKS, false, GetLastOpponent());
                     }
                 }
                 break;

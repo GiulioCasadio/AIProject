@@ -125,7 +125,7 @@ namespace Coach
             return GetMostOpponentNearTarget(shared.Value.myGoal.GetPositionXY());
         }
         
-        protected Transform GetLeastAdvancedOpponent()
+        protected Transform GetLastOpponent()
         {
             return GetMostOpponentNearTarget(shared.Value.opponentGoal.GetPositionXY());
         }

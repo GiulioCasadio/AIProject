@@ -10,6 +10,8 @@ namespace Ca_Pa_Ro.CaPaRo_SharedVariables
         //Fields
         public Vector2 myPosition;
 
+        public Transform myTransform;
+
         public Vector2 referencePosition;
 
         public bool initialized;

@@ -24,6 +24,8 @@ namespace Coach
 
         public FieldZoneCache FieldZoneCache;
 
+        public CoachPlayerCommunication playerToPassBall;
+
         public void initializeFieldZoneCache(float fieldWidth, float fieldHeight, float sign)
         {
             FieldZoneCache = new FieldZoneCache(fieldWidth, fieldHeight, sign);

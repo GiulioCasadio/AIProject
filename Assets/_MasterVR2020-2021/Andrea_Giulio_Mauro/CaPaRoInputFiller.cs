@@ -86,6 +86,15 @@ namespace Ca_Pa_Ro
             shared.m_Opponents = opponents;
             shared.m_Teams = teams;
 
+            foreach (var friend in teams)
+            {
+                if (friend.position.Equals(myPosition))
+                {
+                    shared.myTransform = friend;
+                    break;
+                }
+            }
+
             shared.m_tnBaseMatchController = i_Data.BaseMatchController;
             
             m_behavior_tree.SetVariableValue("Shared", shared);
